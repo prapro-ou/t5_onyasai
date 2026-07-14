@@ -1,16 +1,18 @@
 [gd_scene format=3 uid="uid://canucaj2egfr5"]
 
 [ext_resource type="Script" uid="uid://6fns3niv280v" path="res://Player/player.gd" id="1_4ntmi"]
-[ext_resource type="Texture2D" uid="uid://dllrftunwoc82" path="res://Images/player.png" id="1_l8h54"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_83885"]
-size = Vector2(197, 200)
+size = Vector2(193, 186)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_l8h54"]
+load_path = "res://.godot/imported/player.png-41243b5dcae90412c5ce6f47682eb903.ctex"
 
 [node name="Player" type="CharacterBody2D" unique_id=769530278]
 script = ExtResource("1_4ntmi")
 
 [node name="当たり判定" type="CollisionShape2D" parent="." unique_id=1780293645]
-position = Vector2(-0.5, -4)
+position = Vector2(-2.5, 3)
 shape = SubResource("RectangleShape2D_83885")
 
 [node name="弾の出る位置" type="Marker2D" parent="." unique_id=782987031]
@@ -25,4 +27,4 @@ root_node = NodePath("../プレイヤー追跡カメラ")
 [node name="プレイヤーの画像" type="Sprite2D" parent="." unique_id=1490969436]
 position = Vector2(-0.5000066, -4.0000052)
 scale = Vector2(0.995, 0.99999994)
-texture = ExtResource("1_l8h54")
+texture = SubResource("CompressedTexture2D_l8h54")
