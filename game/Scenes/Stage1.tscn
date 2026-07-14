@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://6gu0crqsuhax"]
+
+[ext_resource type="Script" uid="uid://uvme7kckhqc7" path="res://Scenes/stage_1.gd" id="1_ert0p"]
+[ext_resource type="PackedScene" uid="uid://canucaj2egfr5" path="res://Player/player.tscn" id="2_plk55"]
+
+[node name="Node2D" type="Node2D" unique_id=1594852433]
+script = ExtResource("1_ert0p")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=572644652]
+
+[node name="Node2D2" type="Node2D" parent="." unique_id=989993026]
+
+[node name="Node2D" type="Node2D" parent="." unique_id=1932858928]
+
+[node name="Node" type="Node" parent="." unique_id=545952596]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=450865275]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=531936715]
+
+[node name="Timer" type="Timer" parent="." unique_id=1304912363]
+
+[node name="Player" parent="." unique_id=769530278 instance=ExtResource("2_plk55")]
