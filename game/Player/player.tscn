@@ -23,6 +23,6 @@ position = Vector2(-6, 17)
 root_node = NodePath("../プレイヤー追跡カメラ")
 
 [node name="プレイヤーの画像" type="Sprite2D" parent="." unique_id=1490969436]
-position = Vector2(0, -4.4999995)
-scale = Vector2(1, 1.005)
+position = Vector2(-0.5000066, -4.0000052)
+scale = Vector2(0.995, 0.99999994)
 texture = ExtResource("1_l8h54")
