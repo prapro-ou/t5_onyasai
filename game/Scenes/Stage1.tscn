@@ -1,23 +1,25 @@
 [gd_scene format=3 uid="uid://6gu0crqsuhax"]
 
-[ext_resource type="Script" uid="uid://uvme7kckhqc7" path="res://Scenes/stage_1.gd" id="1_ert0p"]
+[ext_resource type="Texture2D" uid="uid://cmoqyxuviv6ry" path="res://Images/背景.png" id="1_ert0p"]
+[ext_resource type="Script" uid="uid://cpv42lafla1p2" path="res://Scripts/stage_1.gd" id="1_o6145"]
+[ext_resource type="PackedScene" uid="uid://burmmi0gapr8r" path="res://Enemy/enemy.tscn" id="2_ert0p"]
 [ext_resource type="PackedScene" uid="uid://canucaj2egfr5" path="res://Player/player.tscn" id="2_plk55"]
+[ext_resource type="PackedScene" uid="uid://bjlxdcsf0puhl" path="res://Bullet/bullet.tscn" id="3_kbj7r"]
 
-[node name="Node2D" type="Node2D" unique_id=1594852433]
-script = ExtResource("1_ert0p")
+[node name="Stage1" type="Node2D" unique_id=1594852433]
+script = ExtResource("1_o6145")
+enemy_scene = ExtResource("2_ert0p")
+bullet_scene = ExtResource("3_kbj7r")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=572644652]
-
-[node name="Node2D2" type="Node2D" parent="." unique_id=989993026]
-
-[node name="Node2D" type="Node2D" parent="." unique_id=1932858928]
-
-[node name="Node" type="Node" parent="." unique_id=545952596]
-
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=450865275]
-
-[node name="Camera2D" type="Camera2D" parent="." unique_id=531936715]
-
-[node name="Timer" type="Timer" parent="." unique_id=1304912363]
+[node name="Background" type="Sprite2D" parent="." unique_id=294289020]
+position = Vector2(-143, 349.99997)
+scale = Vector2(3.346667, 3.6476192)
+texture = ExtResource("1_ert0p")
 
 [node name="Player" parent="." unique_id=769530278 instance=ExtResource("2_plk55")]
+
+[node name="Enemy Timer" type="Timer" parent="." unique_id=1554965877]
+wait_time = 2.0
+autostart = true
+
+[connection signal="timeout" from="Enemy Timer" to="." method="_on_enemy_timer_timeout"]
