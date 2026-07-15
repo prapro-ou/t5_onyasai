@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://dgcyj6kfvrpjn"]
+
+[ext_resource type="PackedScene" uid="uid://bfcju82um8mqx" path="res://player.tscn" id="1_0xm2m"]
+[ext_resource type="Script" uid="uid://dpuh7i4g3glpm" path="res://main.gd" id="1_h2yge"]
+[ext_resource type="PackedScene" uid="uid://dic4q2g7ktofc" path="res://enemy.tscn" id="2_h2yge"]
+[ext_resource type="Script" uid="uid://dvki47q5lmb3d" path="res://enemys.gd" id="3_h2yge"]
+
+[node name="main" type="Node" unique_id=1730228014]
+script = ExtResource("1_h2yge")
+mob_scene = ExtResource("2_h2yge")
+
+[node name="player" parent="." unique_id=427894882 instance=ExtResource("1_0xm2m")]
+
+[node name="startposition" type="Marker2D" parent="." unique_id=1513776379]
+position = Vector2(240, 480)
+
+[node name="Enemies" type="Node2D" parent="." unique_id=1281783045]
+scale = Vector2(4, 4)
+script = ExtResource("3_h2yge")
+
+[node name="mobtimer" type="Timer" parent="." unique_id=1267669794]
+autostart = true
+
+[connection signal="timeout" from="mobtimer" to="." method="_on_mobtimer_timeout"]
