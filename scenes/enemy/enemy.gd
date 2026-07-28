@@ -1,5 +1,8 @@
 extends CharacterBody2D
 
+# 敵が倒されたことをMainへ知らせるシグナル
+signal died
+
 @export var max_hp: int = 3
 @export var move_speed: float = 60.0
 
@@ -43,15 +46,18 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
+# 敵がダメージを受けたときの処理
 func take_damage(damage: int, attacker_position: Vector2) -> void:
-	current_hp -= damage
-	print("敵の残りHP: ", current_hp)
+	current_hp -= damage	# ダメージ分だけ現在HPを減らす
+	current_hp = clamp(current_hp, 0, max_hp)	# 現在HPが0未満にならないようにする
+	print("敵の残りHP: ", current_hp)	# 出力欄に敵の残りHPを表示する
 
-	apply_knockback(attacker_position)
-	flash_damage()
+	apply_knockback(attacker_position)	# 攻撃してきた位置と反対方向へノックバックさせる
 
-	if current_hp <= 0:
-		queue_free()
+	flash_damage()	# ダメージを受けたことが分かるように赤く点滅させる
+
+	if current_hp <= 0:	# HPが0になったら敵を倒す
+		die()
 
 
 func apply_knockback(attacker_position: Vector2) -> void:
@@ -68,3 +74,12 @@ func flash_damage() -> void:
 
 	if is_instance_valid(sprite):
 		sprite.modulate = Color.WHITE
+		
+
+# 敵が倒されたときに呼ばれる処理
+func die() -> void:
+	# Mainへ「敵が倒された」と知らせる
+	died.emit()
+
+	# 敵をゲーム画面から削除する
+	queue_free()
