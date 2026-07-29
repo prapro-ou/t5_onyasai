@@ -3,7 +3,16 @@ extends Node2D
 @export var enemy_scene : PackedScene
 @export var bullet_scene : PackedScene
 
-const MAX_ENEMIES = 30
+const MAX_ENEMIES = 10
+
+func _ready():
+	# Playerのレベルアップシグナルを受け取る
+	$Player.level_up_requested.connect(_on_player_level_up)
+
+func _on_player_level_up():
+	get_tree().paused = true
+	$LevelUpUI.show_ui()
+
 func _on_enemy_timer_timeout():
 
 	var enemy_count = get_tree().get_nodes_in_group("enemy").size()
@@ -23,6 +32,7 @@ func _on_enemy_timer_timeout():
 	var side = randi_range(0, 3)
 	
 	var pos = Vector2.ZERO
+	
 	
 	if side == 0:
 		# 上

@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://bjs5visr1pew2"]
+
+[ext_resource type="Script" uid="uid://dwnhaxiekmsu8" path="res://UI/level_up_uir.gd" id="1_3707i"]
+
+[node name="LevelUpUI" type="CanvasLayer" unique_id=1991014968]
+script = ExtResource("1_3707i")
+
+[node name="Panel" type="Panel" parent="." unique_id=85236668]
+process_mode = 2
+offset_top = 5.0
+offset_right = 1927.0
+offset_bottom = 1085.0
+
+[node name="Label" type="Label" parent="Panel" unique_id=848632610]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "LEVEL UP!!
+強化を選択してください"
+
+[node name="AttackButton" type="Button" parent="Panel" unique_id=859832056]
+layout_mode = 0
+offset_left = 599.0
+offset_top = 429.0
+offset_right = 777.0
+offset_bottom = 476.0
+scale = Vector2(4, 4)
+text = "攻撃力アップ"
+
+[node name="SpeedButton" type="Button" parent="Panel" unique_id=1071864505]
+layout_mode = 0
+offset_left = 599.0
+offset_top = 701.0
+offset_right = 777.0
+offset_bottom = 748.0
+scale = Vector2(4, 4)
+text = "攻撃速度アップ"
+
+[node name="MoveButton" type="Button" parent="Panel" unique_id=714248022]
+layout_mode = 0
+offset_left = 585.0
+offset_top = 168.0
+offset_right = 763.0
+offset_bottom = 215.0
+scale = Vector2(4, 4)
+text = "移動速度アップ"
+
+[connection signal="pressed" from="Panel/AttackButton" to="." method="_on_attack_button_pressed"]
+[connection signal="pressed" from="Panel/SpeedButton" to="." method="_on_speed_button_pressed"]
+[connection signal="pressed" from="Panel/MoveButton" to="." method="_on_move_button_pressed"]

@@ -5,20 +5,30 @@
 [ext_resource type="PackedScene" uid="uid://bjlxdcsf0puhl" path="res://Bullet/bullet.tscn" id="2_btcbx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_plk55"]
+size = Vector2(197, 193)
 
 [node name="Player" type="CharacterBody2D" unique_id=769530278 groups=["player"]]
+collision_mask = 8
 script = ExtResource("1_4ntmi")
 bullet_scene = ExtResource("2_btcbx")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=991319839]
+position = Vector2(-2, 0)
 texture = ExtResource("2_4ntmi")
 
 [node name="当たり判定" type="CollisionShape2D" parent="." unique_id=1780293645]
-position = Vector2(-2.5, 3)
+position = Vector2(-1.5, -0.5)
 shape = SubResource("RectangleShape2D_plk55")
 
+[node name="InvincibleTimer" type="Timer" parent="." unique_id=688311986]
+wait_time = 3.0
+one_shot = true
+
+[node name="FlashTimer" type="Timer" parent="." unique_id=492479873]
+wait_time = 0.1
+
 [node name="弾の出る位置" type="Marker2D" parent="." unique_id=782987031]
-position = Vector2(1, 88)
+position = Vector2(4, 95)
 
 [node name="プレイヤー追跡カメラ" type="Camera2D" parent="." unique_id=761866537]
 position = Vector2(-6, 17)
@@ -30,4 +40,6 @@ root_node = NodePath("../プレイヤー追跡カメラ")
 wait_time = 0.3
 autostart = true
 
+[connection signal="timeout" from="InvincibleTimer" to="." method="_on_invincible_timer_timeout"]
+[connection signal="timeout" from="FlashTimer" to="." method="_on_flash_timer_timeout"]
 [connection signal="timeout" from="Attack Timer" to="." method="_on_attack_timer_timeout"]
