@@ -4,11 +4,13 @@
 [ext_resource type="PackedScene" uid="uid://b813i5f5ocwhh" path="res://scenes/player/player.tscn" id="2_l3cfh"]
 [ext_resource type="PackedScene" uid="uid://c0688q7f2ni3u" path="res://scenes/enemy/blue_enemy.tscn" id="3_6q06x"]
 [ext_resource type="PackedScene" uid="uid://cldv3jneab40k" path="res://scenes/enemy/yellow_enemy.tscn" id="3_l3cfh"]
+[ext_resource type="PackedScene" uid="uid://b0p5vtjtgdglb" path="res://scenes/enemy/red_enemy.tscn" id="4_6q06x"]
 
 [node name="Main" type="Node2D" unique_id=587774680]
 script = ExtResource("1_k2fmo")
 blue_enemy_scene = ExtResource("3_6q06x")
 yellow_enemy_scene = ExtResource("3_l3cfh")
+red_enemy_scene = ExtResource("4_6q06x")
 
 [node name="Player" parent="." unique_id=1834547159 instance=ExtResource("2_l3cfh")]
 position = Vector2(564, 326)

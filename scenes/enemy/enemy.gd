@@ -10,6 +10,10 @@ signal died
 @export var knockback_duration: float = 0.15
 
 @onready var sprite: Sprite2D = $Sprite2D
+# HPBarが存在するときだけ取得する
+# 青鬼・黄色鬼には存在しないため、nullになる
+@onready var hp_bar: Control = get_node_or_null("HPBar")
+
 
 var current_hp: int
 var player: Node2D
@@ -19,8 +23,16 @@ var knockback_time: float = 0.0
 
 
 func _ready() -> void:
+	# 現在HPを最大HPで初期化する
 	current_hp = max_hp
+
+	# playerグループからプレイヤーを取得する
 	player = get_tree().get_first_node_in_group("player")
+
+	# HPBarが付いている敵だけHPバーを初期化する
+	# 現在は赤鬼だけが対象
+	if hp_bar != null:
+		hp_bar.set_hp(current_hp, max_hp)
 
 
 func _physics_process(delta: float) -> void:
@@ -46,17 +58,28 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
-# 敵がダメージを受けたときの処理
 func take_damage(damage: int, attacker_position: Vector2) -> void:
-	current_hp -= damage	# ダメージ分だけ現在HPを減らす
-	current_hp = clamp(current_hp, 0, max_hp)	# 現在HPが0未満にならないようにする
-	print("敵の残りHP: ", current_hp)	# 出力欄に敵の残りHPを表示する
+	# HPを減らす
+	current_hp -= damage
 
-	apply_knockback(attacker_position)	# 攻撃してきた位置と反対方向へノックバックさせる
+	# HPが0未満にならないようにする
+	current_hp = clamp(current_hp, 0, max_hp)
 
-	flash_damage()	# ダメージを受けたことが分かるように赤く点滅させる
+	# HPBarが付いている敵だけHPバーを更新する
+	# 青鬼・黄色鬼では実行されない
+	if hp_bar != null:
+		hp_bar.set_hp(current_hp, max_hp)
 
-	if current_hp <= 0:	# HPが0になったら敵を倒す
+	print("敵の残りHP: ", current_hp)
+
+	# ノックバック処理
+	apply_knockback(attacker_position)
+
+	# ダメージ時の点滅処理
+	flash_damage()
+
+	# HPが0なら敵を倒す
+	if current_hp <= 0:
 		die()
 
 
