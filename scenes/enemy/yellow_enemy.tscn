@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://cldv3jneab40k"]
+
+[ext_resource type="PackedScene" uid="uid://c0688q7f2ni3u" path="res://scenes/enemy/blue_enemy.tscn" id="1_u7656"]
+[ext_resource type="Texture2D" uid="uid://bisor3dggj0xg" path="res://assets/enemy/黄鬼_画像_直立.png" id="2_ml7yu"]
+
+[node name="YellowEnemy" unique_id=1885842798 instance=ExtResource("1_u7656")]
+max_hp = 3
+move_speed = 100.0
+
+[node name="Sprite2D" parent="." index="0" unique_id=636550362]
+position = Vector2(0.9999999, 5.9604645e-08)
+scale = Vector2(0.7068966, 0.73913044)
+texture = ExtResource("2_ml7yu")

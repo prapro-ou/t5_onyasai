@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://bsqcd07k2ehps"]
+
+[ext_resource type="Script" uid="uid://d2yd38ewjgt0g" path="res://scenes/ui/hp_bar.gd" id="1_pw20h"]
+
+[node name="HPBar" type="Control" unique_id=2087799846]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 80.0
+offset_bottom = 10.0
+script = ExtResource("1_pw20h")
+
+[node name="Background" type="ColorRect" parent="." unique_id=1703600405]
+layout_mode = 0
+offset_right = 80.0
+offset_bottom = 10.0
+color = Color(0.48766226, 0.48766214, 0.48766208, 1)
+
+[node name="Fill" type="ColorRect" parent="." unique_id=1393998992]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 79.0
+offset_bottom = 9.0
+color = Color(0.6862745, 1, 0.49411765, 1)
