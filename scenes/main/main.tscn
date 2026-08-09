@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://c0688q7f2ni3u" path="res://scenes/enemy/blue_enemy.tscn" id="3_6q06x"]
 [ext_resource type="PackedScene" uid="uid://cldv3jneab40k" path="res://scenes/enemy/yellow_enemy.tscn" id="3_l3cfh"]
 [ext_resource type="PackedScene" uid="uid://b0p5vtjtgdglb" path="res://scenes/enemy/red_enemy.tscn" id="4_6q06x"]
+[ext_resource type="AudioStream" uid="uid://mbnun2rtkfew" path="res://assets/sounds/結末の見えない戦い_其の六十二.mp3" id="6_ow5a4"]
 
 [node name="Main" type="Node2D" unique_id=587774680]
 script = ExtResource("1_k2fmo")
@@ -18,3 +19,9 @@ position = Vector2(564, 326)
 [node name="SpawnTimer" type="Timer" parent="." unique_id=220923622]
 wait_time = 4.0
 autostart = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=886846407]
+stream = ExtResource("6_ow5a4")
+volume_db = -20.0
+autoplay = true
+parameters/looping = true

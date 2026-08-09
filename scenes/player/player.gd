@@ -58,7 +58,7 @@ func _on_attack_timer_timeout() -> void:
 
 	is_attacking = true
 	animated_sprite.play("attack")
-
+	
 	katana_collision.set_deferred("disabled", false)
 
 	await get_tree().create_timer(0.2).timeout
@@ -74,6 +74,9 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 
 func _on_katana_hit_box_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemy") and body.has_method("take_damage"):
+		#ここから追加
+		$AttackSound.play()
+		#ここまで
 		body.take_damage(1, global_position)
 
 
@@ -103,6 +106,7 @@ func check_enemy_contact() -> void:
 
 func take_damage(damage: int) -> void:
 	current_hp -= damage
+	$DamageSound.play()
 	print("プレイヤーの残りHP: ", current_hp)
 
 	hp_bar.set_hp(current_hp, max_hp)
@@ -113,6 +117,9 @@ func take_damage(damage: int) -> void:
 
 func die() -> void:
 	print("ゲームオーバー")
+	#ここから追加
+	$GameOverSound.play()
+	#ここまで
 	velocity = Vector2.ZERO
 	set_physics_process(false)
 	animated_sprite.stop()
