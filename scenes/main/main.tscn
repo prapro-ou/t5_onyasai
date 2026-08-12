@@ -18,3 +18,32 @@ position = Vector2(564, 326)
 [node name="SpawnTimer" type="Timer" parent="." unique_id=220923622]
 wait_time = 4.0
 autostart = true
+
+[node name="AttributeSelectUI" type="CanvasLayer" parent="." unique_id=298465828]
+
+[node name="Panel" type="Panel" parent="AttributeSelectUI" unique_id=1398853774]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="AttributeSelectUI/Panel" unique_id=210847427]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="AttributeSelectUI/Panel/VBoxContainer" unique_id=1925437559]
+layout_mode = 2
+text = "属性を選択してください"
+
+[node name="KatanaButton" type="Button" parent="AttributeSelectUI/Panel/VBoxContainer" unique_id=1412701873]
+layout_mode = 2
+text = "刀"
+
+[node name="BowButton" type="Button" parent="AttributeSelectUI/Panel/VBoxContainer" unique_id=1188261615]
+layout_mode = 2
+text = "弓"
+
+[connection signal="pressed" from="AttributeSelectUI/Panel/VBoxContainer/KatanaButton" to="." method="_on_katana_button_pressed"]
+[connection signal="pressed" from="AttributeSelectUI/Panel/VBoxContainer/BowButton" to="." method="_on_bow_button_pressed"]
