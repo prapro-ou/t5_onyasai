@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cldv3jneab40k" path="res://scenes/enemy/yellow_enemy.tscn" id="3_l3cfh"]
 [ext_resource type="PackedScene" uid="uid://b0p5vtjtgdglb" path="res://scenes/enemy/red_enemy.tscn" id="4_6q06x"]
 [ext_resource type="AudioStream" uid="uid://mbnun2rtkfew" path="res://assets/sounds/結末の見えない戦い_其の六十二.mp3" id="6_ow5a4"]
+[ext_resource type="AudioStream" uid="uid://fbeug5se5b65" path="res://assets/sounds/和太鼓でドン.mp3" id="6_yyfjg"]
 [ext_resource type="PackedScene" uid="uid://b7wdj8oaax4aq" path="res://scenes/GameOver/GameOver.tscn" id="7_hujxm"]
 
 [node name="Main" type="Node2D" unique_id=587774680]
@@ -21,10 +22,42 @@ position = Vector2(564, 326)
 wait_time = 4.0
 autostart = true
 
-[node name="BGM" type="AudioStreamPlayer" parent="." unique_id=886846407]
+[node name="AttributeSelectUI" type="CanvasLayer" parent="." unique_id=298465828]
+
+[node name="Panel" type="Panel" parent="AttributeSelectUI" unique_id=1398853774]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="AttributeSelectUI/Panel" unique_id=210847427]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="AttributeSelectUI/Panel/VBoxContainer" unique_id=1925437559]
+layout_mode = 2
+text = "属性を選択してください"
+
+[node name="KatanaButton" type="Button" parent="AttributeSelectUI/Panel/VBoxContainer" unique_id=1412701873]
+layout_mode = 2
+text = "刀"
+
+[node name="BowButton" type="Button" parent="AttributeSelectUI/Panel/VBoxContainer" unique_id=1188261615]
+layout_mode = 2
+text = "弓"
+
+[node name="ClickSound" type="AudioStreamPlayer" parent="AttributeSelectUI" unique_id=1414521542]
+stream = ExtResource("6_yyfjg")
+
+[node name="BGM" type="AudioStreamPlayer2D" parent="." unique_id=1748290086]
 stream = ExtResource("6_ow5a4")
-volume_db = -20.0
+volume_db = -5.0
 autoplay = true
 parameters/looping = true
 
 [node name="GameOver" parent="." unique_id=1161337136 instance=ExtResource("7_hujxm")]
+
+[connection signal="pressed" from="AttributeSelectUI/Panel/VBoxContainer/KatanaButton" to="." method="_on_katana_button_pressed"]
+[connection signal="pressed" from="AttributeSelectUI/Panel/VBoxContainer/BowButton" to="." method="_on_bow_button_pressed"]
