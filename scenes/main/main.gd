@@ -33,6 +33,29 @@ func _ready() -> void:
 	# SpawnTimerの待ち時間が終了したら、
 	# spawn_enemy関数を実行する
 	spawn_timer.timeout.connect(spawn_enemy)
+	#ここから追加
+	$Player/Player.died.connect(game_over)
+	#ここまで
+	
+#ここから追加
+func game_over()-> void: 
+	print("ゲームオーバー")
+	#BGMストップ
+	$BGM.stop()
+	#新しい敵は出さない
+	$SpawnTimer.stop()
+	#少し待つ
+	await get_tree().create_timer(0.7).timeout
+	#倒れる音
+	$Player/Player/GameOverSound.play()
+	#敵を停止
+	for enemy in get_tree().get_nodes_in_group("enemy"):
+		enemy.stop_enemy()
+	#少し待つ
+	await get_tree().create_timer(0.7).timeout
+	# ゲームオーバー画面を表示
+	$GameOver.show_game_over()
+	#ここまで
 
 
 # 敵を生成する処理

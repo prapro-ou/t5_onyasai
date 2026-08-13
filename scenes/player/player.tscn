@@ -104,7 +104,7 @@ animations = [{
 size = Vector2(28, 26)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6obyq"]
-size = Vector2(70.5, 30)
+size = Vector2(31.25, 37)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w3xm4"]
 radius = 17.0
@@ -116,9 +116,10 @@ height = 62.0
 script = ExtResource("1_dovo2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player" unique_id=777190651]
-scale = Vector2(0.5, 0.5)
+position = Vector2(-16.5, 0)
+scale = Vector2(0.45935962, 0.5)
 sprite_frames = SubResource("SpriteFrames_w3xm4")
-animation = &"attack"
+animation = &"run"
 
 [node name="AttackSound" type="AudioStreamPlayer2D" parent="Player" unique_id=329577170]
 scale = Vector2(0.5, 0.5)
@@ -146,11 +147,12 @@ one_shot = true
 [node name="WeaponHolder" type="Node2D" parent="Player" unique_id=1090960688]
 
 [node name="KatanaHitBox" type="Area2D" parent="Player/WeaponHolder" unique_id=974666379]
+scale = Vector2(2, 2)
 collision_layer = 4
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/WeaponHolder/KatanaHitBox" unique_id=384072828]
-position = Vector2(-47.75, 0)
+position = Vector2(-16.5, -0.5)
 shape = SubResource("RectangleShape2D_6obyq")
 disabled = true
 

@@ -1,5 +1,9 @@
 extends CharacterBody2D
 
+#ここから追加
+#ゲームオーバーになったことを知らせる
+signal died
+#ここまで
 @export var move_speed: float = 200.0
 @export var max_hp: int = 10
 
@@ -12,6 +16,9 @@ extends CharacterBody2D
 
 var current_hp: int
 var is_attacking: bool = false
+#ここから追加
+var is_dead: bool = false
+#ここまで
 
 
 func _ready() -> void:
@@ -36,6 +43,10 @@ func _physics_process(_delta: float) -> void:
 
 
 func update_animation(direction: Vector2) -> void:
+	#ここから追加
+	if is_dead:
+		return
+	#ここまで
 	if is_attacking:
 		return
 
@@ -116,10 +127,15 @@ func take_damage(damage: int) -> void:
 
 
 func die() -> void:
-	print("ゲームオーバー")
 	#ここから追加
-	$GameOverSound.play()
+	is_dead = true
 	#ここまで
+	
 	velocity = Vector2.ZERO
 	set_physics_process(false)
 	animated_sprite.stop()
+	#ここから追加
+	animated_sprite.pause()
+	#ゲームオーバーになった事を知らせる
+	died.emit()
+	#ここまで

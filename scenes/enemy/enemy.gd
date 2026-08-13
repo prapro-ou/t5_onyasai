@@ -99,6 +99,12 @@ func flash_damage() -> void:
 		sprite.modulate = Color.WHITE
 		
 
+#ここから追加
+#敵の動きを止める
+func stop_enemy() -> void:
+	set_physics_process(false)
+#ここまで
+
 # 敵が倒されたときに呼ばれる処理
 func die() -> void:
 	# Mainへ「敵が倒された」と知らせる
