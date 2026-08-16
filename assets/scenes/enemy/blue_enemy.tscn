@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c0688q7f2ni3u"]
 
 [ext_resource type="Texture2D" uid="uid://nywd4mw8lp3g" path="res://assets/enemy/青鬼_画像_直立.png" id="1_4a83h"]
-[ext_resource type="Script" uid="uid://biiwov7sqhbgg" path="res://scenes/enemy/enemy.gd" id="1_a3pup"]
+[ext_resource type="Script" uid="uid://biiwov7sqhbgg" path="res://assets/scenes/enemy/enemy.gd" id="1_a3pup"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_w3xm4"]
 radius = 42.0119

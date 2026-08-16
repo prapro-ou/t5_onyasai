@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://s5sps4jbnrja"]
+
+[ext_resource type="Texture2D" uid="uid://cphsmouae6cor" path="res://Gemini_Generated_Image_tmxzyytmxzyytmxz.png" id="1_061vo"]
+
+[node name="hiroshima" type="Node2D" unique_id=770409867]
+
+[node name="background" type="Sprite2D" parent="." unique_id=366511148]
+texture = ExtResource("1_061vo")
+
+[node name="Timer" type="Timer" parent="." unique_id=380953520]

@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://iereahx4ykmh"]
+
+[ext_resource type="Script" uid="uid://bnf72lca6iy8u" path="res://stage_select.gd" id="1_m16wk"]
+
+[node name="stage_select" type="Control" unique_id=1099931632]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_m16wk")
+
+[node name="tottori" type="Label" parent="." unique_id=1453594748]
+layout_mode = 0
+offset_right = 1153.0
+offset_bottom = 651.0
+text = "stage select"
+vertical_alignment = 1
+
+[node name="shimane" type="Label" parent="." unique_id=57601177]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="yamaguchi" type="Label" parent="." unique_id=1353289307]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="hiroshima" type="Label" parent="." unique_id=209410807]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="stage_image" type="TextureRect" parent="." unique_id=360967153]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0

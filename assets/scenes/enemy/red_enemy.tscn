@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://b0p5vtjtgdglb"]
 
-[ext_resource type="PackedScene" uid="uid://c0688q7f2ni3u" path="res://scenes/enemy/blue_enemy.tscn" id="1_2idyd"]
+[ext_resource type="PackedScene" uid="uid://c0688q7f2ni3u" path="res://assets/scenes/enemy/blue_enemy.tscn" id="1_2idyd"]
 [ext_resource type="Texture2D" uid="uid://dyl3h7jpt043i" path="res://assets/enemy/赤鬼_画像_直立.png" id="2_hh6tj"]
-[ext_resource type="PackedScene" uid="uid://bsqcd07k2ehps" path="res://scenes/ui/hp_bar.tscn" id="3_5plll"]
+[ext_resource type="PackedScene" uid="uid://bsqcd07k2ehps" path="res://assets/scenes/ui/hp_bar.tscn" id="3_5plll"]
 
 [node name="RedEnemy" unique_id=1885842798 instance=ExtResource("1_2idyd")]
 max_hp = 5
