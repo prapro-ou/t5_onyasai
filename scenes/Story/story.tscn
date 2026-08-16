@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://lr2dd4oc08nw"]
+
+[ext_resource type="Script" uid="uid://bf6qtcax68nd6" path="res://scenes/Story/story.gd" id="1_lp8p8"]
+[ext_resource type="Texture2D" uid="uid://ob1hgklc17k" path="res://gazou/ストーリー背景1.png" id="5_chxqi"]
+
+[node name="Story" type="Node2D" unique_id=509303533]
+script = ExtResource("1_lp8p8")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1781933259]
+
+[node name="UI" type="CanvasLayer" parent="CanvasLayer" unique_id=74002077]
+
+[node name="StoryText" type="RichTextLabel" parent="CanvasLayer/UI" unique_id=1929634528]
+anchors_preset = -1
+anchor_left = 0.58400005
+anchor_top = 0.595
+anchor_right = 0.58400005
+anchor_bottom = 0.595
+offset_left = -761.28015
+offset_top = 204.39996
+offset_right = -409.28015
+offset_bottom = 245.39996
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+offset_transform_position = Vector2(360, 780)
+scroll_active = false
+vertical_alignment = 1
+
+[node name="Nextbutton" type="Button" parent="CanvasLayer/UI" unique_id=837529497]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -195.0
+offset_top = -100.0
+offset_right = 5.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "次へ"
+
+[node name="Skipbutton" type="Button" parent="CanvasLayer/UI" unique_id=1874842647]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -98.0
+offset_right = 200.0
+offset_bottom = 2.0
+grow_vertical = 0
+text = "スキップ"
+
+[node name="Background" type="Sprite2D" parent="." unique_id=1347263181]
+position = Vector2(974.00006, 564)
+scale = Vector2(2.6004, 2.3323)
+texture = ExtResource("5_chxqi")
+
+[connection signal="pressed" from="CanvasLayer/UI/Nextbutton" to="." method="_on_nextbutton_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/Skipbutton" to="." method="_on_skipbutton_pressed"]
