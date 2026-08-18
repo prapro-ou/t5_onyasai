@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://b1bn83o0bt3rp"]
+
+[ext_resource type="Script" uid="uid://0hu14dptcd8c" path="res://start.gd" id="1_ots34"]
+[ext_resource type="Texture2D" uid="uid://bfcp6wxhq47fm" path="res://Gemini_Generated_Image_tdou0atdou0atdou.png" id="2_qn1rc"]
+
+[node name="start" type="Control" unique_id=583265354]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_ots34")
+
+[node name="start" type="Sprite2D" parent="." unique_id=1908875358]
+position = Vector2(708, 388)
+texture = ExtResource("2_qn1rc")

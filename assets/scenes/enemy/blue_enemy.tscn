@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://c0688q7f2ni3u"]
+
+[ext_resource type="Texture2D" uid="uid://nywd4mw8lp3g" path="res://assets/enemy/青鬼_画像_直立.png" id="1_4a83h"]
+[ext_resource type="Script" uid="uid://biiwov7sqhbgg" path="res://assets/scenes/enemy/enemy.gd" id="1_a3pup"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w3xm4"]
+radius = 42.0119
+
+[node name="Enemy" type="CharacterBody2D" unique_id=1885842798 groups=["enemy"]]
+collision_layer = 2
+script = ExtResource("1_a3pup")
+max_hp = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=636550362]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_4a83h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1067024021]
+shape = SubResource("CircleShape2D_w3xm4")
