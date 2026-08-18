@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://dh4fyqisc8vpw"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3vy5n"]
+load_path = "res://.godot/imported/Gemini_Generated_Image_taf9vqtaf9vqtaf9.png-a657408199ccb477ea14c396b817bf9a.ctex"
+
+[node name="shimane" type="Node2D" unique_id=1191361427]
+
+[node name="background" type="Sprite2D" parent="." unique_id=363952849]
+texture = SubResource("CompressedTexture2D_3vy5n")
+
+[node name="Timer" type="Timer" parent="." unique_id=1708367943]

@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://clkhrrvdn6frb"]
+
+[ext_resource type="Script" uid="uid://03xxrrp85p6v" path="res://tottori.gd" id="1_cxdbp"]
+[ext_resource type="Script" uid="uid://up12yutvikeu" path="res://background.gd" id="2_4owng"]
+[ext_resource type="Texture2D" uid="uid://dj70nepofsy2b" path="res://stage_tottori.jpg" id="2_tlfvk"]
+[ext_resource type="PackedScene" uid="uid://08jy1ckwt1cr" path="res://scenes/main/main.tscn" id="4_tlfvk"]
+
+[node name="tottori" type="Node2D" unique_id=246878027]
+script = ExtResource("1_cxdbp")
+
+[node name="background" type="Sprite2D" parent="." unique_id=2001115963]
+position = Vector2(1025, 1000)
+texture = ExtResource("2_tlfvk")
+script = ExtResource("2_4owng")
+
+[node name="Main" parent="." unique_id=587774680 instance=ExtResource("4_tlfvk")]

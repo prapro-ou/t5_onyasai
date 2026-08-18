@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://b0p5vtjtgdglb"]
+
+[ext_resource type="PackedScene" uid="uid://c0688q7f2ni3u" path="res://scenes/enemy/blue_enemy.tscn" id="1_2idyd"]
+[ext_resource type="Texture2D" uid="uid://0uwvylvcqceq" path="res://assets/enemy/赤鬼new.png" id="2_hh6tj"]
+[ext_resource type="PackedScene" uid="uid://bsqcd07k2ehps" path="res://scenes/ui/hp_bar.tscn" id="3_5plll"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5plll"]
+atlas = ExtResource("2_hh6tj")
+region = Rect2(0, 0, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yn1u2"]
+atlas = ExtResource("2_hh6tj")
+region = Rect2(120, 0, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ei5md"]
+atlas = ExtResource("2_hh6tj")
+region = Rect2(240, 0, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d6k5e"]
+atlas = ExtResource("2_hh6tj")
+region = Rect2(360, 0, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k67hq"]
+atlas = ExtResource("2_hh6tj")
+region = Rect2(480, 0, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1f4pj"]
+atlas = ExtResource("2_hh6tj")
+region = Rect2(600, 0, 120, 120)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1by0i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5plll")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yn1u2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ei5md")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d6k5e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k67hq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1f4pj")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="RedEnemy" unique_id=1885842798 instance=ExtResource("1_2idyd")]
+max_hp = 5
+move_speed = 35.0
+
+[node name="CollisionShape2D" parent="." index="0" unique_id=1067024021]
+position = Vector2(-0.99999994, 0.99999976)
+scale = Vector2(1.4, 1.4)
+
+[node name="AnimatedSprite2D" parent="." index="1" unique_id=273538431]
+position = Vector2(13.000002, -15)
+scale = Vector2(1.2833334, 1.2916667)
+sprite_frames = SubResource("SpriteFrames_1by0i")
+frame_progress = 0.8071986
+
+[node name="HPBar" parent="." index="2" unique_id=2087799846 instance=ExtResource("3_5plll")]
+offset_left = -40.0
+offset_top = -62.0
+offset_right = 40.0
+offset_bottom = -52.0

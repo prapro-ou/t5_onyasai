@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://dunoupvc0xdu"]
+
+[ext_resource type="PackedScene" uid="uid://c0688q7f2ni3u" path="res://scenes/enemy/blue_enemy.tscn" id="1_dgw2g"]
+[ext_resource type="Texture2D" uid="uid://uye6vbhj80w5" path="res://gazou/黄スライム.png" id="2_dgw2g"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_odpad"]
+atlas = ExtResource("2_dgw2g")
+region = Rect2(565, 177, 113, 177)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b78f0"]
+atlas = ExtResource("2_dgw2g")
+region = Rect2(678, 177, 113, 177)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e1dwa"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_odpad")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b78f0")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="YellowEnemy" unique_id=1885842798 instance=ExtResource("1_dgw2g")]
+max_hp = 1
+move_speed = 278.0
+
+[node name="AnimatedSprite2D" parent="." index="1" unique_id=273538431]
+position = Vector2(-4.999999, 1)
+scale = Vector2(0.8296875, 0.85078126)
+sprite_frames = SubResource("SpriteFrames_e1dwa")
+frame = 1
+frame_progress = 0.97553587

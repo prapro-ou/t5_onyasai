@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://cldv3jneab40k"]
+
+[ext_resource type="PackedScene" uid="uid://c0688q7f2ni3u" path="res://scenes/enemy/blue_enemy.tscn" id="1_u7656"]
+[ext_resource type="Texture2D" uid="uid://crrjj231jbk28" path="res://assets/enemy/黄鬼.png" id="2_ml7yu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_euhvm"]
+atlas = ExtResource("2_ml7yu")
+region = Rect2(0, 0, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nigsx"]
+atlas = ExtResource("2_ml7yu")
+region = Rect2(120, 0, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ya0mo"]
+atlas = ExtResource("2_ml7yu")
+region = Rect2(240, 0, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fqby5"]
+atlas = ExtResource("2_ml7yu")
+region = Rect2(360, 0, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a1jsx"]
+atlas = ExtResource("2_ml7yu")
+region = Rect2(480, 0, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lh3xx"]
+atlas = ExtResource("2_ml7yu")
+region = Rect2(600, 0, 120, 120)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e1dwa"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_euhvm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nigsx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ya0mo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fqby5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a1jsx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lh3xx")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="YellowEnemy" unique_id=1885842798 instance=ExtResource("1_u7656")]
+max_hp = 3
+move_speed = 100.0
+
+[node name="AnimatedSprite2D" parent="." index="1" unique_id=273538431]
+position = Vector2(11, -4)
+scale = Vector2(0.8296875, 0.85078126)
+sprite_frames = SubResource("SpriteFrames_e1dwa")
+frame_progress = 0.0

@@ -1,0 +1,71 @@
+[gd_scene format=3 uid="uid://c0688q7f2ni3u"]
+
+[ext_resource type="Script" uid="uid://biiwov7sqhbgg" path="res://scenes/enemy/enemy.gd" id="1_a3pup"]
+[ext_resource type="Texture2D" uid="uid://cu4fmfi40noap" path="res://assets/enemy/Code_Generated_Image.png" id="2_xnf2d"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w3xm4"]
+radius = 42.0119
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3wnqk"]
+atlas = ExtResource("2_xnf2d")
+region = Rect2(0, 0, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6tajs"]
+atlas = ExtResource("2_xnf2d")
+region = Rect2(120, 0, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dgocu"]
+atlas = ExtResource("2_xnf2d")
+region = Rect2(240, 0, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ni23l"]
+atlas = ExtResource("2_xnf2d")
+region = Rect2(360, 0, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rdait"]
+atlas = ExtResource("2_xnf2d")
+region = Rect2(480, 0, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s54n5"]
+atlas = ExtResource("2_xnf2d")
+region = Rect2(600, 0, 120, 120)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_50csb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3wnqk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6tajs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dgocu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ni23l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rdait")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s54n5")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Enemy" type="CharacterBody2D" unique_id=1885842798 groups=["enemy"]]
+collision_layer = 2
+script = ExtResource("1_a3pup")
+max_hp = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1067024021]
+shape = SubResource("CircleShape2D_w3xm4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=273538431]
+position = Vector2(8.437499, -5.5937433)
+scale = Vector2(0.94270843, 0.9432292)
+sprite_frames = SubResource("SpriteFrames_50csb")
+frame_progress = 0.15281296

@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://bg3xq5oukxsq7"]
+
+[ext_resource type="Script" uid="uid://bq1kx2t43mgrx" path="res://scenes/player/arrow.gd" id="1_r6vjf"]
+[ext_resource type="Texture2D" uid="uid://18pwh1c1y7vi" path="res://assets/player/player_bow_arrow.png" id="2_yob3x"]
+[ext_resource type="AudioStream" uid="uid://fxq74buv5k35" path="res://assets/sounds/弓矢を放つ.mp3" id="3_cfh4y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w3xm4"]
+size = Vector2(106.25, 18.1875)
+
+[node name="Arrow" type="Area2D" unique_id=1912915680]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_r6vjf")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1104150481]
+position = Vector2(-36, -1.999999)
+scale = Vector2(0.7568493, 0.86585367)
+texture = ExtResource("2_yob3x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1916657165]
+position = Vector2(21, -1)
+shape = SubResource("RectangleShape2D_w3xm4")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=962608804]
+position = Vector2(18, -1)
+
+[node name="AttackSound" type="AudioStreamPlayer2D" parent="." unique_id=980475927]
+stream = ExtResource("3_cfh4y")
