@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://b813i5f5ocwhh"]
 
 [ext_resource type="Script" uid="uid://c0jvs8pkkko3y" path="res://scenes/player/player.gd" id="1_dovo2"]
-[ext_resource type="PackedScene" uid="uid://bg3xq5oukxsq7" path="res://scenes/player/arrow.tscn" id="2_75vfm"]
 [ext_resource type="Texture2D" uid="uid://cadry4lnsbodh" path="res://assets/player/侍_Player画像_透明_直立1.png" id="2_gmlin"]
 [ext_resource type="Texture2D" uid="uid://biwhher0mw20t" path="res://assets/player/侍_Player画像_attack_横.png" id="2_lvxji"]
 [ext_resource type="AudioStream" uid="uid://bu574sj1nvdn8" path="res://assets/sounds/バタンと倒れる.mp3" id="3_5gtgg"]
@@ -115,7 +114,6 @@ height = 62.0
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=1298724341 groups=["player"]]
 script = ExtResource("1_dovo2")
-arrow_scene = ExtResource("2_75vfm")
 
 [node name="GameOverSound" type="AudioStreamPlayer2D" parent="Player" unique_id=1928554710]
 stream = ExtResource("3_5gtgg")

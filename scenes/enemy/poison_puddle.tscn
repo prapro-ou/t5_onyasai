@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://ksd816m7vrnk"]
+
+[ext_resource type="Script" uid="uid://b52adfln7pwti" path="res://scenes/enemy/poison_puddle.gd" id="1_6sg8w"]
+[ext_resource type="Texture2D" uid="uid://gnrqwb22yo4p" path="res://gazou/毒沼.png" id="2_bjjfo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_twnrh"]
+atlas = ExtResource("2_bjjfo")
+region = Rect2(0, 408, 192, 204)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_shual"]
+atlas = ExtResource("2_bjjfo")
+region = Rect2(192, 408, 192, 204)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8yple"]
+atlas = ExtResource("2_bjjfo")
+region = Rect2(384, 408, 192, 204)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kt1mc"]
+atlas = ExtResource("2_bjjfo")
+region = Rect2(576, 408, 192, 204)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_83885"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_twnrh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_shual")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8yple")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kt1mc")
+}],
+"loop": 1,
+"name": &"okonomiyaki",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_doh5s"]
+radius = 37.0
+height = 162.0
+
+[node name="PoisonPuddle" type="Area2D" unique_id=706681191]
+z_index = -1
+script = ExtResource("1_6sg8w")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=1097746687]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_83885")
+frame_progress = 0.18479933
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1126982707]
+position = Vector2(0, 56)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_doh5s")
+
+[node name="DamageTimer" type="Timer" parent="." unique_id=452312323]

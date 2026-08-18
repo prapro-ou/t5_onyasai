@@ -14,6 +14,12 @@ extends Node2D
 # 赤鬼
 @export var red_enemy_scene: PackedScene
 
+#ここから追加
+# 鳥取ボス
+@export var tottori_boss_scene: PackedScene
+# 広島ボス
+@export var hiroshima_boss_scene: PackedScene
+#ここまで
 
 # ==================================================
 # 子ノード
@@ -73,7 +79,15 @@ const WAVE_2_SPAWN_TIME: float = 4.0
 # Wave3の敵出現間隔
 const WAVE_3_SPAWN_TIME: float = 3.5
 
+#ここから追加
+# Wave3で倒した敵の数
+var wave_3_kill_count: int = 0
+# ボス出現に必要な撃破数
+const KILLS_TO_TOTTORI_BOSS: int = 5
 
+# 鳥取ボスが出現済みか
+var tottori_boss_spawned: bool = false
+#ここまで
 # ==================================================
 # 初期化
 # ==================================================
@@ -136,6 +150,7 @@ func spawn_enemy() -> void:
 		1:
 			# Wave1では青鬼だけ
 			scene_to_spawn = blue_enemy_scene
+			scene_to_spawn = hiroshima_boss_scene
 
 		# --------------------------
 		# Wave2
@@ -259,6 +274,14 @@ func _on_enemy_died() -> void:
 		# --------------------------
 		3:
 			print("Wave3の敵を倒しました")
+			wave_3_kill_count += 1
+
+			print(
+			"Wave3 撃破数：",
+			wave_3_kill_count,
+			"/",
+			KILLS_TO_TOTTORI_BOSS
+		)
 
 
 # ==================================================
@@ -286,6 +309,34 @@ func start_wave_3() -> void:
 
 	print("Wave3開始：青鬼と黄色鬼に加えて赤鬼も出現します")
 
+#ここから追加
+func spawn_tottori_boss() -> void:
+	# すでに出現しているなら何もしない
+	if tottori_boss_spawned:
+		return
+
+	# シーンが設定されていない場合
+	if tottori_boss_scene == null:
+		push_warning("鳥取ボスのシーンが設定されていません。")
+		return
+
+	tottori_boss_spawned = true
+
+	# 鳥取ボスを生成
+	var boss := tottori_boss_scene.instantiate()
+
+	add_child(boss)
+
+	# Playerの近くに出現
+	var angle := randf_range(0.0, TAU)
+	var spawn_distance: float = 500.0
+
+	var spawn_offset := Vector2.RIGHT.rotated(angle) * spawn_distance
+
+	boss.global_position = player.global_position + spawn_offset
+
+	print("鳥取ボス出現！")
+#ここまで
 
 # ==================================================
 # 属性選択

@@ -14,7 +14,6 @@ signal died
 # 青鬼・黄色鬼には存在しないため、nullになる
 @onready var hp_bar: Control = get_node_or_null("HPBar")
 
-
 var current_hp: int
 var player: Node2D
 
