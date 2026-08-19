@@ -1,8 +1,8 @@
-[gd_scene format=3 uid="uid://bqqf7oka8p07x"]
+[gd_scene format=3 uid="uid://gugbvwf0kocu"]
 
 [ext_resource type="PackedScene" uid="uid://b0p5vtjtgdglb" path="res://scenes/enemy/red_enemy.tscn" id="1_woqv1"]
 [ext_resource type="Script" uid="uid://b6xtfteyfnoec" path="res://yamaguti_boss.gd" id="2_np6d7"]
-[ext_resource type="PackedScene" uid="uid://ksd816m7vrnk" path="res://scenes/enemy/poison_puddle.tscn" id="3_np6d7"]
+[ext_resource type="PackedScene" uid="uid://ksd816m7vrnk" path="res://scenes/enemy/boss/poison_puddle.tscn" id="3_np6d7"]
 [ext_resource type="Texture2D" uid="uid://jl1ls1f2giot" path="res://gazou/enemy_kioni.png" id="4_i8t4w"]
 
 [node name="YamagutiBoss" unique_id=1885842798 instance=ExtResource("1_woqv1")]

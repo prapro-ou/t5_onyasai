@@ -32,9 +32,6 @@ var is_warning := false
 # ==================================================
 
 func _ready() -> void:
-	# ボスのHPを設定
-	max_hp = max_hp * 2
-	current_hp = max_hp
 	super._ready()
 	# Playerを取得
 	player = get_tree().get_first_node_in_group("player")

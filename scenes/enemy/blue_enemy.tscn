@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c0688q7f2ni3u"]
 
-[ext_resource type="Texture2D" uid="uid://nywd4mw8lp3g" path="res://assets/enemy/青鬼_画像_直立.png" id="1_4a83h"]
 [ext_resource type="Script" uid="uid://biiwov7sqhbgg" path="res://scenes/enemy/enemy.gd" id="1_a3pup"]
+[ext_resource type="Texture2D" uid="uid://cr3uvylv6jlym" path="res://assets/gazou/character/enemy/enemy_aooni.png" id="2_xnf2d"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_w3xm4"]
 radius = 42.0119
@@ -12,8 +12,9 @@ script = ExtResource("1_a3pup")
 max_hp = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=636550362]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_4a83h")
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_xnf2d")
+flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1067024021]
 shape = SubResource("CircleShape2D_w3xm4")

@@ -1,8 +1,8 @@
-[gd_scene format=3 uid="uid://b2r03eqiov17w"]
+[gd_scene format=3 uid="uid://1lkw4ufl4go0"]
 
 [ext_resource type="PackedScene" uid="uid://b0p5vtjtgdglb" path="res://scenes/enemy/red_enemy.tscn" id="1_2mamo"]
-[ext_resource type="Script" uid="uid://cxud1lahsjqxm" path="res://scenes/enemy/tottori_boss.gd" id="2_ax71f"]
-[ext_resource type="Texture2D" uid="uid://jl1ls1f2giot" path="res://gazou/enemy_kioni.png" id="3_ax71f"]
+[ext_resource type="Script" uid="uid://cxud1lahsjqxm" path="res://scenes/enemy/boss/tottori_boss.gd" id="2_ax71f"]
+[ext_resource type="Texture2D" uid="uid://bw4galky1pe4g" path="res://assets/gazou/character/enemy/enemy_kioniboss.png" id="3_ax71f"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ax71f"]
 load_path = "res://.godot/imported/砂粒.png-ff77ebf3da534c893f491a3b3bb44801.ctex"
@@ -23,13 +23,13 @@ scale_over_velocity_max = 0.5
 
 [node name="TotttoriBoss" unique_id=1885842798 groups=["boss"] instance=ExtResource("1_2mamo")]
 script = ExtResource("2_ax71f")
-max_hp = 3
-move_speed = 60.0
+max_hp = 15
 
 [node name="Sprite2D" parent="." index="0" unique_id=636550362]
-position = Vector2(-2.9999695, 14.000015)
+position = Vector2(-2, 11.000015)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("3_ax71f")
+flip_h = false
 
 [node name="SandstormEffect" type="CanvasLayer" parent="." index="3" unique_id=1402408019]
 
@@ -37,6 +37,10 @@ texture = ExtResource("3_ax71f")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = -3.0
+offset_right = -1.0
+offset_bottom = -3.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.95, 0.73878336, 0.39900002, 0.039215688)

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://b813i5f5ocwhh"]
 
 [ext_resource type="Script" uid="uid://c0jvs8pkkko3y" path="res://scenes/player/player.gd" id="1_dovo2"]
+[ext_resource type="PackedScene" uid="uid://bg3xq5oukxsq7" path="res://scenes/player/arrow.tscn" id="2_75vfm"]
 [ext_resource type="Texture2D" uid="uid://cadry4lnsbodh" path="res://assets/player/侍_Player画像_透明_直立1.png" id="2_gmlin"]
 [ext_resource type="Texture2D" uid="uid://biwhher0mw20t" path="res://assets/player/侍_Player画像_attack_横.png" id="2_lvxji"]
 [ext_resource type="AudioStream" uid="uid://bu574sj1nvdn8" path="res://assets/sounds/バタンと倒れる.mp3" id="3_5gtgg"]
@@ -8,6 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://bpyvnf3wnqs2p" path="res://assets/sounds/小キック.mp3" id="4_h17s1"]
 [ext_resource type="AudioStream" uid="uid://cmcerunwndili" path="res://assets/sounds/剣で斬る.mp3" id="5_je7p5"]
 [ext_resource type="PackedScene" uid="uid://bsqcd07k2ehps" path="res://scenes/ui/hp_bar.tscn" id="5_p47bc"]
+[ext_resource type="AudioStream" uid="uid://r862ktjgk14q" path="res://assets/sounds/打撃2.mp3" id="6_h17s1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h17s1"]
 atlas = ExtResource("2_lvxji")
@@ -104,7 +106,10 @@ animations = [{
 size = Vector2(28, 26)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6obyq"]
-size = Vector2(70.5, 30)
+size = Vector2(79.25, 85)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_83885"]
+size = Vector2(214, 176)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w3xm4"]
 radius = 17.0
@@ -114,6 +119,7 @@ height = 62.0
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=1298724341 groups=["player"]]
 script = ExtResource("1_dovo2")
+arrow_scene = ExtResource("2_75vfm")
 
 [node name="GameOverSound" type="AudioStreamPlayer2D" parent="Player" unique_id=1928554710]
 stream = ExtResource("3_5gtgg")
@@ -124,7 +130,11 @@ stream = ExtResource("4_h17s1")
 [node name="AttackSound" type="AudioStreamPlayer2D" parent="Player" unique_id=188945901]
 stream = ExtResource("5_je7p5")
 
+[node name="HouseSound" type="AudioStreamPlayer2D" parent="Player" unique_id=492096791]
+stream = ExtResource("6_h17s1")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player" unique_id=777190651]
+position = Vector2(1, 1)
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_w3xm4")
 animation = &"attack"
@@ -146,16 +156,24 @@ collision_layer = 4
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/WeaponHolder/KatanaHitBox" unique_id=384072828]
-position = Vector2(-47.75, 0)
+position = Vector2(-36.375, 0.5)
 shape = SubResource("RectangleShape2D_6obyq")
 disabled = true
+
+[node name="HorseHitBox" type="Area2D" parent="Player" unique_id=73120233]
+scale = Vector2(0.5, 0.5)
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/HorseHitBox" unique_id=1150638383]
+position = Vector2(-1, -2)
+shape = SubResource("RectangleShape2D_83885")
 
 [node name="HurtBox" type="Area2D" parent="Player" unique_id=513188960]
 collision_layer = 8
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/HurtBox" unique_id=2108339770]
-position = Vector2(-3, 4)
 shape = SubResource("CapsuleShape2D_w3xm4")
 
 [node name="HPBar" parent="Player" unique_id=2087799846 instance=ExtResource("5_p47bc")]
@@ -168,4 +186,5 @@ scale = Vector2(0.8, 0.8)
 [connection signal="animation_finished" from="Player/AnimatedSprite2D" to="Player" method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="timeout" from="Player/AttackTimer" to="Player" method="_on_attack_timer_timeout"]
 [connection signal="body_entered" from="Player/WeaponHolder/KatanaHitBox" to="Player" method="_on_katana_hit_box_body_entered"]
+[connection signal="body_entered" from="Player/HorseHitBox" to="Player" method="_on_horse_hit_box_body_entered"]
 [connection signal="body_entered" from="Player/HurtBox" to="Player" method="_on_hurt_box_body_entered"]

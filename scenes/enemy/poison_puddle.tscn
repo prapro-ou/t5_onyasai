@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://ksd816m7vrnk"]
+[gd_scene format=3 uid="uid://cyhf5v4sq6kan"]
 
-[ext_resource type="Script" uid="uid://b52adfln7pwti" path="res://scenes/enemy/poison_puddle.gd" id="1_6sg8w"]
+[ext_resource type="Script" path="res://scenes/enemy/poison_puddle.gd" id="1_6sg8w"]
 [ext_resource type="Texture2D" uid="uid://gnrqwb22yo4p" path="res://gazou/毒沼.png" id="2_bjjfo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_twnrh"]
@@ -50,7 +50,7 @@ script = ExtResource("1_6sg8w")
 [node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=1097746687]
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_83885")
-frame_progress = 0.18479933
+animation = &"okonomiyaki"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1126982707]
 position = Vector2(0, 56)

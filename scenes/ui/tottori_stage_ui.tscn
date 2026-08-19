@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://otqxendqxkxk"]
+
+[ext_resource type="FontFile" uid="uid://6plamo55lv41" path="res://assets/font/玉ねぎ楷書「激」無料版v7/玉ねぎ楷書激無料版v7改.ttf" id="1_nlgcy"]
+
+[node name="TottoriStageUI" type="CanvasLayer" unique_id=357268121]
+
+[node name="StageName" type="Label" parent="." unique_id=629841809]
+custom_minimum_size = Vector2(30, 20)
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("1_nlgcy")
+theme_override_font_sizes/font_size = 50
+text = "鳥取"
+
+[node name="Wave" type="Label" parent="." unique_id=1032519856]
+custom_minimum_size = Vector2(30, 20)
+offset_left = 998.0
+offset_top = 13.0
+offset_right = 1148.0
+offset_bottom = 64.0
+theme_override_fonts/font = ExtResource("1_nlgcy")
+theme_override_font_sizes/font_size = 50
+text = "Wave 1"

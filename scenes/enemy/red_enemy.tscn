@@ -1,23 +1,25 @@
 [gd_scene format=3 uid="uid://b0p5vtjtgdglb"]
 
 [ext_resource type="PackedScene" uid="uid://c0688q7f2ni3u" path="res://scenes/enemy/blue_enemy.tscn" id="1_2idyd"]
-[ext_resource type="Texture2D" uid="uid://dyl3h7jpt043i" path="res://assets/enemy/赤鬼_画像_直立.png" id="2_hh6tj"]
 [ext_resource type="PackedScene" uid="uid://bsqcd07k2ehps" path="res://scenes/ui/hp_bar.tscn" id="3_5plll"]
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_5pf11"]
+load_path = "res://.godot/imported/enemy_akaoni.png-c65844f7493f258fd4dd33c1c5cb3f80.ctex"
+
 [node name="RedEnemy" unique_id=1885842798 instance=ExtResource("1_2idyd")]
-max_hp = 5
-move_speed = 35.0
 
 [node name="Sprite2D" parent="." index="0" unique_id=636550362]
 position = Vector2(1, -2)
-scale = Vector2(1.1517857, 1.25)
-texture = ExtResource("2_hh6tj")
+scale = Vector2(0.1, 0.109)
+texture = SubResource("CompressedTexture2D_5pf11")
+flip_h = false
 
 [node name="CollisionShape2D" parent="." index="1" unique_id=1067024021]
 position = Vector2(-0.99999994, 0.99999976)
 scale = Vector2(1.4, 1.4)
 
 [node name="HPBar" parent="." index="2" unique_id=2087799846 instance=ExtResource("3_5plll")]
+visible = false
 offset_left = -40.0
 offset_top = -65.0
 offset_right = 40.0

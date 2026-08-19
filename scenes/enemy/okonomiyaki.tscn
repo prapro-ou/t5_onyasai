@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://ccndyyy5q8i6s"]
+[gd_scene format=3 uid="uid://dulok62wyaqvi"]
 
-[ext_resource type="Script" uid="uid://l6vnffwceb1y" path="res://scenes/enemy/okonomiyaki.gd" id="2_26s52"]
+[ext_resource type="Script" path="res://scenes/enemy/okonomiyaki.gd" id="2_26s52"]
 [ext_resource type="Texture2D" uid="uid://gnrqwb22yo4p" path="res://gazou/毒沼.png" id="2_aj00e"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_twnrh"]
