@@ -1,0 +1,90 @@
+[gd_scene format=3 uid="uid://4odcxsfhxvli"]
+
+[ext_resource type="PackedScene" uid="uid://c0688q7f2ni3u" path="res://scenes/enemy/blue_enemy.tscn" id="2_26pkg"]
+[ext_resource type="Script" uid="uid://c1k1coftbbqrl" path="res://scenes/main/hiroshima_stage.gd" id="2_jq7q2"]
+[ext_resource type="PackedScene" uid="uid://cldv3jneab40k" path="res://scenes/enemy/yellow_enemy.tscn" id="3_3dwjx"]
+[ext_resource type="PackedScene" uid="uid://b0p5vtjtgdglb" path="res://scenes/enemy/red_enemy.tscn" id="4_degm0"]
+[ext_resource type="PackedScene" uid="uid://3melj357fnpy" path="res://scenes/enemy/boss/hiroshima_boss.tscn" id="5_mwdfw"]
+[ext_resource type="Texture2D" uid="uid://bmlm8o8kxf364" path="res://assets/gazou/stage/stage_hirosima1_kai.png" id="6_vcjmi"]
+[ext_resource type="PackedScene" uid="uid://b813i5f5ocwhh" path="res://scenes/player/player.tscn" id="7_i8vjd"]
+[ext_resource type="FontFile" uid="uid://6plamo55lv41" path="res://assets/font/玉ねぎ楷書「激」無料版v7/玉ねぎ楷書激無料版v7改.ttf" id="8_xcgr1"]
+[ext_resource type="AudioStream" uid="uid://fbeug5se5b65" path="res://assets/sounds/和太鼓でドン.mp3" id="9_tti1j"]
+[ext_resource type="AudioStream" uid="uid://cb7rdu7utvcmj" path="res://assets/sounds/三味線METAL__DL其の拾壱.mp3" id="10_26pkg"]
+[ext_resource type="PackedScene" uid="uid://b7wdj8oaax4aq" path="res://scenes/GameOver/GameOver.tscn" id="11_t3mdk"]
+[ext_resource type="PackedScene" uid="uid://kv5c3wejm7rl" path="res://scenes/ui/hiroshima_stage_ui.tscn" id="12_cwx6i"]
+
+[node name="HiroshimaStage" type="Node2D" unique_id=587774680]
+script = ExtResource("2_jq7q2")
+blue_enemy_scene = ExtResource("2_26pkg")
+yellow_enemy_scene = ExtResource("3_3dwjx")
+red_enemy_scene = ExtResource("4_degm0")
+hiroshima_boss_scene = ExtResource("5_mwdfw")
+
+[node name="Background" type="Sprite2D" parent="." unique_id=378510785]
+z_index = -2
+position = Vector2(598.00006, 340)
+scale = Vector2(0.7998046, 0.70519537)
+texture = ExtResource("6_vcjmi")
+
+[node name="Player" parent="." unique_id=1834547159 instance=ExtResource("7_i8vjd")]
+position = Vector2(564, 326)
+
+[node name="SpawnTimer" type="Timer" parent="." unique_id=220923622]
+wait_time = 4.0
+autostart = true
+
+[node name="AttributeSelectUI" type="CanvasLayer" parent="." unique_id=298465828]
+
+[node name="Panel" type="Panel" parent="AttributeSelectUI" unique_id=1398853774]
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="AttributeSelectUI/Panel" unique_id=210847427]
+layout_mode = 0
+offset_left = 300.0
+offset_top = 248.0
+offset_right = 681.0
+offset_bottom = 388.0
+scale = Vector2(1.5, 1.5)
+
+[node name="Label" type="Label" parent="AttributeSelectUI/Panel/VBoxContainer" unique_id=1925437559]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("8_xcgr1")
+text = "属性を選択してください"
+
+[node name="KatanaButton" type="Button" parent="AttributeSelectUI/Panel/VBoxContainer" unique_id=1412701873]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("8_xcgr1")
+text = "刀"
+
+[node name="BowButton" type="Button" parent="AttributeSelectUI/Panel/VBoxContainer" unique_id=1188261615]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("8_xcgr1")
+text = "弓"
+
+[node name="HorseButton" type="Button" parent="AttributeSelectUI/Panel/VBoxContainer" unique_id=1450183500]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("8_xcgr1")
+text = "騎馬"
+
+[node name="ClickSound" type="AudioStreamPlayer" parent="AttributeSelectUI" unique_id=1414521542]
+stream = ExtResource("9_tti1j")
+
+[node name="BGM" type="AudioStreamPlayer2D" parent="." unique_id=1748290086]
+stream = ExtResource("10_26pkg")
+volume_db = -3.0
+autoplay = true
+parameters/looping = true
+
+[node name="GameOver" parent="." unique_id=1161337136 instance=ExtResource("11_t3mdk")]
+visible = false
+
+[node name="StageUI" parent="." unique_id=357268121 instance=ExtResource("12_cwx6i")]
+visible = false
+
+[connection signal="pressed" from="AttributeSelectUI/Panel/VBoxContainer/KatanaButton" to="." method="_on_katana_button_pressed"]
+[connection signal="pressed" from="AttributeSelectUI/Panel/VBoxContainer/BowButton" to="." method="_on_bow_button_pressed"]
+[connection signal="pressed" from="AttributeSelectUI/Panel/VBoxContainer/HorseButton" to="." method="_on_horse_button_pressed"]

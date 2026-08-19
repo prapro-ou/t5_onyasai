@@ -1,10 +1,12 @@
 [gd_scene format=3 uid="uid://3melj357fnpy"]
 
 [ext_resource type="PackedScene" uid="uid://b0p5vtjtgdglb" path="res://scenes/enemy/red_enemy.tscn" id="1_j3ppy"]
-[ext_resource type="Script" uid="uid://bv7h8ixwr3wyf" path="res://scenes/enemy/hiroshima_boss.gd" id="2_lnw6o"]
-[ext_resource type="PackedScene" uid="uid://lcrw4q5kgywx" path="res://scenes/enemy/wave.tscn" id="3_eylq3"]
+[ext_resource type="Script" uid="uid://bv7h8ixwr3wyf" path="res://scenes/enemy/boss/hiroshima_boss.gd" id="2_lnw6o"]
+[ext_resource type="PackedScene" uid="uid://lcrw4q5kgywx" path="res://scenes/enemy/boss/wave.tscn" id="3_eylq3"]
 [ext_resource type="Texture2D" uid="uid://bucuym2qwu3lu" path="res://gazou/紅葉.png" id="3_lnw6o"]
-[ext_resource type="PackedScene" uid="uid://ccndyyy5q8i6s" path="res://scenes/enemy/okonomiyaki.tscn" id="4_r6tpl"]
+[ext_resource type="PackedScene" uid="uid://ccndyyy5q8i6s" path="res://scenes/enemy/boss/okonomiyaki.tscn" id="4_r6tpl"]
+[ext_resource type="Texture2D" uid="uid://fcjqacyka6hs" path="res://assets/gazou/character/enemy/enemy_akaoniboss.png" id="5_i4n3k"]
+[ext_resource type="AudioStream" uid="uid://b48cxj8gty15t" path="res://assets/sounds/風が吹く2.mp3" id="6_ca2nc"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lnw6o"]
 particle_flag_disable_z = true
@@ -25,7 +27,13 @@ script = ExtResource("2_lnw6o")
 wave_scene = ExtResource("3_eylq3")
 okonomiyaki_scene = ExtResource("4_r6tpl")
 max_hp = 3
-move_speed = 60.0
+
+[node name="Sprite2D" parent="." index="0" unique_id=636550362]
+position = Vector2(-5, 30.999996)
+texture = ExtResource("5_i4n3k")
+
+[node name="HPBar" parent="." index="2" unique_id=2087799846]
+visible = true
 
 [node name="AttackTimer" type="Timer" parent="." index="3" unique_id=1322196349]
 wait_time = 5.0
@@ -64,3 +72,6 @@ autostart = true
 visible = false
 width = 50.0
 default_color = Color(1, 1, 1, 0.6666667)
+
+[node name="MomijiSound" type="AudioStreamPlayer2D" parent="." index="9" unique_id=1509821247]
+stream = ExtResource("6_ca2nc")

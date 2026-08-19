@@ -1,23 +1,23 @@
 [gd_scene format=3 uid="uid://bqqf7oka8p07x"]
 
 [ext_resource type="PackedScene" uid="uid://b0p5vtjtgdglb" path="res://scenes/enemy/red_enemy.tscn" id="1_woqv1"]
-[ext_resource type="Script" uid="uid://b6xtfteyfnoec" path="res://yamaguti_boss.gd" id="2_np6d7"]
-[ext_resource type="PackedScene" uid="uid://ksd816m7vrnk" path="res://scenes/enemy/poison_puddle.tscn" id="3_np6d7"]
-[ext_resource type="Texture2D" uid="uid://jl1ls1f2giot" path="res://gazou/enemy_kioni.png" id="4_i8t4w"]
+[ext_resource type="Script" uid="uid://bugj5wokomfn1" path="res://scenes/enemy/boss/yamaguti_boss.gd" id="2_x4t7d"]
+[ext_resource type="PackedScene" uid="uid://ksd816m7vrnk" path="res://scenes/enemy/boss/poison_puddle.tscn" id="3_np6d7"]
+[ext_resource type="Texture2D" uid="uid://fcjqacyka6hs" path="res://assets/gazou/character/enemy/enemy_akaoniboss.png" id="4_x4t7d"]
 
 [node name="YamagutiBoss" unique_id=1885842798 instance=ExtResource("1_woqv1")]
-script = ExtResource("2_np6d7")
+script = ExtResource("2_x4t7d")
 poison_puddle_scene = ExtResource("3_np6d7")
-poison_interval = 6.0
-flash_count = 3
-flash_interval = 0.12
+spawn_distance = 80.0
 max_hp = 3
-move_speed = 60.0
 
 [node name="Sprite2D" parent="." index="0" unique_id=636550362]
 position = Vector2(-1, 18)
 scale = Vector2(0.1, 0.115)
-texture = ExtResource("4_i8t4w")
+texture = ExtResource("4_x4t7d")
+
+[node name="HPBar" parent="." index="2" unique_id=2087799846]
+visible = true
 
 [node name="PoisonTimer" type="Timer" parent="." index="3" unique_id=164911256]
 wait_time = 3.0

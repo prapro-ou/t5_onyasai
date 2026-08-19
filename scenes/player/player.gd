@@ -50,7 +50,7 @@ var last_move_direction: Vector2 = Vector2.RIGHT
 @export var horse_dash_duration: float = 0.5
 
 # 突進ダメージ
-@export var horse_dash_damage: int = 2
+@export var horse_dash_damage: int = 1
 
 # 突進中かどうか
 var is_dashing: bool = false
@@ -539,7 +539,7 @@ func select_katana() -> void:
 	player_zokusei = "red"
 	attack_type = AttackType.KATANA
 	#UI変更
-	var attribute_ui = get_tree().current_scene.get_node_or_null("TottoriStageUI/AttributeUI")
+	var attribute_ui = get_tree().current_scene.get_node_or_null("StageUI/AttributeUI")
 
 	if attribute_ui:
 		attribute_ui.update_attribute(player_zokusei)
@@ -555,7 +555,7 @@ func select_bow() -> void:
 	player_zokusei = "yellow"
 	attack_type = AttackType.BOW
 	#UI変更
-	var attribute_ui = get_tree().current_scene.get_node_or_null("TottoriStageUI/AttributeUI")
+	var attribute_ui = get_tree().current_scene.get_node_or_null("StageUI/AttributeUI")
 
 	if attribute_ui:
 		attribute_ui.update_attribute(player_zokusei)
@@ -571,7 +571,7 @@ func select_horse() -> void:
 	player_zokusei = "blue"
 	attack_type = AttackType.HORSE
 	#UI変更
-	var attribute_ui = get_tree().current_scene.get_node_or_null("TottoriStageUI/AttributeUI")
+	var attribute_ui = get_tree().current_scene.get_node_or_null("StageUI/AttributeUI")
 
 	if attribute_ui:
 		attribute_ui.update_attribute(player_zokusei)

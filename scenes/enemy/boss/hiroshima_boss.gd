@@ -266,6 +266,7 @@ func start_momiji() -> void:
 	is_momiji = true
 
 	print("紅葉嵐発生！")
+	$MomijiSound.play()
 
 
 	# ==================================================
@@ -325,6 +326,7 @@ func end_momiji() -> void:
 
 
 	print("紅葉嵐終了")
+	$MomijiSound.stop()
 
 
 	# ==================================================
@@ -548,7 +550,7 @@ func spawn_wave() -> void:
 
 
 # ==================================================
-# お好み焼き攻撃
+# 毒攻撃
 # ==================================================
 
 func start_okonomiyaki() -> void:
@@ -565,7 +567,7 @@ func start_okonomiyaki() -> void:
 	is_warning = true
 
 
-	print("お好み焼き攻撃の前兆！")
+	print("毒攻撃の前兆！")
 
 
 	# ==================================================
@@ -643,7 +645,7 @@ func spawn_okonomiyaki(spawn_position: Vector2) -> void:
 
 	if okonomiyaki_scene == null:
 
-		print("お好み焼きシーンが設定されていません。")
+		print("毒沼シーンが設定されていません。")
 
 		return
 
@@ -665,7 +667,7 @@ func spawn_okonomiyaki(spawn_position: Vector2) -> void:
 	okonomiyaki.global_position = spawn_position
 
 
-	print("お好み焼き生成！")
+	print("毒沼生成！")
 
 
 # ==================================================

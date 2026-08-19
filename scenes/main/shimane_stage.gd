@@ -14,8 +14,8 @@ extends Node2D
 # 赤鬼
 @export var red_enemy_scene: PackedScene
 
-# 鳥取ボス
-@export var tottori_boss_scene: PackedScene
+# 島根ボス
+@export var shimane_boss_scene: PackedScene
 
 
 # ==================================================
@@ -35,7 +35,7 @@ extends Node2D
 # ステージUI
 # ==================================================
 #UIの可視化
-@onready var tottori_stage_ui = $StageUI
+@onready var shimane_stage_ui = $StageUI
 #Waveのラベル更新
 @onready var wave_label: Label = $StageUI/WaveBoard/Wave
 
@@ -82,19 +82,19 @@ const WAVE_2_SPAWN_TIME: float = 4.0
 # Wave3で倒した敵の数
 var wave_3_kill_count: int = 0
 
-# 鳥取ボス出現に必要な撃破数
-const KILLS_TO_TOTTORI_BOSS: int = 5
+# 島根ボス出現に必要な撃破数
+const KILLS_TO_SHIMANE_BOSS: int = 5
 
 # Wave3の敵出現間隔
 const WAVE_3_SPAWN_TIME: float = 3.5
 
 
 # ==================================================
-# 鳥取ボス
+# 島根ボス
 # ==================================================
 
-# 鳥取ボスが出現済みか
-var tottori_boss_spawned: bool = false
+# 島根ボスが出現済みか
+var shimane_boss_spawned: bool = false
 
 
 # ==================================================
@@ -177,8 +177,8 @@ func game_over() -> void:
 	# ------------------------------------------
 
 	$BGM.stop()
-	# 鳥取ステージUIを非表示する
-	tottori_stage_ui.visible = false
+	# 島根ステージUIを非表示する
+	shimane_stage_ui.visible = false
 
 
 	# ------------------------------------------
@@ -252,8 +252,8 @@ func spawn_enemy() -> void:
 	if is_stage_clear:
 		return
 
-	# 鳥取ボス出現後は通常敵を生成しない
-	if tottori_boss_spawned:
+	# 島根ボス出現後は通常敵を生成しない
+	if shimane_boss_spawned:
 		return
 
 
@@ -478,12 +478,12 @@ func _on_enemy_died() -> void:
 				"Wave3 撃破数：",
 				wave_3_kill_count,
 				"/",
-				KILLS_TO_TOTTORI_BOSS
+				KILLS_TO_SHIMANE_BOSS
 			)
 
 
 			# 5体倒したら鳥取ボス
-			if wave_3_kill_count >= KILLS_TO_TOTTORI_BOSS:
+			if wave_3_kill_count >= KILLS_TO_SHIMANE_BOSS:
 
 				# ここが重要
 				# Physics処理が終わってからボスを生成する
@@ -557,7 +557,7 @@ func spawn_tottori_boss() -> void:
 		return
 
 	# すでにボスが出現しているなら何もしない
-	if tottori_boss_spawned:
+	if shimane_boss_spawned:
 		return
 
 
@@ -565,7 +565,7 @@ func spawn_tottori_boss() -> void:
 	# ボスシーン確認
 	# ------------------------------------------
 
-	if tottori_boss_scene == null:
+	if shimane_boss_scene == null:
 
 		push_warning(
 			"鳥取ボスのシーンが設定されていません。"
@@ -578,7 +578,7 @@ func spawn_tottori_boss() -> void:
 	# ボス出現済みにする
 	# ------------------------------------------
 
-	tottori_boss_spawned = true
+	shimane_boss_spawned = true
 
 
 	# ------------------------------------------
@@ -591,7 +591,7 @@ func spawn_tottori_boss() -> void:
 	print("==============================")
 	print("Wave3終了")
 	print("通常敵の生成停止")
-	print("鳥取ボス出現！")
+	print("島根ボス出現！")
 	print("==============================")
 
 
@@ -599,7 +599,7 @@ func spawn_tottori_boss() -> void:
 	# ボス生成
 	# ------------------------------------------
 
-	var boss := tottori_boss_scene.instantiate()
+	var boss := shimane_boss_scene.instantiate()
 
 	add_child(boss)
 
@@ -631,13 +631,13 @@ func spawn_tottori_boss() -> void:
 	if boss.has_signal("died"):
 
 		boss.died.connect(
-			_on_tottori_boss_died
+			_on_shimane_boss_died
 		)
 
 	else:
 
 		push_warning(
-			"鳥取ボスにdiedシグナルがありません。"
+			"島根ボスにdiedシグナルがありません。"
 		)
 
 
@@ -645,7 +645,7 @@ func spawn_tottori_boss() -> void:
 # 鳥取ボス撃破
 # ==================================================
 
-func _on_tottori_boss_died() -> void:
+func _on_shimane_boss_died() -> void:
 
 	# ゲームオーバーならクリアしない
 	if is_game_over:
@@ -660,8 +660,8 @@ func _on_tottori_boss_died() -> void:
 
 
 	print("==============================")
-	print("鳥取ボス撃破！")
-	print("鳥取ステージクリア！")
+	print("島根ボス撃破！")
+	print("島根ステージクリア！")
 	print("==============================")
 
 
@@ -779,5 +779,5 @@ func start_game_after_attribute_selection() -> void:
 	# 敵の出現開始
 	spawn_timer.start()
 	
-	# 鳥取ステージUIを表示する
-	tottori_stage_ui.visible = true
+	# 島根ステージUIを表示する
+	shimane_stage_ui.visible = true

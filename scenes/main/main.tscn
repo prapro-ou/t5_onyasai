@@ -5,12 +5,12 @@
 [ext_resource type="PackedScene" uid="uid://c0688q7f2ni3u" path="res://scenes/enemy/blue_enemy.tscn" id="3_6q06x"]
 [ext_resource type="PackedScene" uid="uid://cldv3jneab40k" path="res://scenes/enemy/yellow_enemy.tscn" id="3_l3cfh"]
 [ext_resource type="PackedScene" uid="uid://b0p5vtjtgdglb" path="res://scenes/enemy/red_enemy.tscn" id="4_6q06x"]
-[ext_resource type="PackedScene" uid="uid://1lkw4ufl4go0" path="res://scenes/enemy/tottori_boss.tscn" id="5_b1x3f"]
+[ext_resource type="PackedScene" uid="uid://b2r03eqiov17w" path="res://scenes/enemy/boss/tottori_boss.tscn" id="5_blune"]
+[ext_resource type="Texture2D" uid="uid://bld1dyhwu02m6" path="res://assets/gazou/stage/stage_tottori_kai.png" id="6_blune"]
 [ext_resource type="AudioStream" uid="uid://mbnun2rtkfew" path="res://assets/sounds/結末の見えない戦い_其の六十二.mp3" id="6_ow5a4"]
 [ext_resource type="AudioStream" uid="uid://fbeug5se5b65" path="res://assets/sounds/和太鼓でドン.mp3" id="6_yyfjg"]
 [ext_resource type="FontFile" uid="uid://6plamo55lv41" path="res://assets/font/玉ねぎ楷書「激」無料版v7/玉ねぎ楷書激無料版v7改.ttf" id="7_a8run"]
 [ext_resource type="PackedScene" uid="uid://b7wdj8oaax4aq" path="res://scenes/GameOver/GameOver.tscn" id="7_hujxm"]
-[ext_resource type="Texture2D" uid="uid://bp5dkity6wm8k" path="res://assets/gazou/stage/stage_tottori.jpg" id="11_ouso4"]
 [ext_resource type="PackedScene" uid="uid://otqxendqxkxk" path="res://scenes/ui/tottori_stage_ui.tscn" id="12_blune"]
 
 [node name="Main" type="Node2D" unique_id=587774680]
@@ -18,12 +18,13 @@ script = ExtResource("1_k2fmo")
 blue_enemy_scene = ExtResource("3_6q06x")
 yellow_enemy_scene = ExtResource("3_l3cfh")
 red_enemy_scene = ExtResource("4_6q06x")
-tottori_boss_scene = ExtResource("5_b1x3f")
+tottori_boss_scene = ExtResource("5_blune")
 
 [node name="Background" type="Sprite2D" parent="." unique_id=378510785]
-position = Vector2(592.99994, 489)
-scale = Vector2(0.56875, 0.52)
-texture = ExtResource("11_ouso4")
+z_index = -2
+position = Vector2(593.75, 305.94)
+scale = Vector2(0.7998046, 0.70519537)
+texture = ExtResource("6_blune")
 
 [node name="Player" parent="." unique_id=1834547159 instance=ExtResource("2_l3cfh")]
 position = Vector2(564, 326)
@@ -81,7 +82,7 @@ parameters/looping = true
 [node name="GameOver" parent="." unique_id=1161337136 instance=ExtResource("7_hujxm")]
 visible = false
 
-[node name="TottoriStageUI" parent="." unique_id=357268121 instance=ExtResource("12_blune")]
+[node name="StageUI" parent="." unique_id=357268121 instance=ExtResource("12_blune")]
 visible = false
 
 [connection signal="pressed" from="AttributeSelectUI/Panel/VBoxContainer/KatanaButton" to="." method="_on_katana_button_pressed"]
