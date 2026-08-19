@@ -1,6 +1,5 @@
 extends "res://scenes/enemy/enemy.gd"
 
-
 # ==================================================
 # 砂嵐関連
 # ==================================================
@@ -25,7 +24,8 @@ var is_sandstorm := false
 # 前兆中か
 var is_warning := false
 
-
+# 属性
+var enemy_zukusei = "yellow"
 
 # ==================================================
 # 初期化
@@ -101,6 +101,8 @@ func start_sandstorm() -> void:
 	is_sandstorm = true
 
 	print("砂嵐発生！")
+	$SandstormSound.play()
+	
 
 
 	# 砂嵐画面を表示
@@ -111,7 +113,6 @@ func start_sandstorm() -> void:
 	# 砂粒を最初から発生
 	sand_particles.restart()
 	sand_particles.emitting = true
-
 
 	# ------------------------------------------
 	# 砂嵐持続時間開始
@@ -174,6 +175,7 @@ func end_sandstorm() -> void:
 
 
 	print("砂嵐終了")
+	$SandstormSound.stop()
 
 
 	# ------------------------------------------

@@ -7,6 +7,7 @@
 load_path = "res://.godot/imported/enemy_akaoni.png-c65844f7493f258fd4dd33c1c5cb3f80.ctex"
 
 [node name="RedEnemy" unique_id=1885842798 instance=ExtResource("1_2idyd")]
+enemy_zokusei = "red"
 
 [node name="Sprite2D" parent="." index="0" unique_id=636550362]
 position = Vector2(1, -2)

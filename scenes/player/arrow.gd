@@ -8,12 +8,14 @@ extends Area2D
 # 矢の移動速度
 @export var speed: float = 500.0
 
-# 敵に与えるダメージ
+# 敵に与える基本ダメージ
 @export var damage: int = 1
 
 # 矢が進む方向
 var direction: Vector2 = Vector2.RIGHT
 
+# Playerから受け取る属性
+var player_zokusei
 
 # ==================================================
 # 初期化
@@ -45,17 +47,48 @@ func _on_body_entered(body: Node2D) -> void:
 	if not body.is_in_group("enemy"):
 		return
 
-	# 敵がtake_damageを持っている場合
-	if body.has_method("take_damage"):
-		# 敵へダメージを与える
-		body.take_damage(damage, global_position)
-		#ここから追加
-		$AttackSound.play()
-		# 音が終わってから矢を削除
-		await $AttackSound.finished
-		#ここまで
-	# 命中した矢を削除する
-	queue_free()
+	# 敵がtake_damageを持っているか確認
+	if not body.has_method("take_damage"):
+		return
+
+	# 基本ダメージ
+	var actual_damage := damage
+
+	# Player属性とEnemy属性が同じなら2倍
+	if player_zokusei == body.enemy_zokusei:
+		actual_damage *= 2
+
+		print(
+			"属性一致！ ",
+			player_zokusei,
+			" → ",
+			body.enemy_zokusei,
+			" ダメージ: ",
+			actual_damage
+		)
+
+	else:
+		print(
+			"属性不一致 ",
+			player_zokusei,
+			" → ",
+			body.enemy_zokusei,
+			" ダメージ: ",
+			actual_damage
+		)
+
+	# 敵へダメージ
+	body.take_damage(actual_damage, global_position)
+
+	# 攻撃音
+	$AttackSound.play()
+
+	# 音が終わってから矢を削除
+	await $AttackSound.finished
+
+	# 命中した矢を削除
+	if is_inside_tree():
+		queue_free()
 
 
 # ==================================================

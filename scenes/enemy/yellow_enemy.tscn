@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://jl1ls1f2giot" path="res://gazou/enemy_kioni.png" id="2_ml7yu"]
 
 [node name="YellowEnemy" unique_id=1885842798 instance=ExtResource("1_u7656")]
+enemy_zokusei = "yellow"
 
 [node name="Sprite2D" parent="." index="0" unique_id=636550362]
 position = Vector2(1.0862046, 3.5217419)

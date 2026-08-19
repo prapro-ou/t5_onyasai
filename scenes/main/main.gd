@@ -34,8 +34,10 @@ extends Node2D
 # ==================================================
 # ステージUI
 # ==================================================
+#UIの可視化
+@onready var tottori_stage_ui = $TottoriStageUI
 #Waveのラベル更新
-@onready var wave_label: Label = $TottoriStageUI/Wave
+@onready var wave_label: Label = $TottoriStageUI/WaveBoard/Wave
 
 # ==================================================
 # Wave設定
@@ -171,10 +173,12 @@ func game_over() -> void:
 
 
 	# ------------------------------------------
-	# BGM停止
+	# BGM、UI停止
 	# ------------------------------------------
 
 	$BGM.stop()
+	# 鳥取ステージUIを非表示する
+	tottori_stage_ui.visible = false
 
 
 	# ------------------------------------------
@@ -774,3 +778,6 @@ func start_game_after_attribute_selection() -> void:
 
 	# 敵の出現開始
 	spawn_timer.start()
+	
+	# 鳥取ステージUIを表示する
+	tottori_stage_ui.visible = true

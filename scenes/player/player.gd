@@ -69,6 +69,11 @@ var dash_hit_enemies: Array[Node] = []
 @export var max_hp: int = 10
 var current_hp: int
 
+# ==================================================
+# 属性設定
+# ==================================================
+
+var player_zokusei
 
 # ==================================================
 # Playerの状態
@@ -324,8 +329,9 @@ func _on_katana_hit_box_body_entered(body: Node2D) -> void:
 	# 攻撃音
 	attack_sound.play()
 
-	# 敵に1ダメージ
-	body.take_damage(1, global_position)
+	# 敵にダメージ
+	var actual_damage := get_attribute_damage(1, body)
+	body.take_damage(actual_damage, global_position)
 
 
 # ==================================================
@@ -344,6 +350,9 @@ func attack_with_bow() -> void:
 
 	# 矢を生成
 	var arrow := arrow_scene.instantiate()
+	
+	# Playerの属性を矢に渡す
+	arrow.player_zokusei = player_zokusei
 
 	# 現在のステージへ矢を追加
 	get_tree().current_scene.add_child(arrow)
@@ -429,9 +438,13 @@ func _on_horse_hit_box_body_entered(body: Node2D) -> void:
 	dash_hit_enemies.append(body)
 	$HouseSound.play()
 	# 敵へダメージ
+	var actual_damage := get_attribute_damage(
+	horse_dash_damage,
+	body
+	)
 	body.take_damage(
-		horse_dash_damage,
-		global_position
+	actual_damage,
+	global_position
 	)
 
 
@@ -523,6 +536,7 @@ func take_damage(damage: int) -> void:
 
 # 刀属性
 func select_katana() -> void:
+	player_zokusei = "red"
 	attack_type = AttackType.KATANA
 
 	# 1秒ごとに攻撃
@@ -533,6 +547,7 @@ func select_katana() -> void:
 
 # 弓属性
 func select_bow() -> void:
+	player_zokusei = "yellow"
 	attack_type = AttackType.BOW
 
 	# 1秒ごとに攻撃
@@ -543,6 +558,7 @@ func select_bow() -> void:
 
 # 騎馬属性
 func select_horse() -> void:
+	player_zokusei = "blue"
 	attack_type = AttackType.HORSE
 
 	# 騎馬専用アニメーションはまだ未実装
@@ -553,7 +569,19 @@ func select_horse() -> void:
 
 	print("属性を騎馬に変更しました")
 
+# ==================================================
+# 属性による攻撃力の設定
+# ==================================================
+func get_attribute_damage(base_damage: int, enemy: Node2D) -> int:
+	var actual_damage := base_damage
 
+	if "enemy_zokusei" in enemy:
+		if player_zokusei == enemy.enemy_zokusei:
+			actual_damage *= 2
+
+	return actual_damage
+	
+	
 # ==================================================
 # ゲーム開始・停止
 # ==================================================

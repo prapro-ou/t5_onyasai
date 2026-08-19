@@ -82,6 +82,7 @@ parameters/looping = true
 visible = false
 
 [node name="TottoriStageUI" parent="." unique_id=357268121 instance=ExtResource("12_blune")]
+visible = false
 
 [connection signal="pressed" from="AttributeSelectUI/Panel/VBoxContainer/KatanaButton" to="." method="_on_katana_button_pressed"]
 [connection signal="pressed" from="AttributeSelectUI/Panel/VBoxContainer/BowButton" to="." method="_on_bow_button_pressed"]

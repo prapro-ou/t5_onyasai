@@ -9,7 +9,7 @@ signal died
 @export var knockback_power: float = 350.0
 @export var knockback_duration: float = 0.15
 #属性
-@export var enemy_zokusei: String = "blue"
+@export var enemy_zokusei: String = "yellow"
 
 @onready var sprite: Sprite2D = $Sprite2D
 # HPBarが存在するときだけ取得する
