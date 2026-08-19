@@ -538,6 +538,11 @@ func take_damage(damage: int) -> void:
 func select_katana() -> void:
 	player_zokusei = "red"
 	attack_type = AttackType.KATANA
+	#UI変更
+	var attribute_ui = get_tree().current_scene.get_node_or_null("TottoriStageUI/AttributeUI")
+
+	if attribute_ui:
+		attribute_ui.update_attribute(player_zokusei)
 
 	# 1秒ごとに攻撃
 	attack_timer.wait_time = 1.0
@@ -549,6 +554,11 @@ func select_katana() -> void:
 func select_bow() -> void:
 	player_zokusei = "yellow"
 	attack_type = AttackType.BOW
+	#UI変更
+	var attribute_ui = get_tree().current_scene.get_node_or_null("TottoriStageUI/AttributeUI")
+
+	if attribute_ui:
+		attribute_ui.update_attribute(player_zokusei)
 
 	# 1秒ごとに攻撃
 	attack_timer.wait_time = 1.0
@@ -560,6 +570,11 @@ func select_bow() -> void:
 func select_horse() -> void:
 	player_zokusei = "blue"
 	attack_type = AttackType.HORSE
+	#UI変更
+	var attribute_ui = get_tree().current_scene.get_node_or_null("TottoriStageUI/AttributeUI")
+
+	if attribute_ui:
+		attribute_ui.update_attribute(player_zokusei)
 
 	# 騎馬専用アニメーションはまだ未実装
 	# 現段階では現在のPlayer画像をそのまま使用する
