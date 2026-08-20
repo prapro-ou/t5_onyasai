@@ -55,54 +55,27 @@ func _ready() -> void:
 
 func spawn_poison_puddle() -> void:
 
-	# ゲームオーバー後
 	if is_stopped:
 		return
 
-	# 毒沼シーンがない
 	if poison_puddle_scene == null:
-
 		print("毒沼シーンが設定されていません。")
-
 		return
 
+	# ボス自身の現在位置
+	var spawn_position := global_position
 
-	# Playerがいなければ何もしない
-	if not is_instance_valid(player):
-		return
-
-
-	# ------------------------------------------
-	# Playerの位置を取得
-	# ------------------------------------------
-
-	var spawn_position := player.global_position
-
-
-	# ------------------------------------------
-	# Playerの少し近くに生成
-	# ------------------------------------------
-
-	var offset := Vector2(
-		randf_range(-spawn_distance, spawn_distance),
-		randf_range(-spawn_distance, spawn_distance)
-	)
-
-	spawn_position += offset
-
-
-	# ------------------------------------------
 	# 毒沼生成
-	# ------------------------------------------
-
 	var poison_puddle = poison_puddle_scene.instantiate()
 
 	get_tree().current_scene.add_child(poison_puddle)
 
+	# ボスがいる場所に配置
 	poison_puddle.global_position = spawn_position
 
+	print("ボスの位置に毒沼を生成！")
 
-	print("毒沼を生成！")
+	$PoisonSound.play()
 
 
 # ==================================================

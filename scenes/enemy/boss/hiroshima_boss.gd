@@ -425,6 +425,7 @@ func start_wave_attack() -> void:
 
 
 	print("Wave発生！")
+	$WaveSound.play()
 
 
 	# ==================================================
@@ -570,6 +571,8 @@ func start_okonomiyaki() -> void:
 
 
 	print("毒攻撃の前兆！")
+	$WaveSound.stop()
+	
 
 
 	# ==================================================
@@ -670,6 +673,7 @@ func spawn_okonomiyaki(spawn_position: Vector2) -> void:
 
 
 	print("毒沼生成！")
+	$PoisonSound.play()
 
 
 # ==================================================

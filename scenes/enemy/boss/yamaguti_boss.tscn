@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://bugj5wokomfn1" path="res://scenes/enemy/boss/yamaguti_boss.gd" id="2_x4t7d"]
 [ext_resource type="PackedScene" uid="uid://ksd816m7vrnk" path="res://scenes/enemy/boss/poison_puddle.tscn" id="3_np6d7"]
 [ext_resource type="Texture2D" uid="uid://fcjqacyka6hs" path="res://assets/gazou/character/enemy/enemy_akaoniboss.png" id="4_x4t7d"]
+[ext_resource type="AudioStream" uid="uid://ddjtkw0dalx6t" path="res://assets/sounds/水ぶくぶく2.mp3" id="5_movqf"]
 
 [node name="YamagutiBoss" unique_id=1885842798 instance=ExtResource("1_woqv1")]
 script = ExtResource("2_x4t7d")
@@ -23,3 +24,6 @@ visible = true
 wait_time = 3.0
 
 [node name="WarningTimer" type="Timer" parent="." index="4" unique_id=925622066]
+
+[node name="PoisonSound" type="AudioStreamPlayer2D" parent="." index="5" unique_id=105335525]
+stream = ExtResource("5_movqf")

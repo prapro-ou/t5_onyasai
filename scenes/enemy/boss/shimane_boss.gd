@@ -92,6 +92,7 @@ func start_wave_attack() -> void:
 	# 前兆開始
 	is_warning = true
 
+	$WaveSound.stop()
 	print("Wave攻撃の前兆！")
 
 
@@ -323,7 +324,7 @@ func spawn_wave() -> void:
 
 
 	print("Waveを生成！")
-
+	$WaveSound.play()
 
 # ==================================================
 # ゲームオーバー時の停止
