@@ -9,7 +9,7 @@
 script = ExtResource("2_x4t7d")
 poison_puddle_scene = ExtResource("3_np6d7")
 spawn_distance = 80.0
-max_hp = 3
+max_hp = 15
 
 [node name="Sprite2D" parent="." index="0" unique_id=636550362]
 position = Vector2(-1, 18)

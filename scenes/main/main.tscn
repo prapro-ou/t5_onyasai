@@ -11,7 +11,37 @@
 [ext_resource type="AudioStream" uid="uid://fbeug5se5b65" path="res://assets/sounds/和太鼓でドン.mp3" id="6_yyfjg"]
 [ext_resource type="FontFile" uid="uid://6plamo55lv41" path="res://assets/font/玉ねぎ楷書「激」無料版v7/玉ねぎ楷書激無料版v7改.ttf" id="7_a8run"]
 [ext_resource type="PackedScene" uid="uid://b7wdj8oaax4aq" path="res://scenes/GameOver/GameOver.tscn" id="7_hujxm"]
+[ext_resource type="Script" uid="uid://be20j1qjg30jf" path="res://scenes/ui/zokusei_panel.gd" id="8_hxu8e"]
+[ext_resource type="Texture2D" uid="uid://ctoc22idjv74k" path="res://assets/UI/属性選択画面.png" id="8_nvumn"]
+[ext_resource type="Texture2D" uid="uid://s2shh264loja" path="res://assets/UI/剣説明.png" id="9_raeie"]
+[ext_resource type="Texture2D" uid="uid://c1u82rx4f2cls" path="res://assets/UI/弓説明.png" id="10_hxu8e"]
+[ext_resource type="Texture2D" uid="uid://drqh2pj6ub8wk" path="res://assets/UI/騎馬説明.png" id="11_nvumn"]
 [ext_resource type="PackedScene" uid="uid://otqxendqxkxk" path="res://scenes/ui/tottori_stage_ui.tscn" id="12_blune"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_83885"]
+texture = ExtResource("8_nvumn")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ou6is"]
+bg_color = Color(0.5176471, 0.41960785, 0.22745098, 1)
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_necax"]
+bg_color = Color(0.7400165, 0.6154684, 0.3752562, 1)
+border_color = Color(0.5176471, 0.41960785, 0.22745098, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r4lks"]
+bg_color = Color(0.5176471, 0.41960785, 0.22745098, 1)
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pg34l"]
+bg_color = Color(0.7411765, 0.6156863, 0.3764706, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m4h2d"]
+bg_color = Color(0.5176471, 0.41960785, 0.22745098, 1)
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p8abn"]
+bg_color = Color(0.7411765, 0.6156863, 0.3764706, 1)
 
 [node name="Main" type="Node2D" unique_id=587774680]
 script = ExtResource("1_k2fmo")
@@ -41,33 +71,121 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_83885")
+script = ExtResource("8_hxu8e")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="AttributeSelectUI/Panel" unique_id=210847427]
+[node name="KatanaCard" type="TextureRect" parent="AttributeSelectUI/Panel" unique_id=1175678758]
 layout_mode = 0
-offset_left = 300.0
-offset_top = 248.0
-offset_right = 681.0
-offset_bottom = 388.0
+offset_left = 544.0
+offset_top = 220.0
+offset_right = 1568.0
+offset_bottom = 1895.0
+scale = Vector2(0.2, 0.2)
+mouse_filter = 2
+texture = ExtResource("9_raeie")
+
+[node name="Label" type="Label" parent="AttributeSelectUI/Panel/KatanaCard" unique_id=759450705]
+layout_mode = 0
+offset_left = 255.00006
+offset_top = 799.99994
+offset_right = 840.00006
+offset_bottom = 1421.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_a8run")
+theme_override_font_sizes/font_size = 105
+text = "刀属性
+
+攻撃
+　進行方向
+属性相性
+　赤鬼◎"
+
+[node name="BowCard" type="TextureRect" parent="AttributeSelectUI/Panel" unique_id=286007579]
+layout_mode = 0
+offset_left = 278.0
+offset_top = 167.0
+offset_right = 865.6667
+offset_bottom = 1703.0
+scale = Vector2(0.3, 0.3)
+mouse_filter = 2
+texture = ExtResource("10_hxu8e")
+
+[node name="Label" type="Label" parent="AttributeSelectUI/Panel/BowCard" unique_id=2115695719]
+layout_mode = 0
+offset_left = 96.66663
+offset_top = 693.33325
+offset_right = 681.6666
+offset_bottom = 1314.3333
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_a8run")
+theme_override_font_sizes/font_size = 70
+text = "弓属性
+
+攻撃
+　反対方向
+属性相性
+　黄鬼◎"
+
+[node name="HorseCard" type="TextureRect" parent="AttributeSelectUI/Panel" unique_id=312024536]
+layout_mode = 0
+offset_left = 836.0
+offset_top = 167.0
+offset_right = 1406.0
+offset_bottom = 1703.0
+scale = Vector2(0.3, 0.3)
+mouse_filter = 2
+texture = ExtResource("11_nvumn")
+
+[node name="Label" type="Label" parent="AttributeSelectUI/Panel/HorseCard" unique_id=535481895]
+layout_mode = 0
+offset_left = 103.333405
+offset_top = 689.99994
+offset_right = 688.3334
+offset_bottom = 1311.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_a8run")
+theme_override_font_sizes/font_size = 70
+text = "騎馬属性
+
+攻撃
+　進行方向
+属性相性
+　青鬼◎"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="AttributeSelectUI/Panel" unique_id=1172657667]
+layout_mode = 0
+offset_left = 341.0
+offset_top = 87.0
+offset_right = 754.33325
+offset_bottom = 170.33334
 scale = Vector2(1.5, 1.5)
 
-[node name="Label" type="Label" parent="AttributeSelectUI/Panel/VBoxContainer" unique_id=1925437559]
+[node name="Label" type="Label" parent="AttributeSelectUI/Panel/VBoxContainer" unique_id=1548524707]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("7_a8run")
 text = "属性を選択してください"
+horizontal_alignment = 1
 
-[node name="KatanaButton" type="Button" parent="AttributeSelectUI/Panel/VBoxContainer" unique_id=1412701873]
+[node name="KatanaButton" type="Button" parent="AttributeSelectUI/Panel/VBoxContainer" unique_id=1964753565]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("7_a8run")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ou6is")
+theme_override_styles/hover = SubResource("StyleBoxFlat_necax")
 text = "刀"
 
-[node name="BowButton" type="Button" parent="AttributeSelectUI/Panel/VBoxContainer" unique_id=1188261615]
+[node name="BowButton" type="Button" parent="AttributeSelectUI/Panel/VBoxContainer" unique_id=1699532803]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("7_a8run")
+theme_override_styles/normal = SubResource("StyleBoxFlat_r4lks")
+theme_override_styles/hover = SubResource("StyleBoxFlat_pg34l")
 text = "弓"
 
-[node name="HorseButton" type="Button" parent="AttributeSelectUI/Panel/VBoxContainer" unique_id=1450183500]
+[node name="HorseButton" type="Button" parent="AttributeSelectUI/Panel/VBoxContainer" unique_id=1082994950]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("7_a8run")
+theme_override_styles/normal = SubResource("StyleBoxFlat_m4h2d")
+theme_override_styles/hover = SubResource("StyleBoxFlat_p8abn")
 text = "騎馬"
 
 [node name="ClickSound" type="AudioStreamPlayer" parent="AttributeSelectUI" unique_id=1414521542]
@@ -85,6 +203,12 @@ visible = false
 [node name="StageUI" parent="." unique_id=357268121 instance=ExtResource("12_blune")]
 visible = false
 
+[connection signal="mouse_entered" from="AttributeSelectUI/Panel/VBoxContainer/KatanaButton" to="AttributeSelectUI/Panel" method="_on_katana_button_mouse_entered"]
+[connection signal="mouse_exited" from="AttributeSelectUI/Panel/VBoxContainer/KatanaButton" to="AttributeSelectUI/Panel" method="_on_katana_button_mouse_exited"]
 [connection signal="pressed" from="AttributeSelectUI/Panel/VBoxContainer/KatanaButton" to="." method="_on_katana_button_pressed"]
+[connection signal="mouse_entered" from="AttributeSelectUI/Panel/VBoxContainer/BowButton" to="AttributeSelectUI/Panel" method="_on_bow_button_mouse_entered"]
+[connection signal="mouse_exited" from="AttributeSelectUI/Panel/VBoxContainer/BowButton" to="AttributeSelectUI/Panel" method="_on_bow_button_mouse_exited"]
 [connection signal="pressed" from="AttributeSelectUI/Panel/VBoxContainer/BowButton" to="." method="_on_bow_button_pressed"]
+[connection signal="mouse_entered" from="AttributeSelectUI/Panel/VBoxContainer/HorseButton" to="AttributeSelectUI/Panel" method="_on_horse_button_mouse_entered"]
+[connection signal="mouse_exited" from="AttributeSelectUI/Panel/VBoxContainer/HorseButton" to="AttributeSelectUI/Panel" method="_on_horse_button_mouse_exited"]
 [connection signal="pressed" from="AttributeSelectUI/Panel/VBoxContainer/HorseButton" to="." method="_on_horse_button_pressed"]

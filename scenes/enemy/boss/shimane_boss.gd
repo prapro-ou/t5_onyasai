@@ -11,6 +11,8 @@ extends "res://scenes/enemy/enemy.gd"
 # Wave本体
 @export var wave_scene: PackedScene
 
+# 属性
+var enemy_zukusei = "blue"
 
 # ==================================================
 # Waveの状態

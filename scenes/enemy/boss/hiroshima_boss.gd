@@ -15,6 +15,8 @@ enum AttackType {
 # 現在の攻撃
 var current_attack: AttackType = AttackType.MOMIJI
 
+# 属性
+var enemy_zukusei = "red"
 
 # ==================================================
 # 攻撃用Timer

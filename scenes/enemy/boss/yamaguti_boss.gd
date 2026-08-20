@@ -18,6 +18,8 @@ extends "res://scenes/enemy/enemy.gd"
 @export var spawn_distance: float = 80.0
 
 
+# 属性
+var enemy_zukusei = "red"
 # ==================================================
 # 状態
 # ==================================================
