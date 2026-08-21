@@ -7,17 +7,13 @@
 atlas = ExtResource("2_o544m")
 region = Rect2(0, 0, 1032, 1024)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7i1ol"]
-atlas = ExtResource("2_o544m")
-region = Rect2(1032, 0, 1032, 1024)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_ymm38"]
 atlas = ExtResource("2_o544m")
 region = Rect2(2064, 0, 1032, 1024)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_lmcs5"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_o544m"]
 atlas = ExtResource("2_o544m")
-region = Rect2(3096, 0, 1032, 1024)
+region = Rect2(3129, 0, 999, 1024)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_gl8jq"]
 animations = [{
@@ -26,13 +22,10 @@ animations = [{
 "texture": SubResource("AtlasTexture_qwntw")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_7i1ol")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_ymm38")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_lmcs5")
+"texture": SubResource("AtlasTexture_o544m")
 }],
 "loop": 1,
 "name": &"default",
@@ -51,7 +44,7 @@ max_hp = 2
 position = Vector2(6.500001, -2.500002)
 scale = Vector2(0.15019378, 0.14746092)
 sprite_frames = SubResource("SpriteFrames_gl8jq")
-frame_progress = 0.6324314
+frame_progress = 0.28149974
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1067024021]
 position = Vector2(7, 0)

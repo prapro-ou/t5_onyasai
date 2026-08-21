@@ -3,36 +3,32 @@
 [ext_resource type="Script" uid="uid://biiwov7sqhbgg" path="res://scenes/enemy/enemy.gd" id="1_a3pup"]
 [ext_resource type="Texture2D" uid="uid://5v3innrsgsfg" path="res://アニメ/gazou/character/enemy/enemy_aooni_move_kai.png" id="2_xnf2d"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_3wnqk"]
-atlas = ExtResource("2_xnf2d")
-region = Rect2(0, 0, 247, 793)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_6tajs"]
 atlas = ExtResource("2_xnf2d")
-region = Rect2(741, 0, 247, 793)
+region = Rect2(542, 0, 225, 793)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3wnqk"]
+atlas = ExtResource("2_xnf2d")
+region = Rect2(0, 0, 261, 793)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dgocu"]
 atlas = ExtResource("2_xnf2d")
-region = Rect2(1482, 0, 247, 793)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ni23l"]
-atlas = ExtResource("2_xnf2d")
-region = Rect2(247, 0, 247, 793)
+region = Rect2(1024, 0, 244, 793)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_gl8jq"]
 animations = [{
 "frames": [{
-"duration": 0.6,
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6tajs")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_3wnqk")
 }, {
-"duration": 0.7,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_6tajs")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_dgocu")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ni23l")
 }],
 "loop": 1,
 "name": &"default",
@@ -51,7 +47,7 @@ max_hp = 2
 position = Vector2(-5, -1)
 scale = Vector2(0.73684216, 0.25914246)
 sprite_frames = SubResource("SpriteFrames_gl8jq")
-frame_progress = 0.40335575
+frame_progress = 0.92697835
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1067024021]
 position = Vector2(7, 0)

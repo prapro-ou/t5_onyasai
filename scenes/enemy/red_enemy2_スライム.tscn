@@ -8,18 +8,6 @@
 atlas = ExtResource("2_xacck")
 region = Rect2(128, 0, 128, 177)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_38mvl"]
-atlas = ExtResource("2_xacck")
-region = Rect2(256, 0, 128, 177)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6svml"]
-atlas = ExtResource("2_xacck")
-region = Rect2(768, 177, 128, 177)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_af55x"]
-atlas = ExtResource("2_xacck")
-region = Rect2(256, 177, 128, 177)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_ufxcm"]
 atlas = ExtResource("2_xacck")
 region = Rect2(128, 354, 128, 177)
@@ -29,15 +17,6 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_fnq1g")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_38mvl")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6svml")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_af55x")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ufxcm")
@@ -58,7 +37,7 @@ enemy_zokusei = "red"
 position = Vector2(-21, 6)
 scale = Vector2(1.5781249, 1.3163842)
 sprite_frames = SubResource("SpriteFrames_rdait")
-frame_progress = 0.72205037
+frame_progress = 0.82663107
 
 [node name="CollisionShape2D" parent="." index="1" unique_id=1067024021]
 position = Vector2(3.9999995, 0.99999994)

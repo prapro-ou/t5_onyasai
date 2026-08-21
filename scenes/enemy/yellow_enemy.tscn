@@ -11,10 +11,6 @@ region = Rect2(0, 0, 271, 724)
 atlas = ExtResource("2_ml7yu")
 region = Rect2(813, 0, 271, 724)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ya0mo"]
-atlas = ExtResource("2_ml7yu")
-region = Rect2(271, 0, 271, 724)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_fqby5"]
 atlas = ExtResource("2_ml7yu")
 region = Rect2(1084, 0, 271, 724)
@@ -33,13 +29,13 @@ animations = [{
 "texture": SubResource("AtlasTexture_nigsx")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ya0mo")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_fqby5")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_a1jsx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nigsx")
 }],
 "loop": 1,
 "name": &"default",
@@ -51,4 +47,4 @@ enemy_zokusei = "yellow"
 
 [node name="AnimatedSprite2D" parent="." index="0" unique_id=1040475396]
 sprite_frames = SubResource("SpriteFrames_1f4pj")
-frame_progress = 0.2970666
+frame_progress = 0.5518492
