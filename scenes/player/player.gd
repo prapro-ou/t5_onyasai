@@ -10,7 +10,10 @@ enum AttackType {
 	BOW,
 	HORSE
 }
-
+# 各武器用のSpriteFrames
+@export var katana_frames: SpriteFrames
+@export var bow_frames: SpriteFrames
+@export var horse_frames: SpriteFrames
 # 現在使用している攻撃タイプ
 @export var attack_type: AttackType = AttackType.KATANA
 
@@ -234,28 +237,32 @@ func update_animation(direction: Vector2) -> void:
 	if is_attacking:
 		return
 
-	# 騎馬専用アニメーションはまだ未実装
-	# 現段階では刀・弓と同じ idle / run を使用する
-
 	# 停止中
 	if direction == Vector2.ZERO:
 		animated_sprite.play("idle")
-
 	# 移動中
 	else:
 		animated_sprite.play("run")
 
-	# 左向き
-	if direction.x < 0:
-		animated_sprite.flip_h = false
-		weapon_holder.scale.x = 1.0
-
-	# 右向き
-	elif direction.x > 0:
-		animated_sprite.flip_h = true
-		weapon_holder.scale.x = -1.0
-
-
+	# --------------------------
+	# 向きの制御
+	# --------------------------
+	if attack_type == AttackType.BOW:
+		# 弓の時：移動方向とは逆を向く（引き撃ち）
+		if direction.x < 0:
+			animated_sprite.flip_h = false
+			weapon_holder.scale.x = 1.0
+		elif direction.x > 0:
+			animated_sprite.flip_h = true
+			weapon_holder.scale.x = -1.0
+	else:
+		# 刀・騎馬の時：移動方向をそのまま向く
+		if direction.x < 0:
+			animated_sprite.flip_h = true
+			weapon_holder.scale.x = -1.0
+		elif direction.x > 0:
+			animated_sprite.flip_h = false
+			weapon_holder.scale.x = 1.0
 # ==================================================
 # 自動攻撃
 # ==================================================
@@ -293,27 +300,40 @@ func attack_with_katana() -> void:
 	# 攻撃中にする
 	is_attacking = true
 
-	# 刀攻撃アニメーション
+	# 開始時は判定をOFF
+	katana_collision.set_deferred("disabled", true)
+
+	# 刀攻撃アニメーション開始
 	animated_sprite.play("attack")
 
-	# 刀の当たり判定を有効化
-	katana_collision.set_deferred("disabled", false)
+	# アニメーション再生中、フレームの変化を監視
+	while is_attacking and animated_sprite.animation == "attack":
+		# フレーム 1 または 2 の時だけ判定をON、それ以外はOFF
+		if animated_sprite.frame == 1 or animated_sprite.frame == 2:
+			katana_collision.set_deferred("disabled", false)
+		else:
+			katana_collision.set_deferred("disabled", true)
 
-	# 0.2秒待つ
-	await get_tree().create_timer(0.2).timeout
+		# 次のフレーム変化を待つ
+		await animated_sprite.frame_changed
 
-	# Playerが削除されていたら終了
-	if not is_inside_tree():
-		return
-
-	# 刀の当たり判定を無効化
-	katana_collision.set_deferred("disabled", true)
+		# 途中でシーンから消えたり攻撃が終わっていたら抜ける
+		if not is_inside_tree() or not is_attacking:
+			break
 
 
 # 刀の攻撃アニメーション終了
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if animated_sprite.animation == "attack":
 		is_attacking = false
+		# 念のため判定を確実にOFFにする
+		katana_collision.set_deferred("disabled", true)
+		
+		# 攻撃が終わった瞬間に待機（または移動）モーションへ強制切り替え
+		if velocity == Vector2.ZERO:
+			animated_sprite.play("idle")
+		else:
+			animated_sprite.play("run")
 
 
 # 刀が敵に当たったとき
@@ -332,8 +352,6 @@ func _on_katana_hit_box_body_entered(body: Node2D) -> void:
 	# 敵にダメージ
 	var actual_damage := get_attribute_damage(1, body)
 	body.take_damage(actual_damage, global_position)
-
-
 # ==================================================
 # 弓攻撃
 # ==================================================
@@ -538,15 +556,18 @@ func take_damage(damage: int) -> void:
 func select_katana() -> void:
 	player_zokusei = "red"
 	attack_type = AttackType.KATANA
-	#UI変更
+	
+	# --- 見た目の切り替えを追加 ---
+	if katana_frames:
+		animated_sprite.sprite_frames = katana_frames
+		animated_sprite.play("idle")
+	# -----------------------------
+	
 	var attribute_ui = get_tree().current_scene.get_node_or_null("StageUI/AttributeUI")
-
 	if attribute_ui:
 		attribute_ui.update_attribute(player_zokusei)
 
-	# 1秒ごとに攻撃
 	attack_timer.wait_time = 1.0
-
 	print("属性を刀に変更しました")
 
 
@@ -554,15 +575,18 @@ func select_katana() -> void:
 func select_bow() -> void:
 	player_zokusei = "yellow"
 	attack_type = AttackType.BOW
-	#UI変更
+	
+	# --- 見た目の切り替えを追加 ---
+	if bow_frames:
+		animated_sprite.sprite_frames = bow_frames
+		animated_sprite.play("idle")
+	# -----------------------------
+	
 	var attribute_ui = get_tree().current_scene.get_node_or_null("StageUI/AttributeUI")
-
 	if attribute_ui:
 		attribute_ui.update_attribute(player_zokusei)
 
-	# 1秒ごとに攻撃
 	attack_timer.wait_time = 1.0
-
 	print("属性を弓に変更しました")
 
 
@@ -570,18 +594,18 @@ func select_bow() -> void:
 func select_horse() -> void:
 	player_zokusei = "blue"
 	attack_type = AttackType.HORSE
-	#UI変更
-	var attribute_ui = get_tree().current_scene.get_node_or_null("StageUI/AttributeUI")
+	
+	# --- 見た目の切り替えを追加 ---
+	if horse_frames:
+		animated_sprite.sprite_frames = horse_frames
+		animated_sprite.play("idle")
+	# -----------------------------
 
+	var attribute_ui = get_tree().current_scene.get_node_or_null("StageUI/AttributeUI")
 	if attribute_ui:
 		attribute_ui.update_attribute(player_zokusei)
 
-	# 騎馬専用アニメーションはまだ未実装
-	# 現段階では現在のPlayer画像をそのまま使用する
-
-	# 2秒ごとに突進
 	attack_timer.wait_time = 2.0
-
 	print("属性を騎馬に変更しました")
 
 # ==================================================
