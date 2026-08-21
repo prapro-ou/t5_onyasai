@@ -1,23 +1,67 @@
 [gd_scene format=3 uid="uid://b0p5vtjtgdglb"]
 
 [ext_resource type="PackedScene" uid="uid://c0688q7f2ni3u" path="res://scenes/enemy/blue_enemy.tscn" id="1_2idyd"]
+[ext_resource type="Texture2D" uid="uid://syjttpog6trm" path="res://アニメ/gazou/character/enemy/enemy_akaoni_move_kai.png" id="2_hh6tj"]
 [ext_resource type="PackedScene" uid="uid://bsqcd07k2ehps" path="res://scenes/ui/hp_bar.tscn" id="3_5plll"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_5pf11"]
-load_path = "res://.godot/imported/enemy_akaoni.png-c65844f7493f258fd4dd33c1c5cb3f80.ctex"
+[sub_resource type="AtlasTexture" id="AtlasTexture_5plll"]
+atlas = ExtResource("2_hh6tj")
+region = Rect2(777, 0, 259, 756)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yn1u2"]
+atlas = ExtResource("2_hh6tj")
+region = Rect2(1036, 0, 259, 756)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ei5md"]
+atlas = ExtResource("2_hh6tj")
+region = Rect2(1295, 0, 259, 756)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d6k5e"]
+atlas = ExtResource("2_hh6tj")
+region = Rect2(1554, 0, 259, 756)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k67hq"]
+atlas = ExtResource("2_hh6tj")
+region = Rect2(1813, 0, 259, 756)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rdait"]
+animations = [{
+"frames": [{
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_5plll")
+}, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_yn1u2")
+}, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_ei5md")
+}, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_d6k5e")
+}, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_k67hq")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hh6tj"]
+radius = 44.999996
+height = 89.99999
 
 [node name="RedEnemy" unique_id=1885842798 instance=ExtResource("1_2idyd")]
 enemy_zokusei = "red"
 
-[node name="Sprite2D" parent="." index="0" unique_id=636550362]
-position = Vector2(1, -2)
-scale = Vector2(0.1, 0.109)
-texture = SubResource("CompressedTexture2D_5pf11")
-flip_h = false
+[node name="AnimatedSprite2D" parent="." index="0" unique_id=1040475396]
+sprite_frames = SubResource("SpriteFrames_rdait")
+frame_progress = 0.72205037
 
 [node name="CollisionShape2D" parent="." index="1" unique_id=1067024021]
-position = Vector2(-0.99999994, 0.99999976)
+position = Vector2(3.9999995, 0.99999994)
 scale = Vector2(1.4, 1.4)
+shape = SubResource("CapsuleShape2D_hh6tj")
 
 [node name="HPBar" parent="." index="2" unique_id=2087799846 instance=ExtResource("3_5plll")]
 visible = false

@@ -2,8 +2,26 @@
 
 [ext_resource type="PackedScene" uid="uid://b0p5vtjtgdglb" path="res://scenes/enemy/red_enemy.tscn" id="1_2mamo"]
 [ext_resource type="Script" uid="uid://cxud1lahsjqxm" path="res://scenes/enemy/boss/tottori_boss.gd" id="2_ax71f"]
-[ext_resource type="Texture2D" uid="uid://bw4galky1pe4g" path="res://assets/gazou/character/enemy/enemy_kioniboss.png" id="3_ax71f"]
+[ext_resource type="Texture2D" uid="uid://cxefi0kdw311l" path="res://アニメ/gazou/character/enemy/enemy_kioniboss.png" id="3_r1hi8"]
 [ext_resource type="AudioStream" uid="uid://b48cxj8gty15t" path="res://assets/sounds/風が吹く2.mp3" id="4_es08p"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xe4gu"]
+atlas = ExtResource("3_r1hi8")
+region = Rect2(0, 0, 2016, 2096)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hh6tj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xe4gu")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wq2id"]
+radius = 90.407234
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ax71f"]
 load_path = "res://.godot/imported/砂粒.png-ff77ebf3da534c893f491a3b3bb44801.ctex"
@@ -28,13 +46,22 @@ max_hp = 15
 move_speed = 80.0
 enemy_zokusei = "yellow"
 
-[node name="Sprite2D" parent="." index="0" unique_id=636550362]
-position = Vector2(-2, 11.000015)
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("3_ax71f")
+[node name="AnimatedSprite2D" parent="." index="0" unique_id=1040475396]
+position = Vector2(-3, 7)
+scale = Vector2(0.14403196, 0.13348791)
+sprite_frames = SubResource("SpriteFrames_hh6tj")
+frame_progress = 0.0
+
+[node name="CollisionShape2D" parent="." index="1" unique_id=1067024021]
+position = Vector2(0, 0.99999905)
+shape = SubResource("CircleShape2D_wq2id")
 
 [node name="HPBar" parent="." index="2" unique_id=2087799846]
 visible = true
+offset_left = -39.0
+offset_top = -127.0
+offset_right = 41.0
+offset_bottom = -117.0
 
 [node name="SandstormEffect" type="CanvasLayer" parent="." index="3" unique_id=1402408019]
 visible = false

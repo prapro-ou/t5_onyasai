@@ -10,8 +10,8 @@ signal died
 @export var knockback_duration: float = 0.15
 #属性
 @export var enemy_zokusei: String = "blue"
-
-@onready var sprite: Sprite2D = $Sprite2D
+#修正sprite2dからanimatedに
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 # HPBarが存在するときだけ取得する
 # 青鬼・黄色鬼には存在しないため、nullになる
 @onready var hp_bar: Control = get_node_or_null("HPBar")
@@ -24,14 +24,11 @@ var knockback_time: float = 0.0
 
 
 func _ready() -> void:
-	# 現在HPを最大HPで初期化する
+	# アニメーションの再生を開始
+	sprite.play("default")
+
 	current_hp = max_hp
-
-	# playerグループからプレイヤーを取得する
 	player = get_tree().get_first_node_in_group("player")
-
-	# HPBarが付いている敵だけHPバーを初期化する
-	# 現在は赤鬼だけが対象
 	if hp_bar != null:
 		hp_bar.set_hp(current_hp, max_hp)
 
@@ -52,9 +49,9 @@ func _physics_process(delta: float) -> void:
 	velocity = direction * move_speed
 
 	if direction.x < 0:
-		sprite.flip_h = false
-	elif direction.x > 0:
 		sprite.flip_h = true
+	elif direction.x > 0:
+		sprite.flip_h = false
 
 	move_and_slide()
 
