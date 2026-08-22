@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://bqqf7oka8p07x"]
+
+[ext_resource type="Script" uid="uid://bugj5wokomfn1" path="res://scenes/enemy/boss/yamaguti_boss.gd" id="2_x4t7d"]
+[ext_resource type="Texture2D" uid="uid://dd6t20hlie3y" path="res://assets/gazou/character/enemy_改/enemy_akaoniboss.png" id="3_movqf"]
+[ext_resource type="PackedScene" uid="uid://ksd816m7vrnk" path="res://scenes/enemy/boss/poison_puddle.tscn" id="3_np6d7"]
+[ext_resource type="PackedScene" uid="uid://bsqcd07k2ehps" path="res://scenes/ui/hp_bar.tscn" id="4_08wt3"]
+[ext_resource type="AudioStream" uid="uid://ddjtkw0dalx6t" path="res://assets/sounds/水ぶくぶく2.mp3" id="5_movqf"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x74xo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_movqf")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hh6tj"]
+radius = 95.71428
+height = 192.85713
+
+[node name="YamagutiBoss" type="CharacterBody2D" unique_id=1885842798 groups=["enemy"]]
+collision_layer = 2
+script = ExtResource("2_x4t7d")
+poison_puddle_scene = ExtResource("3_np6d7")
+max_hp = 15
+enemy_zokusei = "red"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2045587159]
+position = Vector2(-19, 9)
+scale = Vector2(0.15480769, 0.1375)
+sprite_frames = SubResource("SpriteFrames_x74xo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1067024021]
+position = Vector2(1.0000002, 0.99999994)
+scale = Vector2(1.4, 1.4)
+shape = SubResource("CapsuleShape2D_hh6tj")
+
+[node name="HPBar" parent="." unique_id=2087799846 instance=ExtResource("4_08wt3")]
+offset_left = -42.0
+offset_top = -111.0
+offset_right = 38.0
+offset_bottom = -101.0
+
+[node name="PoisonTimer" type="Timer" parent="." unique_id=164911256]
+wait_time = 3.0
+
+[node name="WarningTimer" type="Timer" parent="." unique_id=925622066]
+
+[node name="PoisonSound" type="AudioStreamPlayer2D" parent="." unique_id=105335525]
+stream = ExtResource("5_movqf")

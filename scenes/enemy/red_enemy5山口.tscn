@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://b16b3ctlhc8l0"]
+
+[ext_resource type="PackedScene" uid="uid://c0688q7f2ni3u" path="res://scenes/enemy/blue_enemy.tscn" id="1_67wir"]
+[ext_resource type="Texture2D" uid="uid://ddww3iliel3nd" path="res://アニメ/gazou/character/enemy/山口赤.png" id="2_67wir"]
+[ext_resource type="PackedScene" uid="uid://bsqcd07k2ehps" path="res://scenes/ui/hp_bar.tscn" id="3_vapuk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4oeij"]
+atlas = ExtResource("2_67wir")
+region = Rect2(0, 0, 1048, 1008)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vapuk"]
+atlas = ExtResource("2_67wir")
+region = Rect2(1048, 0, 1048, 1008)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3lmrs"]
+atlas = ExtResource("2_67wir")
+region = Rect2(1048, 1008, 1048, 1008)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rdait"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4oeij")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vapuk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3lmrs")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hh6tj"]
+radius = 44.999996
+height = 89.99999
+
+[node name="RedEnemy" unique_id=1885842798 instance=ExtResource("1_67wir")]
+enemy_zokusei = "red"
+
+[node name="AnimatedSprite2D" parent="." index="0" unique_id=1040475396]
+position = Vector2(1, -18.000008)
+scale = Vector2(0.17985149, 0.16305996)
+sprite_frames = SubResource("SpriteFrames_rdait")
+frame_progress = 0.72205037
+
+[node name="CollisionShape2D" parent="." index="1" unique_id=1067024021]
+position = Vector2(3.9999995, 0.99999994)
+scale = Vector2(1.4, 1.4)
+shape = SubResource("CapsuleShape2D_hh6tj")
+
+[node name="HPBar" parent="." index="2" unique_id=2087799846 instance=ExtResource("3_vapuk")]
+visible = false
+offset_left = -40.0
+offset_top = -65.0
+offset_right = 40.0
+offset_bottom = -55.0

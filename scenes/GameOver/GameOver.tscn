@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://b7wdj8oaax4aq"]
+
+[ext_resource type="Script" uid="uid://hqh4lgapfgra" path="res://scenes/GameOver/game_over.gd" id="1_xhtoj"]
+[ext_resource type="FontFile" uid="uid://6plamo55lv41" path="res://assets/font/玉ねぎ楷書「激」無料版v7/玉ねぎ楷書激無料版v7改.ttf" id="2_1kqld"]
+[ext_resource type="AudioStream" uid="uid://cau0jltk31d5k" path="res://assets/sounds/忍びの作戦_MARUYA328__1_.mp3" id="2_51nbm"]
+[ext_resource type="AudioStream" uid="uid://fbeug5se5b65" path="res://assets/sounds/和太鼓でドン.mp3" id="3_1kqld"]
+[ext_resource type="AudioStream" uid="uid://bwawvjqo8r74n" path="res://assets/sounds/和太鼓でカカッ.mp3" id="4_3nl22"]
+
+[node name="GameOver" type="CanvasLayer" unique_id=1161337136]
+script = ExtResource("1_xhtoj")
+
+[node name="Screen" type="Control" parent="." unique_id=1698849473]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Fade" type="ColorRect" parent="Screen" unique_id=1350473449]
+layout_mode = 0
+offset_left = -159.0
+offset_top = -75.0
+offset_right = 1423.0
+offset_bottom = 827.0
+color = Color(0, 0, 0, 0.6156863)
+
+[node name="GameOverPanel" type="Control" parent="Screen" unique_id=352216934]
+anchors_preset = 0
+offset_left = 65.0
+offset_top = 14.0
+offset_right = 105.0
+offset_bottom = 54.0
+
+[node name="GameOverLabel" type="Label" parent="Screen/GameOverPanel" unique_id=18408850]
+layout_mode = 0
+offset_left = 233.0
+offset_top = 105.0
+offset_right = 913.0
+offset_bottom = 215.0
+theme_override_fonts/font = ExtResource("2_1kqld")
+theme_override_font_sizes/font_size = 80
+text = "ゲームオーバー..."
+
+[node name="RetryButton" type="Button" parent="Screen/GameOverPanel" unique_id=1086886052]
+layout_mode = 0
+offset_left = 45.0
+offset_top = 318.0
+offset_right = 403.0
+offset_bottom = 395.0
+theme_override_fonts/font = ExtResource("2_1kqld")
+theme_override_font_sizes/font_size = 50
+text = "もう一度プレイ"
+
+[node name="TitleButton" type="Button" parent="Screen/GameOverPanel" unique_id=274343378]
+layout_mode = 0
+offset_left = 647.0
+offset_top = 316.0
+offset_right = 1005.0
+offset_bottom = 393.0
+theme_override_fonts/font = ExtResource("2_1kqld")
+theme_override_font_sizes/font_size = 50
+text = "タイトルに戻る"
+
+[node name="BGM" type="AudioStreamPlayer2D" parent="." unique_id=1993464390]
+stream = ExtResource("2_51nbm")
+volume_db = -5.0
+parameters/looping = true
+
+[node name="RetrySound" type="AudioStreamPlayer2D" parent="." unique_id=42846121]
+stream = ExtResource("3_1kqld")
+
+[node name="TitleSound" type="AudioStreamPlayer2D" parent="." unique_id=721319290]
+stream = ExtResource("4_3nl22")
+
+[connection signal="pressed" from="Screen/GameOverPanel/RetryButton" to="." method="_on_retry_button_pressed"]
+[connection signal="pressed" from="Screen/GameOverPanel/TitleButton" to="." method="_on_title_button_pressed"]

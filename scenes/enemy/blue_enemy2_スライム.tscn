@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://dpbfostlos7vs"]
+
+[ext_resource type="Script" uid="uid://biiwov7sqhbgg" path="res://scenes/enemy/enemy.gd" id="1_jhw43"]
+[ext_resource type="Texture2D" uid="uid://b5708a7b0st6o" path="res://gazou/青スライムmove.png" id="2_vu5mv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vu5mv"]
+atlas = ExtResource("2_vu5mv")
+region = Rect2(123, 0, 123, 204)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kxbfu"]
+atlas = ExtResource("2_vu5mv")
+region = Rect2(123, 204, 123, 204)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cjw6u"]
+atlas = ExtResource("2_vu5mv")
+region = Rect2(123, 408, 123, 204)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gl8jq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vu5mv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kxbfu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cjw6u")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w3xm4"]
+radius = 69.02898
+
+[node name="BlueEnemy" type="CharacterBody2D" unique_id=1885842798 groups=["enemy"]]
+collision_layer = 2
+script = ExtResource("1_jhw43")
+max_hp = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1040475396]
+position = Vector2(21.000006, -27.00001)
+scale = Vector2(1.4843751, 1.2941177)
+sprite_frames = SubResource("SpriteFrames_gl8jq")
+frame_progress = 0.052349415
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1067024021]
+position = Vector2(6, 10)
+shape = SubResource("CircleShape2D_w3xm4")

@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://dhemuh6ftsnk6"]
+
+[ext_resource type="Script" uid="uid://dfqpmxfmt5f1r" path="res://scenes/enemy/boss/shimane_boss.gd" id="2_m51mv"]
+[ext_resource type="PackedScene" uid="uid://lcrw4q5kgywx" path="res://scenes/enemy/boss/wave.tscn" id="3_jrl10"]
+[ext_resource type="Texture2D" uid="uid://dxhwwbecqxaki" path="res://assets/gazou/character/enemy_改/enemy_aooniboss.png" id="3_q5kk7"]
+[ext_resource type="PackedScene" uid="uid://bsqcd07k2ehps" path="res://scenes/ui/hp_bar.tscn" id="4_n5yek"]
+[ext_resource type="AudioStream" uid="uid://sekgf7e3yemx" path="res://assets/sounds/海岸1.mp3" id="5_q5kk7"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r2afv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_q5kk7")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pgmaw"]
+radius = 90.407234
+
+[node name="shimane_boss" type="CharacterBody2D" unique_id=1885842798 groups=["enemy"]]
+collision_layer = 2
+script = ExtResource("2_m51mv")
+wave_scene = ExtResource("3_jrl10")
+max_hp = 15
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1027791099]
+position = Vector2(-12.000001, 2.000001)
+scale = Vector2(0.27543104, 0.24666563)
+sprite_frames = SubResource("SpriteFrames_r2afv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2075664426]
+position = Vector2(0, 0.99999905)
+scale = Vector2(1.4, 1.4)
+shape = SubResource("CircleShape2D_pgmaw")
+
+[node name="HPBar" parent="." unique_id=2087799846 instance=ExtResource("4_n5yek")]
+offset_left = -40.0
+offset_top = -132.0
+offset_right = 40.0
+offset_bottom = -122.0
+
+[node name="WaveTimer" type="Timer" parent="." unique_id=341128213]
+wait_time = 5.0
+autostart = true
+
+[node name="WarningLine" type="Line2D" parent="." unique_id=1143382853]
+visible = false
+width = 50.0
+default_color = Color(1, 1, 1, 0.6666667)
+
+[node name="WaveSound" type="AudioStreamPlayer2D" parent="." unique_id=1116335454]
+stream = ExtResource("5_q5kk7")
