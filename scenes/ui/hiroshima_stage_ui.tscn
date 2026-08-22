@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://kv5c3wejm7rl"]
+
+[ext_resource type="Texture2D" uid="uid://3slp7ylxckw1" path="res://assets/UI/Waveの板.png" id="1_twyq4"]
+[ext_resource type="FontFile" uid="uid://6plamo55lv41" path="res://assets/font/玉ねぎ楷書「激」無料版v7/玉ねぎ楷書激無料版v7改.ttf" id="2_db7q2"]
+[ext_resource type="Script" uid="uid://0lcx7x5q0bf7" path="res://scenes/ui/attribute_ui.gd" id="3_33pcj"]
+[ext_resource type="Texture2D" uid="uid://cuyyl5gqd2lsp" path="res://assets/UI/剣属性UI.png" id="4_h5uny"]
+[ext_resource type="Texture2D" uid="uid://d1xoou4htjcmf" path="res://assets/UI/弓属性UI.png" id="5_s3ktq"]
+[ext_resource type="Texture2D" uid="uid://d18tgtydpiq7b" path="res://assets/UI/騎馬属性UI.png" id="6_l7jlj"]
+[ext_resource type="Texture2D" uid="uid://cry6dca845od5" path="res://assets/UI/広島_エンブレム.png" id="7_2n1i2"]
+
+[node name="HiroshimaStageUI" type="CanvasLayer" unique_id=357268121]
+
+[node name="ZokuseiBoard" type="TextureRect" parent="." unique_id=1179669167]
+offset_left = 1340.0001
+offset_top = 595.00006
+offset_right = 5569.365
+offset_bottom = 2632.5947
+rotation = -3.7280233
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_twyq4")
+
+[node name="WaveBoard" type="TextureRect" parent="." unique_id=539515989]
+offset_left = 664.9999
+offset_top = -6.9999695
+offset_right = 3119.9995
+offset_bottom = 717.0
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_twyq4")
+
+[node name="Wave" type="Label" parent="WaveBoard" unique_id=1032519856]
+custom_minimum_size = Vector2(30, 20)
+layout_mode = 0
+offset_left = 450.00052
+offset_top = 269.99985
+offset_right = 853.7505
+offset_bottom = 386.6665
+scale = Vector2(4, 4)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_db7q2")
+theme_override_font_sizes/font_size = 50
+text = "Wave 1"
+horizontal_alignment = 1
+
+[node name="AttributeUI" type="Control" parent="." unique_id=115182404]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 904.0
+offset_top = 438.0
+offset_right = 1149.0
+offset_bottom = 641.0
+script = ExtResource("3_33pcj")
+red_texture = ExtResource("4_h5uny")
+yellow_texture = ExtResource("5_s3ktq")
+blue_texture = ExtResource("6_l7jlj")
+
+[node name="TextureRect" type="TextureRect" parent="AttributeUI" unique_id=1892874573]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.127
+anchor_top = -0.093
+anchor_right = 0.127
+anchor_bottom = -0.093
+offset_left = 55.885
+offset_top = 50.878998
+offset_right = 369.21838
+offset_bottom = 347.54575
+scale = Vector2(0.3, 0.3)
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1092716110]
+offset_left = -144.0
+offset_top = 528.0
+offset_right = 2879.3335
+offset_bottom = 1469.0
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("7_2n1i2")

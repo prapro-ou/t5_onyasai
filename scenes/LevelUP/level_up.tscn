@@ -1,0 +1,108 @@
+[gd_scene format=3 uid="uid://dk4bbj5hcirmu"]
+
+[ext_resource type="Script" uid="uid://5q8nur04bhkx" path="res://scenes/LevelUP/level_up.gd" id="1_n24bc"]
+[ext_resource type="Texture2D" uid="uid://ctoc22idjv74k" path="res://assets/UI/属性選択画面.png" id="2_8ifi2"]
+[ext_resource type="FontFile" uid="uid://6plamo55lv41" path="res://assets/font/玉ねぎ楷書「激」無料版v7/玉ねぎ楷書激無料版v7改.ttf" id="3_ri555"]
+[ext_resource type="AudioStream" uid="uid://isyklkdtvv3k" path="res://assets/sounds/パワーアップ.mp3" id="5_61be8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ifi2"]
+bg_color = Color(0.34509805, 0.27450982, 0.12941177, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fnkfj"]
+bg_color = Color(0.49411765, 0.39607844, 0.20392157, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ri555"]
+bg_color = Color(0.34509805, 0.27450982, 0.12941177, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x6ilj"]
+bg_color = Color(0.49411765, 0.39607844, 0.20392157, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8k5mf"]
+bg_color = Color(0.34509805, 0.27450982, 0.12941177, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_61be8"]
+bg_color = Color(0.49305427, 0.39778128, 0.2026957, 1)
+
+[node name="LevelUP" type="Control" unique_id=263251583]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 6.0
+offset_right = 1.0
+offset_bottom = 6.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_n24bc")
+
+[node name="Background" type="ColorRect" parent="." unique_id=751834918]
+layout_mode = 0
+offset_right = 40.0
+color = Color(0, 0, 0, 0.60784316)
+
+[node name="Panel" type="TextureRect" parent="Background" unique_id=1100256289]
+layout_mode = 0
+offset_left = -11.999999
+offset_top = 6.9999986
+offset_right = 5567.9995
+offset_bottom = 3326.9998
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_8ifi2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Background/Panel" unique_id=259176198]
+layout_mode = 0
+offset_left = 829.99994
+offset_top = 540.0
+offset_right = 1929.1665
+offset_bottom = 1303.125
+scale = Vector2(4, 4)
+
+[node name="Title" type="Label" parent="Background/Panel/VBoxContainer" unique_id=1215358818]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_ri555")
+theme_override_font_sizes/font_size = 100
+text = "レベルアップ！"
+horizontal_alignment = 1
+
+[node name="LevelLabel" type="Label" parent="Background/Panel/VBoxContainer" unique_id=2049464180]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_ri555")
+theme_override_font_sizes/font_size = 100
+text = "レベル 2"
+horizontal_alignment = 1
+
+[node name="HPButton" type="Button" parent="Background/Panel/VBoxContainer" unique_id=970432209]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ri555")
+theme_override_font_sizes/font_size = 100
+theme_override_styles/normal = SubResource("StyleBoxFlat_8ifi2")
+theme_override_styles/hover = SubResource("StyleBoxFlat_fnkfj")
+text = "体力↑
+"
+
+[node name="AttackButton" type="Button" parent="Background/Panel/VBoxContainer" unique_id=553756694]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ri555")
+theme_override_font_sizes/font_size = 100
+theme_override_styles/normal = SubResource("StyleBoxFlat_ri555")
+theme_override_styles/hover = SubResource("StyleBoxFlat_x6ilj")
+text = "攻撃力↑"
+
+[node name="SpeedButton" type="Button" parent="Background/Panel/VBoxContainer" unique_id=654595602]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ri555")
+theme_override_font_sizes/font_size = 100
+theme_override_styles/normal = SubResource("StyleBoxFlat_8k5mf")
+theme_override_styles/hover = SubResource("StyleBoxFlat_61be8")
+text = "移動速度↑"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1559866618]
+stream = ExtResource("5_61be8")
+autoplay = true
+
+[connection signal="pressed" from="Background/Panel/VBoxContainer/HPButton" to="." method="_on_hp_button_pressed"]
+[connection signal="pressed" from="Background/Panel/VBoxContainer/AttackButton" to="." method="_on_attack_button_pressed"]
+[connection signal="pressed" from="Background/Panel/VBoxContainer/SpeedButton" to="." method="_on_speed_button_pressed"]
