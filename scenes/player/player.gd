@@ -54,7 +54,7 @@ var last_move_direction: Vector2 = Vector2.RIGHT
 
 # 騎馬突進で敵を押し出す強さ
 # Playerの突進速度より大きくして、敵がPlayerに埋まるのを防ぐ
-@export var horse_knockback_power: float = 900.0
+@export var horse_knockback_power: float = 1200.0
 
 # 騎馬突進で敵を押し出す時間
 # 突進時間と同程度にして、突進中にPlayerが敵へ追いつきにくくする
