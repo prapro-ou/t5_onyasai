@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://dqx1irhioa20w"]
+
+[ext_resource type="Texture2D" uid="uid://4ylofsd4q6fx" path="res://Gemini_Generated_Image_ae3kngae3kngae3k.png" id="1_d3v25"]
+
+[node name="yamaguchi" type="Node2D" unique_id=1437510698]
+
+[node name="background" type="Sprite2D" parent="." unique_id=1287882342]
+texture = ExtResource("1_d3v25")
+
+[node name="Timer" type="Timer" parent="." unique_id=1119705052]

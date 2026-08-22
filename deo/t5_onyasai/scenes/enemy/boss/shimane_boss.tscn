@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://dhemuh6ftsnk6"]
+
+[ext_resource type="PackedScene" uid="uid://b0p5vtjtgdglb" path="res://scenes/enemy/red_enemy.tscn" id="1_kd25i"]
+[ext_resource type="Script" uid="uid://dfqpmxfmt5f1r" path="res://scenes/enemy/boss/shimane_boss.gd" id="2_m51mv"]
+[ext_resource type="PackedScene" uid="uid://lcrw4q5kgywx" path="res://scenes/enemy/boss/wave.tscn" id="3_jrl10"]
+[ext_resource type="Texture2D" uid="uid://bf4xpyj37xtel" path="res://assets/gazou/character/enemy/enemy_aooniboss.png" id="4_xdquo"]
+[ext_resource type="AudioStream" uid="uid://sekgf7e3yemx" path="res://assets/sounds/海岸1.mp3" id="5_q5kk7"]
+
+[node name="shimane_boss" unique_id=1885842798 instance=ExtResource("1_kd25i")]
+script = ExtResource("2_m51mv")
+wave_scene = ExtResource("3_jrl10")
+max_hp = 15
+enemy_zokusei = "blue"
+
+[node name="Sprite2D" parent="." index="0" unique_id=636550362]
+position = Vector2(-3.4999933, 43.498005)
+scale = Vector2(0.3, 0.301)
+texture = ExtResource("4_xdquo")
+
+[node name="HPBar" parent="." index="2" unique_id=2087799846]
+visible = true
+
+[node name="WaveTimer" type="Timer" parent="." index="3" unique_id=341128213]
+wait_time = 5.0
+autostart = true
+
+[node name="WarningLine" type="Line2D" parent="." index="4" unique_id=1143382853]
+visible = false
+width = 50.0
+default_color = Color(1, 1, 1, 0.6666667)
+
+[node name="WaveSound" type="AudioStreamPlayer2D" parent="." index="5" unique_id=1116335454]
+stream = ExtResource("5_q5kk7")

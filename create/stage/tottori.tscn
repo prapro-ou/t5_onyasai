@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://clkhrrvdn6frb"]
+
+[ext_resource type="Script" uid="uid://03xxrrp85p6v" path="res://tottori.gd" id="1_cxdbp"]
+[ext_resource type="Script" uid="uid://up12yutvikeu" path="res://background.gd" id="2_4owng"]
+[ext_resource type="Texture2D" uid="uid://dj70nepofsy2b" path="res://stage_tottori.jpg" id="2_tlfvk"]
+[ext_resource type="PackedScene" uid="uid://brxqr1tv5tr1q" path="res://rplayer.tscn" id="4_tlfvk"]
+[ext_resource type="PackedScene" uid="uid://dqguk4lxjx4hh" path="res://enemyspawner.tscn" id="5_icayk"]
+
+[node name="tottori" type="Node2D" unique_id=246878027]
+script = ExtResource("1_cxdbp")
+
+[node name="background" type="Sprite2D" parent="." unique_id=2001115963]
+position = Vector2(1025, 1000)
+texture = ExtResource("2_tlfvk")
+script = ExtResource("2_4owng")
+
+[node name="Timer" type="Timer" parent="." unique_id=2085444451]
+
+[node name="gameover" type="CanvasLayer" parent="." unique_id=858058597]
+
+[node name="Player" parent="." unique_id=2064049358 instance=ExtResource("4_tlfvk")]
+
+[node name="Enemyspawner" parent="." unique_id=78523321 instance=ExtResource("5_icayk")]

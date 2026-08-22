@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://c20qm2p6pqjw"]
+
+[ext_resource type="PackedScene" uid="uid://otqxendqxkxk" path="res://scenes/ui/tottori_stage_ui.tscn" id="1_3du5y"]
+[ext_resource type="Texture2D" uid="uid://ewj27j8lfyej" path="res://assets/UI/島根県.png" id="2_mtbqh"]
+
+[node name="ShimaneStageUI" unique_id=357268121 instance=ExtResource("1_3du5y")]
+
+[node name="TextureRect" parent="." index="3" unique_id=1092716110]
+offset_left = -3.0
+offset_top = 512.0
+offset_right = 1753.6666
+offset_bottom = 1453.0
+texture = ExtResource("2_mtbqh")

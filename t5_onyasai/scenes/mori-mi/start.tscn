@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://b1bn83o0bt3rp"]
+
+[ext_resource type="Script" uid="uid://0hu14dptcd8c" path="res://scenes/mori-mi/start.gd" id="1_ots34"]
+[ext_resource type="Texture2D" uid="uid://b6sb014ngnqb" path="res://gazou/mori-mi_gazou/title.jpg" id="2_qn1rc"]
+[ext_resource type="AudioStream" uid="uid://fbeug5se5b65" path="res://assets/sounds/和太鼓でドン.mp3" id="3_doakt"]
+
+[node name="start" type="Control" unique_id=583265354]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_ots34")
+
+[node name="start" type="Sprite2D" parent="." unique_id=1908875358]
+position = Vector2(566.74994, 317.99994)
+scale = Vector2(0.5510254, 0.41732284)
+texture = ExtResource("2_qn1rc")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2077295412]
+stream = ExtResource("3_doakt")

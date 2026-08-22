@@ -1,0 +1,159 @@
+[gd_scene format=3 uid="uid://brxqr1tv5tr1q"]
+
+[ext_resource type="Script" uid="uid://c0jvs8pkkko3y" path="res://player.gd" id="1_pfbqe"]
+[ext_resource type="PackedScene" uid="uid://bg3xq5oukxsq7" path="res://arrow.tscn" id="2_dhtu0"]
+[ext_resource type="Texture2D" uid="uid://biwhher0mw20t" path="res://侍_Player画像_attack_横.png" id="3_4j33g"]
+[ext_resource type="Texture2D" uid="uid://cadry4lnsbodh" path="res://侍_Player画像_透明_直立1.png" id="4_dgmdn"]
+[ext_resource type="Texture2D" uid="uid://dw2a76ngudemj" path="res://侍_Player画像_run1-6.png" id="5_8ktiq"]
+[ext_resource type="PackedScene" uid="uid://bsqcd07k2ehps" path="res://hp_bar.tscn" id="6_enxoe"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h17s1"]
+atlas = ExtResource("3_4j33g")
+region = Rect2(0, 0, 220, 176)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_je7p5"]
+atlas = ExtResource("3_4j33g")
+region = Rect2(220, 0, 220, 176)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fm80t"]
+atlas = ExtResource("3_4j33g")
+region = Rect2(440, 0, 220, 176)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gx1jg"]
+atlas = ExtResource("3_4j33g")
+region = Rect2(660, 0, 220, 176)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lvxji"]
+atlas = ExtResource("5_8ktiq")
+region = Rect2(0, 0, 151, 152)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p47bc"]
+atlas = ExtResource("5_8ktiq")
+region = Rect2(151, 0, 151, 152)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_75vfm"]
+atlas = ExtResource("5_8ktiq")
+region = Rect2(302, 0, 151, 152)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0owmy"]
+atlas = ExtResource("5_8ktiq")
+region = Rect2(453, 0, 151, 152)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qek5x"]
+atlas = ExtResource("5_8ktiq")
+region = Rect2(604, 0, 151, 152)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5gtgg"]
+atlas = ExtResource("5_8ktiq")
+region = Rect2(755, 0, 151, 152)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w3xm4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h17s1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_je7p5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fm80t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gx1jg")
+}],
+"loop": 0,
+"name": &"attack",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_dgmdn")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lvxji")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p47bc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_75vfm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0owmy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qek5x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5gtgg")
+}],
+"loop": 1,
+"name": &"run",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w3xm4"]
+size = Vector2(28, 26)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6obyq"]
+size = Vector2(70.5, 30)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w3xm4"]
+radius = 17.0
+height = 62.0
+
+[node name="Player" type="CharacterBody2D" unique_id=2064049358 groups=["player"]]
+script = ExtResource("1_pfbqe")
+arrow_scene = ExtResource("2_dhtu0")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1864580662]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_w3xm4")
+animation = &"attack"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=495641265]
+position = Vector2(0, 19)
+shape = SubResource("RectangleShape2D_w3xm4")
+
+[node name="AttackTimer" type="Timer" parent="." unique_id=730906803]
+autostart = true
+
+[node name="DamageCooldown" type="Timer" parent="." unique_id=1096177651]
+one_shot = true
+
+[node name="WeaponHolder" type="Node2D" parent="." unique_id=781596442]
+
+[node name="KatanaHitBox" type="Area2D" parent="WeaponHolder" unique_id=585033289]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WeaponHolder/KatanaHitBox" unique_id=1079038610]
+position = Vector2(-47.75, 0)
+shape = SubResource("RectangleShape2D_6obyq")
+disabled = true
+
+[node name="HurtBox" type="Area2D" parent="." unique_id=1968336514]
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=214334378]
+position = Vector2(-3, 4)
+shape = SubResource("CapsuleShape2D_w3xm4")
+
+[node name="HPBar" parent="." unique_id=2087799846 instance=ExtResource("6_enxoe")]
+offset_left = -34.0
+offset_top = -48.0
+offset_right = 46.0
+offset_bottom = -38.0
+scale = Vector2(0.8, 0.8)
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
+[connection signal="body_entered" from="WeaponHolder/KatanaHitBox" to="." method="_on_katana_hit_box_body_entered"]
+[connection signal="body_entered" from="HurtBox" to="." method="_on_hurt_box_body_entered"]

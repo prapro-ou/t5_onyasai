@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://iereahx4ykmh"]
+
+[ext_resource type="Script" uid="uid://bnf72lca6iy8u" path="res://scenes/mori-mi/stage_select.gd" id="1_m16wk"]
+[ext_resource type="AudioStream" uid="uid://fbeug5se5b65" path="res://assets/sounds/和太鼓でドン.mp3" id="2_gs3ho"]
+
+[node name="stage_select" type="Control" unique_id=1099931632]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_m16wk")
+
+[node name="tottori" type="Label" parent="." unique_id=811944323]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="shimane" type="Label" parent="." unique_id=57601177]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="yamaguchi" type="Label" parent="." unique_id=1353289307]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="hiroshima" type="Label" parent="." unique_id=209410807]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="stage_image" type="TextureRect" parent="." unique_id=360967153]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(1.2535537, 0.92663956)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1685597848]
+stream = ExtResource("2_gs3ho")
