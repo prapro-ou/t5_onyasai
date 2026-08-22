@@ -52,6 +52,14 @@ var last_move_direction: Vector2 = Vector2.RIGHT
 # 突進ダメージ
 @export var horse_dash_damage: int = 1
 
+# 騎馬突進で敵を押し出す強さ
+# Playerの突進速度より大きくして、敵がPlayerに埋まるのを防ぐ
+@export var horse_knockback_power: float = 900.0
+
+# 騎馬突進で敵を押し出す時間
+# 突進時間と同程度にして、突進中にPlayerが敵へ追いつきにくくする
+@export var horse_knockback_duration: float = 0.2
+
 # 突進中かどうか
 var is_dashing: bool = false
 
@@ -437,15 +445,36 @@ func _on_horse_hit_box_body_entered(body: Node2D) -> void:
 	# 今回攻撃済みの敵として記録
 	dash_hit_enemies.append(body)
 	$HouseSound.play()
+
+	# Playerから敵へ向かう「押し出し方向」を先に保存する。
+	# HorseHitBoxはPlayerの周囲にあるため、単純にdash_directionを使うより
+	# 常にPlayerから離れる方向へ押す方が埋まりにくい。
+	var horse_push_direction := global_position.direction_to(body.global_position)
+	if horse_push_direction == Vector2.ZERO:
+		horse_push_direction = dash_direction
+
 	# 敵へダメージ
 	var actual_damage := get_attribute_damage(
-	horse_dash_damage,
-	body
+		horse_dash_damage,
+		body
 	)
 	body.take_damage(
-	actual_damage,
-	global_position
+		actual_damage,
+		global_position
 	)
+
+	# 通常ノックバックだけでは突進中のPlayerが敵へ追いつくため、
+	# 騎馬ではPlayerから離れる方向へ強く押し出す。
+	if (
+		is_instance_valid(body)
+		and not body.is_queued_for_deletion()
+		and body.has_method("apply_directional_knockback")
+	):
+		body.apply_directional_knockback(
+			horse_push_direction,
+			horse_knockback_power,
+			horse_knockback_duration
+		)
 
 
 # ==================================================
