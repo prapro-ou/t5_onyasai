@@ -18,14 +18,16 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hh6tj"]
-radius = 95.71428
-height = 192.85713
+radius = 97.14285
+height = 197.14284
 
 [node name="YamagutiBoss" type="CharacterBody2D" unique_id=1885842798 groups=["enemy"]]
 collision_layer = 2
 script = ExtResource("2_x4t7d")
 poison_puddle_scene = ExtResource("3_np6d7")
-max_hp = 15
+spawn_distance = 10.0
+max_hp = 130
+move_speed = 250.0
 enemy_zokusei = "red"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2045587159]

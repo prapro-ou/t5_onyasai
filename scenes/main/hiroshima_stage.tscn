@@ -3,11 +3,14 @@
 [ext_resource type="PackedScene" uid="uid://c0688q7f2ni3u" path="res://scenes/enemy/blue_enemy.tscn" id="2_26pkg"]
 [ext_resource type="Script" uid="uid://c1k1coftbbqrl" path="res://scenes/main/hiroshima_stage.gd" id="2_jq7q2"]
 [ext_resource type="PackedScene" uid="uid://cldv3jneab40k" path="res://scenes/enemy/yellow_enemy.tscn" id="3_3dwjx"]
+[ext_resource type="PackedScene" uid="uid://lvym7umcda6v" path="res://scenes/enemy/blue_enemy6広島.tscn" id="3_t3mdk"]
 [ext_resource type="PackedScene" uid="uid://b0p5vtjtgdglb" path="res://scenes/enemy/red_enemy.tscn" id="4_degm0"]
+[ext_resource type="PackedScene" uid="uid://vyar344pu3hu" path="res://scenes/enemy/yellow_enemy6広島.tscn" id="5_cwx6i"]
 [ext_resource type="PackedScene" uid="uid://3melj357fnpy" path="res://scenes/enemy/boss/hiroshima_boss.tscn" id="5_mwdfw"]
 [ext_resource type="Texture2D" uid="uid://bmlm8o8kxf364" path="res://assets/gazou/stage/stage_hirosima1_kai.png" id="6_vcjmi"]
 [ext_resource type="PackedScene" uid="uid://dk4bbj5hcirmu" path="res://scenes/LevelUP/level_up.tscn" id="6_xcgr1"]
 [ext_resource type="PackedScene" uid="uid://b813i5f5ocwhh" path="res://scenes/player/player.tscn" id="7_i8vjd"]
+[ext_resource type="PackedScene" uid="uid://mie4ilau5c7e" path="res://scenes/enemy/red_enemy6広島.tscn" id="7_jspus"]
 [ext_resource type="Texture2D" uid="uid://ctoc22idjv74k" path="res://assets/UI/属性選択画面.png" id="8_3dwjx"]
 [ext_resource type="FontFile" uid="uid://6plamo55lv41" path="res://assets/font/玉ねぎ楷書「激」無料版v7/玉ねぎ楷書激無料版v7改.ttf" id="8_xcgr1"]
 [ext_resource type="AudioStream" uid="uid://fbeug5se5b65" path="res://assets/sounds/和太鼓でドン.mp3" id="9_tti1j"]
@@ -47,8 +50,11 @@ bg_color = Color(0.7411765, 0.6156863, 0.3764706, 1)
 [node name="HiroshimaStage" type="Node2D" unique_id=587774680]
 script = ExtResource("2_jq7q2")
 blue_enemy_scene = ExtResource("2_26pkg")
+"blue_enemy6広島_scene" = ExtResource("3_t3mdk")
 yellow_enemy_scene = ExtResource("3_3dwjx")
+"yellow_enemy6広島_scene" = ExtResource("5_cwx6i")
 red_enemy_scene = ExtResource("4_degm0")
+"red_enemy6広島_scene" = ExtResource("7_jspus")
 hiroshima_boss_scene = ExtResource("5_mwdfw")
 level_up_scene = ExtResource("6_xcgr1")
 
@@ -194,6 +200,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_pvrl8")
 text = "騎馬"
 
 [node name="BGM" type="AudioStreamPlayer2D" parent="." unique_id=1748290086]
+process_mode = 3
 stream = ExtResource("10_26pkg")
 volume_db = -3.0
 autoplay = true
@@ -205,12 +212,18 @@ visible = false
 [node name="StageUI" parent="." unique_id=357268121 instance=ExtResource("12_cwx6i")]
 visible = false
 
+[connection signal="focus_entered" from="AttributeSelectUI/Panel/VBoxContainer/KatanaButton" to="AttributeSelectUI/Panel" method="_on_katana_button_focus_entered"]
+[connection signal="focus_exited" from="AttributeSelectUI/Panel/VBoxContainer/KatanaButton" to="AttributeSelectUI/Panel" method="_on_katana_button_focus_exited"]
 [connection signal="mouse_entered" from="AttributeSelectUI/Panel/VBoxContainer/KatanaButton" to="AttributeSelectUI/Panel" method="_on_katana_button_mouse_entered"]
 [connection signal="mouse_exited" from="AttributeSelectUI/Panel/VBoxContainer/KatanaButton" to="AttributeSelectUI/Panel" method="_on_katana_button_mouse_exited"]
 [connection signal="pressed" from="AttributeSelectUI/Panel/VBoxContainer/KatanaButton" to="." method="_on_katana_button_pressed"]
+[connection signal="focus_entered" from="AttributeSelectUI/Panel/VBoxContainer/BowButton" to="AttributeSelectUI/Panel" method="_on_bow_button_focus_entered"]
+[connection signal="focus_exited" from="AttributeSelectUI/Panel/VBoxContainer/BowButton" to="AttributeSelectUI/Panel" method="_on_bow_button_focus_exited"]
 [connection signal="mouse_entered" from="AttributeSelectUI/Panel/VBoxContainer/BowButton" to="AttributeSelectUI/Panel" method="_on_bow_button_mouse_entered"]
 [connection signal="mouse_exited" from="AttributeSelectUI/Panel/VBoxContainer/BowButton" to="AttributeSelectUI/Panel" method="_on_bow_button_mouse_exited"]
 [connection signal="pressed" from="AttributeSelectUI/Panel/VBoxContainer/BowButton" to="." method="_on_bow_button_pressed"]
+[connection signal="focus_entered" from="AttributeSelectUI/Panel/VBoxContainer/HorseButton" to="AttributeSelectUI/Panel" method="_on_horse_button_focus_entered"]
+[connection signal="focus_exited" from="AttributeSelectUI/Panel/VBoxContainer/HorseButton" to="AttributeSelectUI/Panel" method="_on_horse_button_focus_exited"]
 [connection signal="mouse_entered" from="AttributeSelectUI/Panel/VBoxContainer/HorseButton" to="AttributeSelectUI/Panel" method="_on_horse_button_mouse_entered"]
 [connection signal="mouse_exited" from="AttributeSelectUI/Panel/VBoxContainer/HorseButton" to="AttributeSelectUI/Panel" method="_on_horse_button_mouse_exited"]
 [connection signal="pressed" from="AttributeSelectUI/Panel/VBoxContainer/HorseButton" to="." method="_on_horse_button_pressed"]

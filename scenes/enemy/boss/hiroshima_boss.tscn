@@ -43,7 +43,8 @@ collision_layer = 2
 script = ExtResource("2_lnw6o")
 wave_scene = ExtResource("3_eylq3")
 okonomiyaki_scene = ExtResource("4_r6tpl")
-max_hp = 15
+max_hp = 250
+move_speed = 250.0
 enemy_zokusei = "red"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1005929604]

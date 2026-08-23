@@ -2,12 +2,15 @@
 
 [ext_resource type="Script" uid="uid://bcaap8xhts5m2" path="res://scenes/main/shimane_stage.gd" id="1_4005q"]
 [ext_resource type="PackedScene" uid="uid://c0688q7f2ni3u" path="res://scenes/enemy/blue_enemy.tscn" id="2_ghajl"]
+[ext_resource type="PackedScene" uid="uid://dimu2is4odnrk" path="res://scenes/enemy/blue_enemy4島根.tscn" id="3_r3bkj"]
 [ext_resource type="PackedScene" uid="uid://cldv3jneab40k" path="res://scenes/enemy/yellow_enemy.tscn" id="3_xncxr"]
 [ext_resource type="PackedScene" uid="uid://b0p5vtjtgdglb" path="res://scenes/enemy/red_enemy.tscn" id="4_5dum2"]
 [ext_resource type="PackedScene" uid="uid://dhemuh6ftsnk6" path="res://scenes/enemy/boss/shimane_boss.tscn" id="5_eftlv"]
+[ext_resource type="PackedScene" uid="uid://c7ygmb5qf4cg5" path="res://scenes/enemy/yellow_enemy4島根.tscn" id="5_nhjne"]
 [ext_resource type="PackedScene" uid="uid://dk4bbj5hcirmu" path="res://scenes/LevelUP/level_up.tscn" id="6_fou48"]
 [ext_resource type="Texture2D" uid="uid://bsyjd7t0grbn7" path="res://assets/gazou/stage/stage_simane_kai.png" id="6_omefe"]
 [ext_resource type="PackedScene" uid="uid://b813i5f5ocwhh" path="res://scenes/player/player.tscn" id="7_fou48"]
+[ext_resource type="PackedScene" uid="uid://bc7rmxncu02ax" path="res://scenes/enemy/red_enemy4島根.tscn" id="7_w48jk"]
 [ext_resource type="FontFile" uid="uid://6plamo55lv41" path="res://assets/font/玉ねぎ楷書「激」無料版v7/玉ねぎ楷書激無料版v7改.ttf" id="8_yckir"]
 [ext_resource type="AudioStream" uid="uid://fbeug5se5b65" path="res://assets/sounds/和太鼓でドン.mp3" id="9_04dv0"]
 [ext_resource type="Texture2D" uid="uid://ctoc22idjv74k" path="res://assets/UI/属性選択画面.png" id="9_omefe"]
@@ -47,8 +50,11 @@ bg_color = Color(0.7411765, 0.6156863, 0.3764706, 1)
 [node name="ShimaneStage" type="Node2D" unique_id=587774680]
 script = ExtResource("1_4005q")
 blue_enemy_scene = ExtResource("2_ghajl")
+"blue_enemy4島根_scene" = ExtResource("3_r3bkj")
 yellow_enemy_scene = ExtResource("3_xncxr")
+"yellow_enemy4島根_scene" = ExtResource("5_nhjne")
 red_enemy_scene = ExtResource("4_5dum2")
+"red_enemy4島根_scene" = ExtResource("7_w48jk")
 shimane_boss_scene = ExtResource("5_eftlv")
 level_up_scene = ExtResource("6_fou48")
 
@@ -202,14 +208,21 @@ parameters/looping = true
 visible = false
 
 [node name="StageUI" parent="." unique_id=357268121 instance=ExtResource("12_eftlv")]
+process_mode = 3
 visible = false
 
+[connection signal="focus_entered" from="AttributeSelectUI/Panel/VBoxContainer/KatanaButton" to="AttributeSelectUI/Panel" method="_on_katana_button_focus_entered"]
+[connection signal="focus_exited" from="AttributeSelectUI/Panel/VBoxContainer/KatanaButton" to="AttributeSelectUI/Panel" method="_on_katana_button_focus_exited"]
 [connection signal="mouse_entered" from="AttributeSelectUI/Panel/VBoxContainer/KatanaButton" to="AttributeSelectUI/Panel" method="_on_katana_button_mouse_entered"]
 [connection signal="mouse_exited" from="AttributeSelectUI/Panel/VBoxContainer/KatanaButton" to="AttributeSelectUI/Panel" method="_on_katana_button_mouse_exited"]
 [connection signal="pressed" from="AttributeSelectUI/Panel/VBoxContainer/KatanaButton" to="." method="_on_katana_button_pressed"]
+[connection signal="focus_entered" from="AttributeSelectUI/Panel/VBoxContainer/BowButton" to="AttributeSelectUI/Panel" method="_on_bow_button_focus_entered"]
+[connection signal="focus_exited" from="AttributeSelectUI/Panel/VBoxContainer/BowButton" to="AttributeSelectUI/Panel" method="_on_bow_button_focus_exited"]
 [connection signal="mouse_entered" from="AttributeSelectUI/Panel/VBoxContainer/BowButton" to="AttributeSelectUI/Panel" method="_on_bow_button_mouse_entered"]
 [connection signal="mouse_exited" from="AttributeSelectUI/Panel/VBoxContainer/BowButton" to="AttributeSelectUI/Panel" method="_on_bow_button_mouse_exited"]
 [connection signal="pressed" from="AttributeSelectUI/Panel/VBoxContainer/BowButton" to="." method="_on_bow_button_pressed"]
+[connection signal="focus_entered" from="AttributeSelectUI/Panel/VBoxContainer/HorseButton" to="AttributeSelectUI/Panel" method="_on_horse_button_focus_entered"]
+[connection signal="focus_exited" from="AttributeSelectUI/Panel/VBoxContainer/HorseButton" to="AttributeSelectUI/Panel" method="_on_horse_button_focus_exited"]
 [connection signal="mouse_entered" from="AttributeSelectUI/Panel/VBoxContainer/HorseButton" to="AttributeSelectUI/Panel" method="_on_horse_button_mouse_entered"]
 [connection signal="mouse_exited" from="AttributeSelectUI/Panel/VBoxContainer/HorseButton" to="AttributeSelectUI/Panel" method="_on_horse_button_mouse_exited"]
 [connection signal="pressed" from="AttributeSelectUI/Panel/VBoxContainer/HorseButton" to="." method="_on_horse_button_pressed"]

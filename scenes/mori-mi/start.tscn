@@ -14,8 +14,8 @@ offset_bottom = 40.0
 script = ExtResource("1_ots34")
 
 [node name="start" type="Sprite2D" parent="." unique_id=1908875358]
-position = Vector2(566.74994, 317.99994)
-scale = Vector2(0.5510254, 0.41732284)
+position = Vector2(569.00006, 326)
+scale = Vector2(1.1376634, 0.8644546)
 texture = ExtResource("2_qn1rc")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2077295412]

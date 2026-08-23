@@ -42,6 +42,7 @@ radius = 73.33485
 collision_layer = 2
 script = ExtResource("1_a3pup")
 max_hp = 2
+move_speed = 140.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1040475396]
 position = Vector2(-5, -1)

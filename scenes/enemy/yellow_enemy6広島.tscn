@@ -39,7 +39,13 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_5t1dp"]
+radius = 99.0202
+
 [node name="YellowEnemy" unique_id=1885842798 instance=ExtResource("1_tn38s")]
+max_hp = 30
+move_speed = 250.0
+knockback_power = 200.0
 enemy_zokusei = "yellow"
 
 [node name="AnimatedSprite2D" parent="." index="0" unique_id=1040475396]
@@ -47,3 +53,8 @@ position = Vector2(8.000008, -11.000004)
 scale = Vector2(0.18313007, 0.18386298)
 sprite_frames = SubResource("SpriteFrames_b0sd0")
 frame_progress = 0.0
+
+[node name="CollisionShape2D" parent="." index="1" unique_id=1067024021]
+position = Vector2(4, 0)
+rotation = 2.2392573
+shape = SubResource("CircleShape2D_5t1dp")

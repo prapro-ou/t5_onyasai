@@ -15,7 +15,7 @@ extends "res://scenes/enemy/enemy.gd"
 # ==================================================
 
 # 毒沼を生成する距離
-@export var spawn_distance: float = 80.0
+@export var spawn_distance: float = 300
 
 
 # 属性

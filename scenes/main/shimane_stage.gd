@@ -7,13 +7,13 @@ extends Node2D
 
 # 青鬼
 @export var blue_enemy_scene: PackedScene
-
+@export var blue_enemy4島根_scene: PackedScene
 # 黄色鬼
 @export var yellow_enemy_scene: PackedScene
-
+@export var yellow_enemy4島根_scene: PackedScene
 # 赤鬼
 @export var red_enemy_scene: PackedScene
-
+@export var red_enemy4島根_scene: PackedScene
 # 島根ボス
 @export var shimane_boss_scene: PackedScene
 
@@ -60,10 +60,10 @@ var current_wave: int = 1
 var blue_kill_count: int = 0
 
 # Wave2へ進むために必要な撃破数
-const BLUE_KILLS_TO_WAVE_2: int = 5
+const BLUE_KILLS_TO_WAVE_2: int = 15
 
 # Wave1の敵出現間隔
-const WAVE_1_SPAWN_TIME: float = 4.0
+const WAVE_1_SPAWN_TIME: float = 0.7
 
 
 # ==================================================
@@ -74,10 +74,10 @@ const WAVE_1_SPAWN_TIME: float = 4.0
 var wave_2_kill_count: int = 0
 
 # Wave3へ進むために必要な撃破数
-const KILLS_TO_WAVE_3: int = 5
+const KILLS_TO_WAVE_3: int = 16
 
 # Wave2の敵出現間隔
-const WAVE_2_SPAWN_TIME: float = 4.0
+const WAVE_2_SPAWN_TIME: float = 0.3
 
 
 # ==================================================
@@ -88,10 +88,10 @@ const WAVE_2_SPAWN_TIME: float = 4.0
 var wave_3_kill_count: int = 0
 
 # 島根ボス出現に必要な撃破数
-const KILLS_TO_SHIMANE_BOSS: int = 5
+const KILLS_TO_SHIMANE_BOSS: int = 8
 
 # Wave3の敵出現間隔
-const WAVE_3_SPAWN_TIME: float = 3.5
+const WAVE_3_SPAWN_TIME: float = 0.8
 
 
 # ここから追加
@@ -106,8 +106,20 @@ var level_up_kill_count: int = 0
 var is_level_up: bool = false
 
 # 次のレベルに必要な撃破数を計算
+# 次のレベルに必要な撃破数を計算
 func get_required_kills(target_level: int) -> int:
-	return roundi(5.0 * pow(1.5, target_level - 1))
+	# 指定した必要撃破数リスト (Lv1→2: 5体, Lv2→3: 7体, ...)
+	var kill_table: Array[int] = [5, 7, 8, 10, 15, 5, 12, 14, 5, 8, 14, 8, 10, 10, 10]
+	
+	var index := target_level - 1
+	
+	# リストの範囲内であればその数値を返す
+	if index >= 0 and index < kill_table.size():
+		return kill_table[index]
+	
+	# リストの範囲を超えた高レベル時は最後の値(10)を返す
+	return kill_table[-1]
+	
 # ここまで
 
 # ==================================================
@@ -164,6 +176,24 @@ func _ready() -> void:
 	# ------------------------------------------
 
 	attribute_select_ui.show()
+
+	# Panel -> VBoxContainer -> 各ボタン の順で指定
+	var katana_btn = attribute_select_ui.get_node("Panel/VBoxContainer/KatanaButton")
+	var bow_btn = attribute_select_ui.get_node("Panel/VBoxContainer/BowButton")
+	var horse_btn = attribute_select_ui.get_node("Panel/VBoxContainer/HorseButton")
+
+	# 上下キー移動のループ（循環）を設定
+	katana_btn.focus_neighbor_top = horse_btn.get_path()
+	katana_btn.focus_neighbor_bottom = bow_btn.get_path()
+
+	bow_btn.focus_neighbor_top = katana_btn.get_path()
+	bow_btn.focus_neighbor_bottom = horse_btn.get_path()
+
+	horse_btn.focus_neighbor_top = bow_btn.get_path()
+	horse_btn.focus_neighbor_bottom = katana_btn.get_path()
+
+	# 最初に刀ボタンを選択状態にする
+	katana_btn.grab_focus()
 
 
 	# ------------------------------------------
@@ -296,60 +326,52 @@ func spawn_enemy() -> void:
 
 	match current_wave:
 
-
 		# ==========================================
-		# Wave1
+		# Wave1 (青鬼: 40%, 島根青鬼: 60%)
 		# ==========================================
-
 		1:
+			var random_value := randf()
 
-			# 青鬼のみ
-			scene_to_spawn = blue_enemy_scene
+			# 青鬼 40%
+			if random_value < 0.4:
+				scene_to_spawn = blue_enemy_scene
+			# 島根青鬼 60%
+			else:
+				scene_to_spawn = blue_enemy4島根_scene
 
 
 		# ==========================================
-		# Wave2
+		# Wave2 (青鬼: 15%, 黄色鬼: 35%, 島根黄色鬼: 50%)
 		# ==========================================
-
 		2:
-
 			var random_value := randf()
 
-			# 青鬼 70%
-			if random_value < 0.7:
-
+			# 青鬼 15%
+			if random_value < 0.15:
 				scene_to_spawn = blue_enemy_scene
-
-			# 黄色鬼 30%
-			else:
-
+			# 黄色鬼 35% (0.15 〜 0.50)
+			elif random_value < 0.5:
 				scene_to_spawn = yellow_enemy_scene
+			# 島根黄色鬼 50% (0.50 〜 1.0)
+			else:
+				scene_to_spawn = yellow_enemy4島根_scene
 
 
 		# ==========================================
-		# Wave3
+		# Wave3 (赤鬼: 30%, 黄色鬼: 10%, 島根赤鬼: 60%)
 		# ==========================================
-
 		3:
-
 			var random_value := randf()
 
-			# 青鬼 50%
-			if random_value < 0.5:
-
-				scene_to_spawn = blue_enemy_scene
-
-			# 黄色鬼 30%
-			elif random_value < 0.8:
-
-				scene_to_spawn = yellow_enemy_scene
-
-			# 赤鬼 20%
-			else:
-
+			# 赤鬼 30%
+			if random_value < 0.3:
 				scene_to_spawn = red_enemy_scene
-
-
+			# 黄色鬼 10% (0.30 〜 0.40)
+			elif random_value < 0.4:
+				scene_to_spawn = yellow_enemy_scene
+			# 島根赤鬼 60% (0.40 〜 1.0)
+			else:
+				scene_to_spawn = red_enemy4島根_scene
 		# ==========================================
 		# その他
 		# ==========================================

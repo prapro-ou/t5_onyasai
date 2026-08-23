@@ -45,7 +45,9 @@ radius = 73.33485
 [node name="BlueEnemy" type="CharacterBody2D" unique_id=1885842798 groups=["enemy"]]
 collision_layer = 2
 script = ExtResource("1_ecga7")
-max_hp = 2
+max_hp = 15
+move_speed = 270.0
+knockback_power = 150.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1040475396]
 position = Vector2(8.999999, -12)

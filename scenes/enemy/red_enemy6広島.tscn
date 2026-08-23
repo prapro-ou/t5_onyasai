@@ -45,6 +45,9 @@ radius = 44.999996
 height = 89.99999
 
 [node name="RedEnemy" unique_id=1885842798 instance=ExtResource("1_al6c1")]
+max_hp = 15
+move_speed = 250.0
+knockback_power = 200.0
 enemy_zokusei = "red"
 
 [node name="AnimatedSprite2D" parent="." index="0" unique_id=1040475396]

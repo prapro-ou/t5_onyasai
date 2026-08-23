@@ -32,6 +32,38 @@ func _ready() -> void:
 
 	set_level(GameManager.level)
 
+	# ------------------------------------------
+	# 上下キーによる選択移動（循環）の設定
+	# ------------------------------------------
+	# HPButton (一番上)
+	hp_button.focus_neighbor_top = hp_button.get_path_to(speed_button)
+	hp_button.focus_neighbor_bottom = hp_button.get_path_to(attack_button)
+
+	# AttackButton (真ん中)
+	attack_button.focus_neighbor_top = attack_button.get_path_to(hp_button)
+	attack_button.focus_neighbor_bottom = attack_button.get_path_to(speed_button)
+
+	# SpeedButton (一番下)
+	speed_button.focus_neighbor_top = speed_button.get_path_to(attack_button)
+	speed_button.focus_neighbor_bottom = speed_button.get_path_to(hp_button)
+
+	# ------------------------------------------
+	# 左右キー移動の無効化（自分自身を指定）
+	# ------------------------------------------
+	hp_button.focus_neighbor_left = hp_button.get_path()
+	hp_button.focus_neighbor_right = hp_button.get_path()
+	attack_button.focus_neighbor_left = attack_button.get_path()
+	attack_button.focus_neighbor_right = attack_button.get_path()
+	speed_button.focus_neighbor_left = speed_button.get_path()
+	speed_button.focus_neighbor_right = speed_button.get_path()
+
+	# 初期フォーカスをHPButtonに設定（ポーズ時等の描画タイミング対策で1フレーム遅延）
+	call_deferred("_set_initial_focus")
+
+
+func _set_initial_focus() -> void:
+	hp_button.grab_focus()
+
 
 # ==================================================
 # レベル表示

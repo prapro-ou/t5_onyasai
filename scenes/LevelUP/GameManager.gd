@@ -30,6 +30,7 @@ func level_up() -> void:
 
 func upgrade_hp() -> void:
 	hp_bonus += 2
+
 	print("体力UP: +", hp_bonus)
 
 
@@ -39,7 +40,7 @@ func upgrade_attack() -> void:
 
 
 func upgrade_speed() -> void:
-	speed_bonus += 20.0
+	speed_bonus += 70
 	print("移動速度UP: +", speed_bonus)
 
 
@@ -54,3 +55,4 @@ func apply_upgrade(upgrade_type: String) -> void:
 
 		"speed":
 			upgrade_speed()
+			

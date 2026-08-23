@@ -34,10 +34,12 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hh6tj"]
-radius = 44.999996
-height = 89.99999
+radius = 56.428566
+height = 112.85713
 
 [node name="RedEnemy" unique_id=1885842798 instance=ExtResource("1_67wir")]
+max_hp = 8
+move_speed = 370.0
 enemy_zokusei = "red"
 
 [node name="AnimatedSprite2D" parent="." index="0" unique_id=1040475396]
