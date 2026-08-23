@@ -1,5 +1,21 @@
 extends "res://scenes/enemy/enemy.gd"
 
+
+# ==================================================
+# ボスアニメーション設定
+# ==================================================
+
+# defaultアニメーションの大きさ倍率
+# 1.0 = 元のサイズ
+@export var default_scale_multiplier: float = 1.0
+
+# moveアニメーションの大きさ倍率
+@export var move_scale_multiplier: float = 1.0
+
+# AnimatedSprite2Dの元のScale
+var base_sprite_scale: Vector2 = Vector2.ONE
+
+
 # ==================================================
 # 砂嵐関連
 # ==================================================
@@ -27,12 +43,24 @@ var is_warning := false
 # 属性
 var enemy_zukusei = "yellow"
 
+
 # ==================================================
 # 初期化
 # ==================================================
 
 func _ready() -> void:
+	# enemy.gdの初期化
 	super._ready()
+
+	# AnimatedSprite2Dの元の大きさを保存
+	base_sprite_scale = sprite.scale
+
+	# 最初はdefault
+	sprite.scale = (
+		base_sprite_scale * default_scale_multiplier
+	)
+	sprite.play("default")
+
 	# Playerを取得
 	player = get_tree().get_first_node_in_group("player")
 
@@ -41,13 +69,57 @@ func _ready() -> void:
 	sand_overlay.visible = false
 	sand_particles.emitting = false
 
-
 	# Timerのシグナル
 	sandstorm_timer.timeout.connect(start_sandstorm)
 	duration_timer.timeout.connect(end_sandstorm)
 
 	# 砂嵐タイマー開始
 	sandstorm_timer.start()
+
+
+# ==================================================
+# 毎フレームの処理
+# ==================================================
+
+func _physics_process(delta: float) -> void:
+	# enemy.gdにある
+	# Player追跡・移動・左右反転・ノックバック処理を実行
+	super._physics_process(delta)
+
+	# ボスの移動状態に応じてアニメーション変更
+	update_boss_animation()
+
+
+# ==================================================
+# ボスアニメーション
+# ==================================================
+
+func update_boss_animation() -> void:
+	# --------------------------
+	# 移動中
+	# --------------------------
+	if velocity.length() > 0.1:
+		# move用サイズ
+		sprite.scale = (
+			base_sprite_scale * move_scale_multiplier
+		)
+
+		# moveへ変更
+		if sprite.animation != "move":
+			sprite.play("move")
+
+	# --------------------------
+	# 停止中
+	# --------------------------
+	else:
+		# default用サイズ
+		sprite.scale = (
+			base_sprite_scale * default_scale_multiplier
+		)
+
+		# defaultへ変更
+		if sprite.animation != "default":
+			sprite.play("default")
 
 
 # ==================================================
@@ -76,11 +148,8 @@ func start_sandstorm() -> void:
 
 
 	# ------------------------------------------
-	# 前兆の砂を出す
+	# 前兆
 	# ------------------------------------------
-
-	
-
 
 	# 2秒間前兆
 	await get_tree().create_timer(2.0).timeout
@@ -91,7 +160,6 @@ func start_sandstorm() -> void:
 
 	# 前兆終了
 	is_warning = false
-	
 
 
 	# ------------------------------------------
@@ -102,7 +170,6 @@ func start_sandstorm() -> void:
 
 	print("砂嵐発生！")
 	$SandstormSound.play()
-	
 
 
 	# 砂嵐画面を表示
@@ -113,6 +180,7 @@ func start_sandstorm() -> void:
 	# 砂粒を最初から発生
 	sand_particles.restart()
 	sand_particles.emitting = true
+
 
 	# ------------------------------------------
 	# 砂嵐持続時間開始

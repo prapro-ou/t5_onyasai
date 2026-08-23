@@ -140,7 +140,7 @@ var is_stage_clear: bool = false
 # ==================================================
 
 func _ready() -> void:
-	#Wave更新
+	# Wave更新
 	wave_label.text = "WAVE " + str(current_wave)
 
 	# ------------------------------------------
@@ -170,6 +170,24 @@ func _ready() -> void:
 	# ------------------------------------------
 
 	attribute_select_ui.show()
+
+	# Panel -> VBoxContainer -> 各ボタン の順で指定
+	var katana_btn = attribute_select_ui.get_node("Panel/VBoxContainer/KatanaButton")
+	var bow_btn = attribute_select_ui.get_node("Panel/VBoxContainer/BowButton")
+	var horse_btn = attribute_select_ui.get_node("Panel/VBoxContainer/HorseButton")
+
+	# 上下キー移動のループ（循環）を設定
+	katana_btn.focus_neighbor_top = horse_btn.get_path()
+	katana_btn.focus_neighbor_bottom = bow_btn.get_path()
+
+	bow_btn.focus_neighbor_top = katana_btn.get_path()
+	bow_btn.focus_neighbor_bottom = horse_btn.get_path()
+
+	horse_btn.focus_neighbor_top = bow_btn.get_path()
+	horse_btn.focus_neighbor_bottom = katana_btn.get_path()
+
+	# 最初に刀ボタンを選択状態にする
+	katana_btn.grab_focus()
 
 
 	# ------------------------------------------

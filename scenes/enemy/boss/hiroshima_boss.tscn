@@ -3,21 +3,57 @@
 [ext_resource type="Script" uid="uid://bv7h8ixwr3wyf" path="res://scenes/enemy/boss/hiroshima_boss.gd" id="2_lnw6o"]
 [ext_resource type="PackedScene" uid="uid://lcrw4q5kgywx" path="res://scenes/enemy/boss/wave.tscn" id="3_eylq3"]
 [ext_resource type="Texture2D" uid="uid://bucuym2qwu3lu" path="res://gazou/紅葉.png" id="3_lnw6o"]
-[ext_resource type="Texture2D" uid="uid://dd6t20hlie3y" path="res://assets/gazou/character/enemy_改/enemy_akaoniboss.png" id="4_7hhkj"]
+[ext_resource type="Texture2D" uid="uid://dde7py4mchjvi" path="res://assets/enemy/boss/red_boss_move1.png" id="4_1et55"]
 [ext_resource type="PackedScene" uid="uid://ccndyyy5q8i6s" path="res://scenes/enemy/boss/okonomiyaki.tscn" id="4_r6tpl"]
 [ext_resource type="PackedScene" uid="uid://bsqcd07k2ehps" path="res://scenes/ui/hp_bar.tscn" id="5_bvgr3"]
+[ext_resource type="Texture2D" uid="uid://dsaugouh4rg84" path="res://assets/enemy/boss/red_boss_move2.png" id="5_luhbl"]
 [ext_resource type="AudioStream" uid="uid://b48cxj8gty15t" path="res://assets/sounds/風が吹く2.mp3" id="6_ca2nc"]
+[ext_resource type="Texture2D" uid="uid://crdjpbr4eqpjl" path="res://assets/enemy/boss/red_boss_move3.png" id="6_haody"]
+[ext_resource type="Texture2D" uid="uid://b07sjo5tug5aa" path="res://assets/enemy/boss/red_boss_move4.png" id="7_xhf2l"]
 [ext_resource type="AudioStream" uid="uid://sekgf7e3yemx" path="res://assets/sounds/海岸1.mp3" id="8_7hhkj"]
+[ext_resource type="Texture2D" uid="uid://ds5uhftpayg1y" path="res://assets/enemy/boss/red_boss_move5.png" id="8_y7mh3"]
+[ext_resource type="Texture2D" uid="uid://cxg1yp7ww680" path="res://assets/enemy/boss/red_boss_move6.png" id="9_5kvio"]
 [ext_resource type="AudioStream" uid="uid://ddjtkw0dalx6t" path="res://assets/sounds/水ぶくぶく2.mp3" id="9_bvgr3"]
+[ext_resource type="Texture2D" uid="uid://boi5fa2hswhod" path="res://assets/enemy/boss/red_boss_move7.png" id="10_j4yqg"]
+[ext_resource type="Texture2D" uid="uid://c08dpatfpckq7" path="res://assets/enemy/boss/red_boss_move8.png" id="11_ypfp5"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ulv5q"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_7hhkj")
+"texture": ExtResource("4_1et55")
 }],
 "loop": 1,
 "name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_1et55")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_luhbl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_haody")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_xhf2l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_y7mh3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_5kvio")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_j4yqg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_ypfp5")
+}],
+"loop": 1,
+"name": &"move",
 "speed": 5.0
 }]
 
@@ -47,21 +83,21 @@ max_hp = 15
 enemy_zokusei = "red"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1005929604]
-position = Vector2(-19, 9)
-scale = Vector2(0.15480769, 0.1375)
+position = Vector2(21.691591, -6.5562496)
+scale = Vector2(0.8607877, 0.515038)
 sprite_frames = SubResource("SpriteFrames_ulv5q")
-frame_progress = 0.05124607
+animation = &"move"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1960137818]
-position = Vector2(0, 0.99999905)
+position = Vector2(2.9999998, 1.9999999)
 scale = Vector2(1.4, 1.4)
 shape = SubResource("CircleShape2D_nq6n3")
 
 [node name="HPBar" parent="." unique_id=2087799846 instance=ExtResource("5_bvgr3")]
-offset_left = -41.0
-offset_top = -124.0
-offset_right = 39.0
-offset_bottom = -114.0
+offset_left = -39.0
+offset_top = -152.0
+offset_right = 41.0
+offset_bottom = -142.0
 
 [node name="AttackTimer" type="Timer" parent="." unique_id=1322196349]
 wait_time = 5.0

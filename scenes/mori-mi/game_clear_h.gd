@@ -16,6 +16,24 @@ func _ready() -> void:
 	# 2. 追加したボタンのシグナル接続
 	title_button_2.pressed.connect(_on_title_button_2_pressed)
 
+	# ------------------------------------------
+	# 左右キーによる選択移動（循環）の設定
+	# ------------------------------------------
+	# RetryButton
+	retry_button.focus_neighbor_left = title_button_2.get_path()
+	retry_button.focus_neighbor_right = title_button.get_path()
+
+	# TitleButton
+	title_button.focus_neighbor_left = retry_button.get_path()
+	title_button.focus_neighbor_right = title_button_2.get_path()
+
+	# TitleButton2
+	title_button_2.focus_neighbor_left = title_button.get_path()
+	title_button_2.focus_neighbor_right = retry_button.get_path()
+
+	# 画面表示時に「リトライボタン」にフォーカスを当てる
+	retry_button.grab_focus()
+
 func _on_retry_button_pressed() -> void:
 	retry_button.disabled = true
 	retry_se.play()
@@ -39,3 +57,27 @@ func _on_title_button_2_pressed() -> void:
 	await get_tree().create_timer(1).timeout
 	# 遷移先のタイトル画面のパスを指定してください
 	get_tree().change_scene_to_file("res://scenes/mori-mi/start.tscn")
+
+
+func _on_retry_button_focus_entered() -> void:
+	pass # Replace with function body.
+
+
+func _on_retry_button_focus_exited() -> void:
+	pass # Replace with function body.
+
+
+func _on_title_button_focus_entered() -> void:
+	pass # Replace with function body.
+
+
+func _on_title_button_focus_exited() -> void:
+	pass # Replace with function body.
+
+
+func _on_title_button_2_focus_entered() -> void:
+	pass # Replace with function body.
+
+
+func _on_title_button_2_focus_exited() -> void:
+	pass # Replace with function body.

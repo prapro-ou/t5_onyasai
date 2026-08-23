@@ -2,6 +2,20 @@ extends "res://scenes/enemy/enemy.gd"
 
 
 # ==================================================
+# ボスアニメーション設定
+# ==================================================
+
+# 停止アニメーション(default)の大きさ倍率
+@export var default_scale_multiplier: float = 1.0
+
+# 移動アニメーション(move)の大きさ倍率
+@export var move_scale_multiplier: float = 1.0
+
+# AnimatedSprite2Dの元の大きさ
+var base_sprite_scale: Vector2 = Vector2.ONE
+
+
+# ==================================================
 # 攻撃タイプ
 # ==================================================
 
@@ -88,6 +102,19 @@ func _ready() -> void:
 
 	super._ready()
 
+	# ==================================================
+	# アニメーション初期化
+	# ==================================================
+
+	# AnimatedSprite2Dの元の大きさを保存
+	base_sprite_scale = sprite.scale
+
+	# 最初はdefaultアニメーション
+	sprite.scale = (
+		base_sprite_scale * default_scale_multiplier
+	)
+	sprite.play("default")
+
 
 	# ==================================================
 	# Player取得
@@ -142,6 +169,84 @@ func _ready() -> void:
 	current_attack = AttackType.MOMIJI
 
 	start_momiji()
+
+
+# ==================================================
+# 毎フレームの処理
+# ==================================================
+
+func _physics_process(delta: float) -> void:
+
+	# ------------------------------------------
+	# ゲームオーバーなどで停止中
+	# ------------------------------------------
+
+	if is_stopped:
+		velocity = Vector2.ZERO
+
+		# 停止中はdefault
+		sprite.scale = (
+			base_sprite_scale * default_scale_multiplier
+		)
+
+		if sprite.animation != "default":
+			sprite.play("default")
+
+		return
+
+
+	# ------------------------------------------
+	# 親enemy.gdの移動処理
+	# ------------------------------------------
+
+	# Player追跡・左右反転・ノックバックなどは
+	# enemy.gdの処理をそのまま使用する
+	super._physics_process(delta)
+
+
+	# ------------------------------------------
+	# ボスアニメーション更新
+	# ------------------------------------------
+
+	update_boss_animation()
+
+
+# ==================================================
+# ボスアニメーション
+# ==================================================
+
+func update_boss_animation() -> void:
+
+	# ------------------------------------------
+	# 移動中
+	# ------------------------------------------
+
+	if velocity.length() > 0.1:
+
+		# move専用サイズ
+		sprite.scale = (
+			base_sprite_scale * move_scale_multiplier
+		)
+
+		# moveアニメーション
+		if sprite.animation != "move":
+			sprite.play("move")
+
+
+	# ------------------------------------------
+	# 停止中
+	# ------------------------------------------
+
+	else:
+
+		# default専用サイズ
+		sprite.scale = (
+			base_sprite_scale * default_scale_multiplier
+		)
+
+		# defaultアニメーション
+		if sprite.animation != "default":
+			sprite.play("default")
 
 
 # ==================================================
@@ -730,6 +835,9 @@ func stop_enemy() -> void:
 
 	is_stopped = true
 
+	# ボス自体の移動も停止
+	velocity = Vector2.ZERO
+
 	is_attacking = false
 	is_warning = false
 	is_momiji = false
@@ -772,3 +880,9 @@ func stop_enemy() -> void:
 	if is_instance_valid(sprite):
 
 		sprite.modulate = Color.WHITE
+
+		# 停止時はdefaultアニメーションへ戻す
+		sprite.scale = (
+			base_sprite_scale * default_scale_multiplier
+		)
+		sprite.play("default")

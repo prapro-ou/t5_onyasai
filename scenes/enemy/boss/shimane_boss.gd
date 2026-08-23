@@ -2,6 +2,20 @@ extends "res://scenes/enemy/enemy.gd"
 
 
 # ==================================================
+# ボスアニメーション設定
+# ==================================================
+
+# 停止アニメーション(default)の大きさ倍率
+@export var default_scale_multiplier: float = 1.0
+
+# 移動アニメーション(move)の大きさ倍率
+@export var move_scale_multiplier: float = 1.0
+
+# AnimatedSprite2Dの元の大きさ
+var base_sprite_scale: Vector2 = Vector2.ONE
+
+
+# ==================================================
 # Wave関連
 # ==================================================
 
@@ -13,6 +27,7 @@ extends "res://scenes/enemy/enemy.gd"
 
 # 属性
 var enemy_zukusei = "blue"
+
 
 # ==================================================
 # Waveの状態
@@ -46,8 +61,18 @@ func _ready() -> void:
 	# ボスのHPを設定
 	max_hp = max_hp * 2
 	current_hp = max_hp
+
 	# 親のenemy.gdの初期化
 	super._ready()
+
+	# AnimatedSprite2Dの元の大きさを保存
+	base_sprite_scale = sprite.scale
+
+	# 最初はdefaultアニメーション
+	sprite.scale = (
+		base_sprite_scale * default_scale_multiplier
+	)
+	sprite.play("default")
 
 	# Playerを取得
 	player = get_tree().get_first_node_in_group("player")
@@ -65,6 +90,80 @@ func _ready() -> void:
 
 	# Waveタイマー開始
 	wave_timer.start()
+
+
+# ==================================================
+# 毎フレームの処理
+# ==================================================
+
+func _physics_process(delta: float) -> void:
+	# ------------------------------------------
+	# ゲームオーバーなどで停止中
+	# ------------------------------------------
+
+	if is_stopped:
+		velocity = Vector2.ZERO
+
+		# 停止中はdefault
+		sprite.scale = (
+			base_sprite_scale * default_scale_multiplier
+		)
+
+		if sprite.animation != "default":
+			sprite.play("default")
+
+		return
+
+
+	# ------------------------------------------
+	# 親enemy.gdの移動処理
+	# ------------------------------------------
+
+	# Player追跡・左右反転・ノックバックなどは
+	# enemy.gdの処理をそのまま使用する
+	super._physics_process(delta)
+
+
+	# ------------------------------------------
+	# ボスアニメーション更新
+	# ------------------------------------------
+
+	update_boss_animation()
+
+
+# ==================================================
+# ボスアニメーション
+# ==================================================
+
+func update_boss_animation() -> void:
+	# ------------------------------------------
+	# 移動中
+	# ------------------------------------------
+
+	if velocity.length() > 0.1:
+		# move専用サイズ
+		sprite.scale = (
+			base_sprite_scale * move_scale_multiplier
+		)
+
+		# moveアニメーション
+		if sprite.animation != "move":
+			sprite.play("move")
+
+
+	# ------------------------------------------
+	# 停止中
+	# ------------------------------------------
+
+	else:
+		# default専用サイズ
+		sprite.scale = (
+			base_sprite_scale * default_scale_multiplier
+		)
+
+		# defaultアニメーション
+		if sprite.animation != "default":
+			sprite.play("default")
 
 
 # ==================================================
@@ -125,12 +224,10 @@ func start_wave_attack() -> void:
 
 
 	# ==================================================
-	# 重要
 	# 待っている間にゲームオーバーになった場合
 	# ==================================================
 
 	if is_stopped:
-
 		is_warning = false
 
 		if is_instance_valid(warning_line):
@@ -182,7 +279,6 @@ func start_wave_attack() -> void:
 
 	if is_stopped:
 		return
-
 
 	wave_timer.start()
 
@@ -289,9 +385,7 @@ func spawn_wave() -> void:
 	# ------------------------------------------
 
 	if wave_scene == null:
-
 		print("Waveシーンが設定されていません。")
-
 		return
 
 
@@ -326,6 +420,7 @@ func spawn_wave() -> void:
 	print("Waveを生成！")
 	$WaveSound.play()
 
+
 # ==================================================
 # ゲームオーバー時の停止
 # ==================================================
@@ -337,6 +432,9 @@ func stop_enemy() -> void:
 	# ------------------------------------------
 
 	is_stopped = true
+
+	# ボス自体の移動も停止
+	velocity = Vector2.ZERO
 
 
 	# ------------------------------------------
@@ -352,7 +450,6 @@ func stop_enemy() -> void:
 	# ------------------------------------------
 
 	if is_instance_valid(wave_timer):
-
 		wave_timer.stop()
 
 
@@ -361,7 +458,6 @@ func stop_enemy() -> void:
 	# ------------------------------------------
 
 	if warning_tween and warning_tween.is_valid():
-
 		warning_tween.kill()
 
 
@@ -370,9 +466,19 @@ func stop_enemy() -> void:
 	# ------------------------------------------
 
 	if is_instance_valid(warning_line):
-
 		warning_line.visible = false
 		warning_line.clear_points()
+
+
+	# ------------------------------------------
+	# defaultアニメーションへ戻す
+	# ------------------------------------------
+
+	if is_instance_valid(sprite):
+		sprite.scale = (
+			base_sprite_scale * default_scale_multiplier
+		)
+		sprite.play("default")
 
 
 # ==================================================

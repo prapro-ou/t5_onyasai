@@ -1,39 +1,37 @@
 [gd_scene format=3 uid="uid://b813i5f5ocwhh"]
 
 [ext_resource type="Script" uid="uid://c0jvs8pkkko3y" path="res://scenes/player/player.gd" id="1_dovo2"]
-[ext_resource type="Texture2D" uid="uid://ciytipvi26xdw" path="res://アニメ/gazou/character/player/player_katana_attack_kai.png" id="2_je7p5"]
-[ext_resource type="PackedScene" uid="uid://bg3xq5oukxsq7" path="res://scenes/player/arrow.tscn" id="2_ugbui"]
 [ext_resource type="AudioStream" uid="uid://bu574sj1nvdn8" path="res://assets/sounds/バタンと倒れる.mp3" id="3_5gtgg"]
 [ext_resource type="AudioStream" uid="uid://bpyvnf3wnqs2p" path="res://assets/sounds/小キック.mp3" id="4_h17s1"]
 [ext_resource type="AudioStream" uid="uid://cmcerunwndili" path="res://assets/sounds/剣で斬る.mp3" id="5_je7p5"]
 [ext_resource type="PackedScene" uid="uid://bsqcd07k2ehps" path="res://scenes/ui/hp_bar.tscn" id="5_p47bc"]
+[ext_resource type="Texture2D" uid="uid://w5p8mgrmkqtj" path="res://assets/player/katana_attack1.png" id="6_4hvnv"]
 [ext_resource type="AudioStream" uid="uid://r862ktjgk14q" path="res://assets/sounds/打撃2.mp3" id="6_h17s1"]
+[ext_resource type="Texture2D" uid="uid://de82iyvsi6q8" path="res://assets/player/katana_attack2.png" id="7_bbmj2"]
 [ext_resource type="Texture2D" uid="uid://cxhyglo37fgvd" path="res://assets/player/kiba_dash1.png" id="7_fm80t"]
 [ext_resource type="Texture2D" uid="uid://c1mxebafjx2ap" path="res://assets/player/kiba_dash3.png" id="7_gx1jg"]
 [ext_resource type="Texture2D" uid="uid://b8r2mmpr07yoa" path="res://assets/player/kiba_idle.png" id="7_h17s1"]
 [ext_resource type="Texture2D" uid="uid://bomry8e3myl8k" path="res://assets/player/kiba_run6.png" id="7_qek5x"]
-[ext_resource type="Texture2D" uid="uid://cadry4lnsbodh" path="res://assets/player/侍_Player画像_透明_直立1.png" id="8_5gtgg"]
 [ext_resource type="Texture2D" uid="uid://d1s0x8bxjnqbn" path="res://assets/player/kiba_dash2.png" id="8_gx1jg"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_h17s1"]
-atlas = ExtResource("2_je7p5")
-region = Rect2(0, 0, 377, 941)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_je7p5"]
-atlas = ExtResource("2_je7p5")
-region = Rect2(377, 0, 377, 941)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fm80t"]
-atlas = ExtResource("2_je7p5")
-region = Rect2(847, 0, 412, 941)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_gx1jg"]
-atlas = ExtResource("2_je7p5")
-region = Rect2(1299, 0, 319, 941)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8ydkj"]
-atlas = ExtResource("2_je7p5")
-region = Rect2(23, 0, 354, 941)
+[ext_resource type="Texture2D" uid="uid://bj216e5v00ld1" path="res://assets/player/katana_attack3.png" id="8_kxw46"]
+[ext_resource type="Texture2D" uid="uid://d3ehbqvy7us6c" path="res://assets/player/katana_attack4.png" id="9_8qxvo"]
+[ext_resource type="Texture2D" uid="uid://dadhug7kk1ayu" path="res://assets/player/katana_idle.png" id="12_4hvnv"]
+[ext_resource type="Texture2D" uid="uid://l8nyvo1xxs65" path="res://assets/player/katana_run1.png" id="12_28m0y"]
+[ext_resource type="Texture2D" uid="uid://bv1owo45dtns4" path="res://assets/player/yumi_attack1.png" id="13_kvlxm"]
+[ext_resource type="Texture2D" uid="uid://d26exmf1rtk8" path="res://assets/player/katana_run2.png" id="13_uniwh"]
+[ext_resource type="Texture2D" uid="uid://des8vc7empivh" path="res://assets/player/katana_run3.png" id="14_iqsei"]
+[ext_resource type="Texture2D" uid="uid://pim6emusyy6v" path="res://assets/player/yumi_attack2.png" id="14_uf5tr"]
+[ext_resource type="Texture2D" uid="uid://ccmfwqcr1462y" path="res://assets/player/yumi_attack3.png" id="15_lgqa7"]
+[ext_resource type="Texture2D" uid="uid://bnv7uqx1y317a" path="res://assets/player/katana_run4.png" id="15_tffgl"]
+[ext_resource type="Texture2D" uid="uid://bvvnee0tbyh36" path="res://assets/player/yumi_attack4.png" id="16_8ydkj"]
+[ext_resource type="Texture2D" uid="uid://bsd5j331wluqv" path="res://assets/player/katana_run5.png" id="16_pk8ii"]
+[ext_resource type="Texture2D" uid="uid://3ser0dwxoyqx" path="res://assets/player/katana_run6.png" id="17_5mf0n"]
+[ext_resource type="Texture2D" uid="uid://clkxumagdjcgh" path="res://assets/player/yumi_run1.png" id="17_ioxgp"]
+[ext_resource type="Texture2D" uid="uid://c5yd60hrli7oa" path="res://assets/player/yumi_run2.png" id="18_cnsyf"]
+[ext_resource type="Texture2D" uid="uid://bullcoxqcwhne" path="res://assets/player/yumi_run3.png" id="19_007i1"]
+[ext_resource type="Texture2D" uid="uid://bmxeomntvpg6s" path="res://assets/player/yumi_run4.png" id="20_6cv16"]
+[ext_resource type="Texture2D" uid="uid://ckrsl7p0p0sus" path="res://assets/player/yumi_run5.png" id="21_j4nxn"]
+[ext_resource type="Texture2D" uid="uid://db7fsvrnir2pw" path="res://assets/player/yumi_run6.png" id="22_28m0y"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ugbui"]
 atlas = ExtResource("7_h17s1")
@@ -67,16 +65,22 @@ region = Rect2(0, 0, 350, 724)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_h17s1")
+"texture": ExtResource("6_4hvnv")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_je7p5")
+"texture": ExtResource("7_bbmj2")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_fm80t")
+"texture": ExtResource("8_kxw46")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_gx1jg")
+"texture": ExtResource("8_kxw46")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_8qxvo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_4hvnv")
 }],
 "loop": 0,
 "name": &"attack",
@@ -84,7 +88,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_8ydkj")
+"texture": ExtResource("12_4hvnv")
 }],
 "loop": 1,
 "name": &"idle",
@@ -146,31 +150,93 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("8_5gtgg")
+"texture": ExtResource("12_28m0y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_uniwh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_iqsei")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_tffgl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_pk8ii")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_5mf0n")
 }],
 "loop": 1,
 "name": &"run",
 "speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_kvlxm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_uf5tr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_8ydkj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_lgqa7")
+}],
+"loop": 1,
+"name": &"yumi_attack",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_kvlxm")
+}],
+"loop": 1,
+"name": &"yumi_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("17_ioxgp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_cnsyf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_007i1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_6cv16")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_j4nxn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_28m0y")
+}],
+"loop": 1,
+"name": &"yumi_run",
+"speed": 10.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w3xm4"]
 size = Vector2(28, 26)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6obyq"]
-size = Vector2(138.32813, 65.5625)
+size = Vector2(78, 105)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_83885"]
 size = Vector2(272, 258)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w3xm4"]
-radius = 17.0
-height = 62.0
+radius = 24.0
+height = 72.0
 
 [node name="Node2D" type="Node2D" unique_id=1834547159]
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=1298724341 groups=["player"]]
 script = ExtResource("1_dovo2")
-arrow_scene = ExtResource("2_ugbui")
 
 [node name="GameOverSound" type="AudioStreamPlayer2D" parent="Player" unique_id=1928554710]
 stream = ExtResource("3_5gtgg")
@@ -185,10 +251,12 @@ stream = ExtResource("5_je7p5")
 stream = ExtResource("6_h17s1")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player" unique_id=777190651]
-position = Vector2(1, 5)
+position = Vector2(16, 14)
 scale = Vector2(0.39954156, 0.3337995)
 sprite_frames = SubResource("SpriteFrames_w3xm4")
-animation = &"kiba_dash"
+animation = &"attack"
+frame = 5
+frame_progress = 1.0
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=693282929]
@@ -208,7 +276,7 @@ collision_layer = 4
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/WeaponHolder/KatanaHitBox" unique_id=384072828]
-position = Vector2(-48, -14)
+position = Vector2(-38, 14)
 shape = SubResource("RectangleShape2D_6obyq")
 disabled = true
 
@@ -218,7 +286,7 @@ collision_layer = 8
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/HorseHitBox" unique_id=1150638383]
-position = Vector2(4, 0)
+position = Vector2(20, 44)
 shape = SubResource("RectangleShape2D_83885")
 
 [node name="HurtBox" type="Area2D" parent="Player" unique_id=513188960]
@@ -226,13 +294,14 @@ collision_layer = 8
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/HurtBox" unique_id=2108339770]
+position = Vector2(22, 16)
 shape = SubResource("CapsuleShape2D_w3xm4")
 
 [node name="HPBar" parent="Player" unique_id=2087799846 instance=ExtResource("5_p47bc")]
-offset_left = -33.0
-offset_top = -73.0
-offset_right = 47.0
-offset_bottom = -63.0
+offset_left = -26.0
+offset_top = -71.0
+offset_right = 54.0
+offset_bottom = -59.75
 scale = Vector2(0.8, 0.8)
 
 [connection signal="animation_finished" from="Player/AnimatedSprite2D" to="Player" method="_on_animated_sprite_2d_animation_finished"]

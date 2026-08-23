@@ -165,6 +165,24 @@ func _ready() -> void:
 
 	attribute_select_ui.show()
 
+	# Panel -> VBoxContainer -> 各ボタン の順で指定
+	var katana_btn = attribute_select_ui.get_node("Panel/VBoxContainer/KatanaButton")
+	var bow_btn = attribute_select_ui.get_node("Panel/VBoxContainer/BowButton")
+	var horse_btn = attribute_select_ui.get_node("Panel/VBoxContainer/HorseButton")
+
+	# 上下キー移動のループ（循環）を設定
+	katana_btn.focus_neighbor_top = horse_btn.get_path()
+	katana_btn.focus_neighbor_bottom = bow_btn.get_path()
+
+	bow_btn.focus_neighbor_top = katana_btn.get_path()
+	bow_btn.focus_neighbor_bottom = horse_btn.get_path()
+
+	horse_btn.focus_neighbor_top = bow_btn.get_path()
+	horse_btn.focus_neighbor_bottom = katana_btn.get_path()
+
+	# 最初に刀ボタンを選択状態にする
+	katana_btn.grab_focus()
+
 
 	# ------------------------------------------
 	# Player死亡シグナル
@@ -1022,3 +1040,7 @@ func start_game_after_attribute_selection() -> void:
 	
 	# 山口ステージUIを表示する
 	yamaguti_stage_ui.visible = true
+
+
+func _on_horse_button_focus_entered() -> void:
+	pass # Replace with function body.

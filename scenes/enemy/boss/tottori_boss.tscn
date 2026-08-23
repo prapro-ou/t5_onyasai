@@ -1,9 +1,17 @@
 [gd_scene format=3 uid="uid://b2r03eqiov17w"]
 
 [ext_resource type="Script" uid="uid://cxud1lahsjqxm" path="res://scenes/enemy/boss/tottori_boss.gd" id="2_ax71f"]
-[ext_resource type="Texture2D" uid="uid://b2evn4da7fsdj" path="res://assets/gazou/character/enemy_改/enemy_kioniboss.png" id="2_r1hi8"]
+[ext_resource type="Texture2D" uid="uid://csk6crsmq21cp" path="res://assets/enemy/boss/boss_tottori_idle.png" id="2_r1hi8"]
+[ext_resource type="Texture2D" uid="uid://dfqu8oel36cc8" path="res://assets/enemy/boss/boss_tottori_move1.png" id="3_namle"]
 [ext_resource type="PackedScene" uid="uid://bsqcd07k2ehps" path="res://scenes/ui/hp_bar.tscn" id="3_xe4gu"]
 [ext_resource type="AudioStream" uid="uid://b48cxj8gty15t" path="res://assets/sounds/風が吹く2.mp3" id="4_es08p"]
+[ext_resource type="Texture2D" uid="uid://j8sy77dda7uh" path="res://assets/enemy/boss/boss_tottori_move2.png" id="4_ljrjn"]
+[ext_resource type="Texture2D" uid="uid://cvkas65r42dxp" path="res://assets/enemy/boss/boss_tottori_move3.png" id="5_1l0bn"]
+[ext_resource type="Texture2D" uid="uid://dwpuf76gbefhw" path="res://assets/enemy/boss/boss_tottori_move4.png" id="6_regrn"]
+[ext_resource type="Texture2D" uid="uid://b8yhunfwsebeb" path="res://assets/enemy/boss/boss_tottori_move5.png" id="7_ar11i"]
+[ext_resource type="Texture2D" uid="uid://bmpa2udjscrva" path="res://assets/enemy/boss/boss_tottori_move6.png" id="8_wp0jx"]
+[ext_resource type="Texture2D" uid="uid://dlpy0nxgte37i" path="res://assets/enemy/boss/boss_tottori_move7.png" id="9_rdh4g"]
+[ext_resource type="Texture2D" uid="uid://b650wkmyb8fpa" path="res://assets/enemy/boss/boss_tottori_move8.png" id="10_nwyk7"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hh6tj"]
 animations = [{
@@ -14,10 +22,39 @@ animations = [{
 "loop": 1,
 "name": &"default",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_namle")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ljrjn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_1l0bn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_regrn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_ar11i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_wp0jx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_rdh4g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_nwyk7")
+}],
+"loop": 1,
+"name": &"move",
+"speed": 6.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wq2id"]
-radius = 90.407234
+radius = 80.74272
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ax71f"]
 load_path = "res://.godot/imported/砂粒.png-ff77ebf3da534c893f491a3b3bb44801.ctex"
@@ -44,12 +81,13 @@ move_speed = 80.0
 enemy_zokusei = "yellow"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1040475396]
-position = Vector2(-3, 7)
-scale = Vector2(0.14403196, 0.13348791)
+position = Vector2(-6.3754425, 1.9602933)
+scale = Vector2(0.75473154, 0.48687583)
 sprite_frames = SubResource("SpriteFrames_hh6tj")
+animation = &"move"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1067024021]
-position = Vector2(0, 0.99999905)
+position = Vector2(0, 1.9999999)
 scale = Vector2(1.4, 1.4)
 shape = SubResource("CircleShape2D_wq2id")
 

@@ -15,7 +15,7 @@ enum AttackType {
 @export var attack_type: AttackType = AttackType.KATANA
 
 # 弓で使用する矢のシーン
-@export var arrow_scene: PackedScene
+@export var arrow_scene: PackedScene = preload("res://scenes/player/arrow.tscn")
 
 
 # ==================================================
@@ -25,8 +25,32 @@ enum AttackType {
 # 刀属性の移動速度
 @export var katana_move_speed: float = 200.0
 
+# 刀停止アニメーション(idle)の大きさ倍率
+@export var katana_idle_scale_multiplier: float = 0.8
+
+# 刀移動アニメーション(run)の大きさ倍率
+@export var katana_run_scale_multiplier: float = 0.8
+
+# 刀攻撃アニメーション(attack)の大きさ倍率
+@export var katana_attack_scale_multiplier: float = 1.2
+
 # 弓属性の移動速度
 @export var bow_move_speed: float = 140.0
+
+# 弓停止アニメーション(yumi_idle)の大きさ倍率
+@export var yumi_idle_scale_multiplier: float = 0.75
+
+# 弓移動アニメーション(yumi_run)の大きさ倍率
+@export var yumi_run_scale_multiplier: float = 1.0
+
+# 弓攻撃アニメーション(yumi_attack)の大きさ倍率
+@export var yumi_attack_scale_multiplier: float = 0.75
+
+# yumi_attack開始から矢を放つまでの時間
+@export var bow_release_delay: float = 0.3
+
+# 矢を放った後、攻撃状態を解除するまでの時間
+@export var bow_recovery_time: float = 0.2
 
 # Playerが最後に移動した方向
 # ゲーム開始時は右向き
@@ -103,6 +127,9 @@ var player_zokusei
 
 # 刀攻撃中かどうか
 var is_attacking: bool = false
+
+# 弓攻撃アニメーション中かどうか
+var is_bow_attacking: bool = false
 
 # 死亡しているかどうか
 var is_dead: bool = false
@@ -260,37 +287,50 @@ func update_animation(direction: Vector2) -> void:
 	if is_attacking:
 		return
 
-	# --------------------------
+	# 弓攻撃中はyumi_attackを上書きしない
+	if is_bow_attacking:
+		return
+
 	# 騎馬属性
-	# --------------------------
 	if attack_type == AttackType.HORSE:
-		# 停止中はkiba_idle
 		if direction == Vector2.ZERO:
 			animated_sprite.scale = (
 				base_sprite_scale * kiba_idle_scale_multiplier
 			)
 			animated_sprite.play("kiba_idle")
-
-		# 移動中はkiba_run
 		else:
 			animated_sprite.scale = (
 				base_sprite_scale * kiba_run_scale_multiplier
 			)
 			animated_sprite.play("kiba_run")
 
-	# --------------------------
-	# 刀・弓属性
-	# --------------------------
-	else:
-		# 通常属性では元のサイズへ戻す
-		animated_sprite.scale = base_sprite_scale
-
-		# 停止中
+	# 弓属性
+	elif attack_type == AttackType.BOW:
 		if direction == Vector2.ZERO:
+			animated_sprite.scale = (
+				base_sprite_scale * yumi_idle_scale_multiplier
+			)
+			animated_sprite.play("yumi_idle")
+		else:
+			animated_sprite.scale = (
+				base_sprite_scale * yumi_run_scale_multiplier
+			)
+			animated_sprite.play("yumi_run")
+
+	# 刀属性
+	else:
+		# 停止中はidle
+		if direction == Vector2.ZERO:
+			animated_sprite.scale = (
+				base_sprite_scale * katana_idle_scale_multiplier
+			)
 			animated_sprite.play("idle")
 
-		# 移動中
+		# 移動中はrun
 		else:
+			animated_sprite.scale = (
+				base_sprite_scale * katana_run_scale_multiplier
+			)
 			animated_sprite.play("run")
 
 	# 左向き
@@ -338,8 +378,54 @@ func attack_with_katana() -> void:
 	if is_dead:
 		return
 
+	# --------------------------
+	# 攻撃方向を決める
+	# --------------------------
+
+	# 攻撃直前に押している方向を取得
+	var attack_direction := Input.get_vector(
+		"move_left",
+		"move_right",
+		"move_up",
+		"move_down"
+	)
+
+	# 入力がある場合は、その方向を攻撃方向として保存
+	if attack_direction != Vector2.ZERO:
+		attack_direction = attack_direction.normalized()
+		last_move_direction = attack_direction
+
+	# 入力がない場合は最後に移動した方向を使用
+	else:
+		attack_direction = last_move_direction.normalized()
+
+	# 念のため方向が0なら右向き
+	if attack_direction == Vector2.ZERO:
+		attack_direction = Vector2.RIGHT
+		last_move_direction = attack_direction
+
+	# --------------------------
+	# 攻撃状態・向き
+	# --------------------------
+
 	# 攻撃中にする
 	is_attacking = true
+
+	# 刀攻撃アニメーションの大きさ
+	animated_sprite.scale = (
+		base_sprite_scale * katana_attack_scale_multiplier
+	)
+
+	# idle/runと同じ基準で攻撃方向へ向ける
+	# 左入力
+	if attack_direction.x < 0:
+		animated_sprite.flip_h = false
+		weapon_holder.scale.x = 1.0
+
+	# 右入力
+	elif attack_direction.x > 0:
+		animated_sprite.flip_h = true
+		weapon_holder.scale.x = -1.0
 
 	# 刀攻撃アニメーション
 	animated_sprite.play("attack")
@@ -362,6 +448,15 @@ func attack_with_katana() -> void:
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if animated_sprite.animation == "attack":
 		is_attacking = false
+
+		# 攻撃終了後も最後の移動方向を維持する
+		if last_move_direction.x < 0:
+			animated_sprite.flip_h = false
+			weapon_holder.scale.x = 1.0
+
+		elif last_move_direction.x > 0:
+			animated_sprite.flip_h = true
+			weapon_holder.scale.x = -1.0
 
 
 # 刀が敵に当たったとき
@@ -391,20 +486,59 @@ func attack_with_bow() -> void:
 	if is_dead:
 		return
 
+	# すでに弓攻撃中なら重ねて攻撃しない
+	if is_bow_attacking:
+		return
+
 	# 矢のシーンが設定されていなければ終了
 	if arrow_scene == null:
 		push_warning("Arrow Sceneが設定されていません。")
 		return
 
+	# 最後に移動した方向とは逆方向へ発射
+	var shoot_direction := -last_move_direction.normalized()
+
+	# 念のため方向が0の場合は左向きにする
+	if shoot_direction == Vector2.ZERO:
+		shoot_direction = Vector2.LEFT
+
+	# 弓攻撃開始
+	is_bow_attacking = true
+
+	# yumi_attack専用サイズ
+	animated_sprite.scale = (
+		base_sprite_scale * yumi_attack_scale_multiplier
+	)
+
+	# 実際に矢を撃つ方向へ向ける
+	if shoot_direction.x < 0:
+		animated_sprite.flip_h = false
+		weapon_holder.scale.x = 1.0
+	elif shoot_direction.x > 0:
+		animated_sprite.flip_h = true
+		weapon_holder.scale.x = -1.0
+
+	# 弓攻撃アニメーション
+	animated_sprite.play("yumi_attack")
+
+	# 矢を放つフレームまで待つ
+	await get_tree().create_timer(bow_release_delay).timeout
+
+	if not is_inside_tree():
+		return
+
+	if is_dead:
+		is_bow_attacking = false
+		return
+
 	# 矢を生成
 	var arrow := arrow_scene.instantiate()
-	
+
 	# Playerの属性を矢に渡す
 	arrow.player_zokusei = player_zokusei
-	
-	# ここから追加
+
+	# 攻撃力強化分を矢へ渡す
 	arrow.attack_bonus = GameManager.attack_bonus
-	# ここまで
 
 	# 現在のステージへ矢を追加
 	get_tree().current_scene.add_child(arrow)
@@ -412,14 +546,20 @@ func attack_with_bow() -> void:
 	# Playerの位置から矢を出現
 	arrow.global_position = global_position
 
-	# 最後に移動した方向とは逆方向へ発射
-	var shoot_direction := -last_move_direction
-
-	# 矢の進行方向を設定
+	# 矢の進行方向
 	arrow.direction = shoot_direction
 
 	# 矢画像を進行方向へ回転
 	arrow.rotation = shoot_direction.angle()
+
+	# 矢を放った後のアニメーション分だけ待つ
+	await get_tree().create_timer(bow_recovery_time).timeout
+
+	if not is_inside_tree():
+		return
+
+	# 弓攻撃終了
+	is_bow_attacking = false
 
 
 # ==================================================
@@ -672,6 +812,9 @@ func select_bow() -> void:
 	if attribute_ui:
 		attribute_ui.update_attribute(player_zokusei)
 
+	# 弓属性では停止時yumi_idle、移動時yumi_run、
+	# 攻撃時yumi_attackを使用する
+
 	# 1秒ごとに攻撃
 	attack_timer.wait_time = 1.0
 
@@ -758,6 +901,9 @@ func die() -> void:
 
 	# 刀攻撃状態を解除
 	is_attacking = false
+
+	# 弓攻撃状態を解除
+	is_bow_attacking = false
 
 	# 刀の攻撃判定をOFF
 	katana_collision.set_deferred("disabled", true)

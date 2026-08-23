@@ -8,8 +8,27 @@ extends CanvasLayer
 @onready var retry_sound: AudioStreamPlayer2D = $RetrySound
 @onready var title_sound: AudioStreamPlayer2D = $TitleSound
 
+# 追加：ボタンノードの取得
+@onready var retry_button: Button = $Screen/GameOverPanel/RetryButton
+@onready var title_button: Button = $Screen/GameOverPanel/TitleButton
+
 func _ready() -> void:
 	visible = false
+
+	# ------------------------------------------
+	# 左右キーによる選択移動（相互循環）の設定
+	# ------------------------------------------
+	retry_button.focus_neighbor_left = retry_button.get_path_to(title_button)
+	retry_button.focus_neighbor_right = retry_button.get_path_to(title_button)
+
+	title_button.focus_neighbor_left = title_button.get_path_to(retry_button)
+	title_button.focus_neighbor_right = title_button.get_path_to(retry_button)
+
+	# 上下キー無効化
+	retry_button.focus_neighbor_top = retry_button.get_path()
+	retry_button.focus_neighbor_bottom = retry_button.get_path()
+	title_button.focus_neighbor_top = title_button.get_path()
+	title_button.focus_neighbor_bottom = title_button.get_path()
 
 
 func show_game_over() -> void:
@@ -41,6 +60,9 @@ func show_game_over() -> void:
 		1.0,
 		0.5
 	).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+
+	# 表示アニメーション完了後にRetryButtonにフォーカスを当てる
+	tween.tween_callback(func(): retry_button.grab_focus())
 
 
 func _on_retry_button_pressed() -> void:
