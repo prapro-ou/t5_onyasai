@@ -33,6 +33,7 @@ animations = [{
 }]
 
 [node name="YellowEnemy" unique_id=1885842798 instance=ExtResource("1_uro4j")]
+move_speed = 350.0
 enemy_zokusei = "yellow"
 
 [node name="AnimatedSprite2D" parent="." index="0" unique_id=1040475396]

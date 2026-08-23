@@ -5,12 +5,16 @@
 [ext_resource type="Texture2D" uid="uid://bokkd8ykwwvkm" path="res://assets/gazou/stage/stage_yamaguti1kai.png" id="3_0gt6a"]
 [ext_resource type="PackedScene" uid="uid://b813i5f5ocwhh" path="res://scenes/player/player.tscn" id="3_cbf7b"]
 [ext_resource type="PackedScene" uid="uid://cldv3jneab40k" path="res://scenes/enemy/yellow_enemy.tscn" id="3_isi5w"]
+[ext_resource type="PackedScene" uid="uid://dp316fki8lnny" path="res://scenes/enemy/blue_enemy5山口.tscn" id="3_le2f0"]
 [ext_resource type="FontFile" uid="uid://6plamo55lv41" path="res://assets/font/玉ねぎ楷書「激」無料版v7/玉ねぎ楷書激無料版v7改.ttf" id="4_5s4j6"]
 [ext_resource type="PackedScene" uid="uid://b0p5vtjtgdglb" path="res://scenes/enemy/red_enemy.tscn" id="4_ubqq3"]
 [ext_resource type="AudioStream" uid="uid://fbeug5se5b65" path="res://assets/sounds/和太鼓でドン.mp3" id="5_1xld8"]
 [ext_resource type="PackedScene" uid="uid://bqqf7oka8p07x" path="res://scenes/enemy/boss/yamaguti_boss.tscn" id="5_a6oqk"]
+[ext_resource type="PackedScene" uid="uid://c612k1pgl66wr" path="res://scenes/enemy/yellow_enemy5山口.tscn" id="5_c5y0o"]
 [ext_resource type="AudioStream" uid="uid://mbnun2rtkfew" path="res://assets/sounds/結末の見えない戦い_其の六十二.mp3" id="6_sl05r"]
+[ext_resource type="PackedScene" uid="uid://dk4bbj5hcirmu" path="res://scenes/LevelUP/level_up.tscn" id="6_st6db"]
 [ext_resource type="PackedScene" uid="uid://b7wdj8oaax4aq" path="res://scenes/GameOver/GameOver.tscn" id="7_f3yp1"]
+[ext_resource type="PackedScene" uid="uid://b16b3ctlhc8l0" path="res://scenes/enemy/red_enemy5山口.tscn" id="7_k66t8"]
 [ext_resource type="PackedScene" uid="uid://g0ku3qdwfish" path="res://scenes/ui/yamaguti_stage_ui.tscn" id="8_isi5w"]
 [ext_resource type="Texture2D" uid="uid://ctoc22idjv74k" path="res://assets/UI/属性選択画面.png" id="9_illw1"]
 [ext_resource type="Script" uid="uid://be20j1qjg30jf" path="res://scenes/ui/zokusei_panel.gd" id="10_st6db"]
@@ -46,9 +50,13 @@ bg_color = Color(0.7411765, 0.6156863, 0.3764706, 1)
 [node name="YamagutiStage" type="Node2D" unique_id=587774680]
 script = ExtResource("2_j1so2")
 blue_enemy_scene = ExtResource("2_f3yp1")
+"blue_enemy5山口_scene" = ExtResource("3_le2f0")
 yellow_enemy_scene = ExtResource("3_isi5w")
+"yellow_enemy5山口_scene" = ExtResource("5_c5y0o")
 red_enemy_scene = ExtResource("4_ubqq3")
+"red_enemy5山口_scene" = ExtResource("7_k66t8")
 yamaguti_boss_scene = ExtResource("5_a6oqk")
+level_up_scene = ExtResource("6_st6db")
 
 [node name="Background" type="Sprite2D" parent="." unique_id=378510785]
 z_index = -2
@@ -192,6 +200,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_h06gh")
 text = "騎馬"
 
 [node name="BGM" type="AudioStreamPlayer2D" parent="." unique_id=1748290086]
+process_mode = 3
 stream = ExtResource("6_sl05r")
 volume_db = -5.0
 autoplay = true
@@ -203,12 +212,18 @@ visible = false
 [node name="StageUI" parent="." unique_id=357268121 instance=ExtResource("8_isi5w")]
 visible = false
 
+[connection signal="focus_entered" from="AttributeSelectUI/Panel/VBoxContainer/KatanaButton" to="AttributeSelectUI/Panel" method="_on_katana_button_focus_entered"]
+[connection signal="focus_exited" from="AttributeSelectUI/Panel/VBoxContainer/KatanaButton" to="AttributeSelectUI/Panel" method="_on_katana_button_focus_exited"]
 [connection signal="mouse_entered" from="AttributeSelectUI/Panel/VBoxContainer/KatanaButton" to="AttributeSelectUI/Panel" method="_on_katana_button_mouse_entered"]
 [connection signal="mouse_exited" from="AttributeSelectUI/Panel/VBoxContainer/KatanaButton" to="AttributeSelectUI/Panel" method="_on_katana_button_mouse_exited"]
 [connection signal="pressed" from="AttributeSelectUI/Panel/VBoxContainer/KatanaButton" to="." method="_on_katana_button_pressed"]
+[connection signal="focus_entered" from="AttributeSelectUI/Panel/VBoxContainer/BowButton" to="AttributeSelectUI/Panel" method="_on_bow_button_focus_entered"]
+[connection signal="focus_exited" from="AttributeSelectUI/Panel/VBoxContainer/BowButton" to="AttributeSelectUI/Panel" method="_on_bow_button_focus_exited"]
 [connection signal="mouse_entered" from="AttributeSelectUI/Panel/VBoxContainer/BowButton" to="AttributeSelectUI/Panel" method="_on_bow_button_mouse_entered"]
 [connection signal="mouse_exited" from="AttributeSelectUI/Panel/VBoxContainer/BowButton" to="AttributeSelectUI/Panel" method="_on_bow_button_mouse_exited"]
 [connection signal="pressed" from="AttributeSelectUI/Panel/VBoxContainer/BowButton" to="." method="_on_bow_button_pressed"]
+[connection signal="focus_entered" from="AttributeSelectUI/Panel/VBoxContainer/HorseButton" to="AttributeSelectUI/Panel" method="_on_horse_button_focus_entered"]
+[connection signal="focus_exited" from="AttributeSelectUI/Panel/VBoxContainer/HorseButton" to="AttributeSelectUI/Panel" method="_on_horse_button_focus_exited"]
 [connection signal="mouse_entered" from="AttributeSelectUI/Panel/VBoxContainer/HorseButton" to="AttributeSelectUI/Panel" method="_on_horse_button_mouse_entered"]
 [connection signal="mouse_exited" from="AttributeSelectUI/Panel/VBoxContainer/HorseButton" to="AttributeSelectUI/Panel" method="_on_horse_button_mouse_exited"]
 [connection signal="pressed" from="AttributeSelectUI/Panel/VBoxContainer/HorseButton" to="." method="_on_horse_button_pressed"]

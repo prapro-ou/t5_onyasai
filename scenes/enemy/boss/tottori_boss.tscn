@@ -1,19 +1,15 @@
 [gd_scene format=3 uid="uid://b2r03eqiov17w"]
 
-[ext_resource type="PackedScene" uid="uid://b0p5vtjtgdglb" path="res://scenes/enemy/red_enemy.tscn" id="1_2mamo"]
 [ext_resource type="Script" uid="uid://cxud1lahsjqxm" path="res://scenes/enemy/boss/tottori_boss.gd" id="2_ax71f"]
-[ext_resource type="Texture2D" uid="uid://cxefi0kdw311l" path="res://アニメ/gazou/character/enemy/enemy_kioniboss.png" id="3_r1hi8"]
+[ext_resource type="Texture2D" uid="uid://b2evn4da7fsdj" path="res://assets/gazou/character/enemy_改/enemy_kioniboss.png" id="2_r1hi8"]
+[ext_resource type="PackedScene" uid="uid://bsqcd07k2ehps" path="res://scenes/ui/hp_bar.tscn" id="3_xe4gu"]
 [ext_resource type="AudioStream" uid="uid://b48cxj8gty15t" path="res://assets/sounds/風が吹く2.mp3" id="4_es08p"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xe4gu"]
-atlas = ExtResource("3_r1hi8")
-region = Rect2(0, 0, 2016, 2096)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hh6tj"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_xe4gu")
+"texture": ExtResource("2_r1hi8")
 }],
 "loop": 1,
 "name": &"default",
@@ -40,33 +36,33 @@ scale_max = 0.7
 scale_over_velocity_min = 0.099999994
 scale_over_velocity_max = 0.5
 
-[node name="TotttoriBoss" unique_id=1885842798 groups=["boss"] instance=ExtResource("1_2mamo")]
+[node name="TotttoriBoss" type="CharacterBody2D" unique_id=1885842798 groups=["boss", "enemy"]]
+collision_layer = 2
 script = ExtResource("2_ax71f")
-max_hp = 15
-move_speed = 80.0
+max_hp = 27
+move_speed = 250.0
 enemy_zokusei = "yellow"
 
-[node name="AnimatedSprite2D" parent="." index="0" unique_id=1040475396]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1040475396]
 position = Vector2(-3, 7)
 scale = Vector2(0.14403196, 0.13348791)
 sprite_frames = SubResource("SpriteFrames_hh6tj")
-frame_progress = 0.0
 
-[node name="CollisionShape2D" parent="." index="1" unique_id=1067024021]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1067024021]
 position = Vector2(0, 0.99999905)
+scale = Vector2(1.4, 1.4)
 shape = SubResource("CircleShape2D_wq2id")
 
-[node name="HPBar" parent="." index="2" unique_id=2087799846]
-visible = true
+[node name="HPBar" parent="." unique_id=2087799846 instance=ExtResource("3_xe4gu")]
 offset_left = -39.0
 offset_top = -127.0
 offset_right = 41.0
 offset_bottom = -117.0
 
-[node name="SandstormEffect" type="CanvasLayer" parent="." index="3" unique_id=1402408019]
+[node name="SandstormEffect" type="CanvasLayer" parent="." unique_id=1402408019]
 visible = false
 
-[node name="SandOverlay" type="ColorRect" parent="SandstormEffect" index="0" unique_id=1394527563]
+[node name="SandOverlay" type="ColorRect" parent="SandstormEffect" unique_id=1394527563]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -78,21 +74,21 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.95, 0.73878336, 0.39900002, 0.039215688)
 
-[node name="SandParticles" type="GPUParticles2D" parent="SandstormEffect" index="1" unique_id=503071527]
+[node name="SandParticles" type="GPUParticles2D" parent="SandstormEffect" unique_id=503071527]
 emitting = false
 amount = 5
 texture = SubResource("CompressedTexture2D_ax71f")
 lifetime = 10.0
 process_material = SubResource("ParticleProcessMaterial_83885")
 
-[node name="SandstormTimer" type="Timer" parent="." index="4" unique_id=630941485]
+[node name="SandstormTimer" type="Timer" parent="." unique_id=630941485]
 wait_time = 10.0
 autostart = true
 
-[node name="DurationTimer" type="Timer" parent="." index="5" unique_id=547312288]
+[node name="DurationTimer" type="Timer" parent="." unique_id=547312288]
 wait_time = 10.0
 one_shot = true
 
-[node name="SandstormSound" type="AudioStreamPlayer2D" parent="." index="6" unique_id=1326316395]
+[node name="SandstormSound" type="AudioStreamPlayer2D" parent="." unique_id=1326316395]
 visible = false
 stream = ExtResource("4_es08p")

@@ -33,12 +33,13 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_w3xm4"]
-radius = 73.33485
+radius = 77.02597
 
 [node name="BlueEnemy" type="CharacterBody2D" unique_id=1885842798 groups=["enemy"]]
 collision_layer = 2
 script = ExtResource("1_hwol4")
-max_hp = 2
+max_hp = 8
+move_speed = 400.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1040475396]
 position = Vector2(5.9999695, -1)
@@ -47,5 +48,5 @@ sprite_frames = SubResource("SpriteFrames_gl8jq")
 frame_progress = 0.12913689
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1067024021]
-position = Vector2(7, 0)
+position = Vector2(5, 7)
 shape = SubResource("CircleShape2D_w3xm4")

@@ -3,20 +3,79 @@
 [ext_resource type="Script" uid="uid://dm4swdi0217y5" path="res://scenes/main/main.gd" id="1_k2fmo"]
 [ext_resource type="PackedScene" uid="uid://b813i5f5ocwhh" path="res://scenes/player/player.tscn" id="2_l3cfh"]
 [ext_resource type="PackedScene" uid="uid://c0688q7f2ni3u" path="res://scenes/enemy/blue_enemy.tscn" id="3_6q06x"]
-[ext_resource type="PackedScene" uid="uid://cldv3jneab40k" path="res://scenes/enemy/yellow_enemy.tscn" id="3_l3cfh"]
+[ext_resource type="PackedScene" uid="uid://cp6sitqv5eref" path="res://scenes/enemy/blue_enemy3鳥取.tscn" id="3_pg34l"]
 [ext_resource type="PackedScene" uid="uid://b0p5vtjtgdglb" path="res://scenes/enemy/red_enemy.tscn" id="4_6q06x"]
+[ext_resource type="Texture2D" uid="uid://dr6w328qmo6vk" path="res://アニメ/gazou/character/enemy/enemy_kioni_move_kai.png" id="4_m4h2d"]
 [ext_resource type="PackedScene" uid="uid://b2r03eqiov17w" path="res://scenes/enemy/boss/tottori_boss.tscn" id="5_blune"]
+[ext_resource type="PackedScene" uid="uid://nhnvjv0j5ws7" path="res://scenes/enemy/yellow_enemy3鳥取.tscn" id="5_p8abn"]
 [ext_resource type="Texture2D" uid="uid://bld1dyhwu02m6" path="res://assets/gazou/stage/stage_tottori_kai.png" id="6_blune"]
+[ext_resource type="PackedScene" uid="uid://dk4bbj5hcirmu" path="res://scenes/LevelUP/level_up.tscn" id="6_ou6is"]
 [ext_resource type="AudioStream" uid="uid://mbnun2rtkfew" path="res://assets/sounds/結末の見えない戦い_其の六十二.mp3" id="6_ow5a4"]
 [ext_resource type="AudioStream" uid="uid://fbeug5se5b65" path="res://assets/sounds/和太鼓でドン.mp3" id="6_yyfjg"]
 [ext_resource type="FontFile" uid="uid://6plamo55lv41" path="res://assets/font/玉ねぎ楷書「激」無料版v7/玉ねぎ楷書激無料版v7改.ttf" id="7_a8run"]
 [ext_resource type="PackedScene" uid="uid://b7wdj8oaax4aq" path="res://scenes/GameOver/GameOver.tscn" id="7_hujxm"]
+[ext_resource type="PackedScene" uid="uid://byr344730md1c" path="res://scenes/enemy/red_enemy3鳥取.tscn" id="7_s17dp"]
 [ext_resource type="Script" uid="uid://be20j1qjg30jf" path="res://scenes/ui/zokusei_panel.gd" id="8_hxu8e"]
 [ext_resource type="Texture2D" uid="uid://ctoc22idjv74k" path="res://assets/UI/属性選択画面.png" id="8_nvumn"]
 [ext_resource type="Texture2D" uid="uid://s2shh264loja" path="res://assets/UI/剣説明.png" id="9_raeie"]
 [ext_resource type="Texture2D" uid="uid://c1u82rx4f2cls" path="res://assets/UI/弓説明.png" id="10_hxu8e"]
 [ext_resource type="Texture2D" uid="uid://drqh2pj6ub8wk" path="res://assets/UI/騎馬説明.png" id="11_nvumn"]
 [ext_resource type="PackedScene" uid="uid://otqxendqxkxk" path="res://scenes/ui/tottori_stage_ui.tscn" id="12_blune"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_euhvm"]
+atlas = ExtResource("4_m4h2d")
+region = Rect2(0, 0, 271, 724)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nigsx"]
+atlas = ExtResource("4_m4h2d")
+region = Rect2(813, 0, 271, 724)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fqby5"]
+atlas = ExtResource("4_m4h2d")
+region = Rect2(1084, 0, 271, 724)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a1jsx"]
+atlas = ExtResource("4_m4h2d")
+region = Rect2(1626, 0, 271, 724)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1f4pj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_euhvm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nigsx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fqby5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a1jsx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nigsx")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="PackedScene" id="PackedScene_37hlw"]
+_bundled = {
+"base_scene": 0,
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"id_paths": [PackedInt32Array()],
+"names": PackedStringArray("YellowEnemy", "enemy_zokusei", "AnimatedSprite2D", "sprite_frames", "frame_progress"),
+"node_count": 2,
+"node_ids": PackedInt32Array(1885842798, 1040475396),
+"node_paths": [NodePath(".")],
+"nodes": PackedInt32Array(-1, -1, 2147483647, 0, -1, 1, 1, 1, 0, 1073741824, -1, 2147483647, 262146, -1, 2, 3, 2, 4, 3, 0),
+"variants": [ExtResource("3_6q06x"), "yellow", SubResource("SpriteFrames_1f4pj"), 0.5518492],
+"version": 3
+}
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_83885"]
 texture = ExtResource("8_nvumn")
@@ -46,9 +105,13 @@ bg_color = Color(0.7411765, 0.6156863, 0.3764706, 1)
 [node name="Main" type="Node2D" unique_id=587774680]
 script = ExtResource("1_k2fmo")
 blue_enemy_scene = ExtResource("3_6q06x")
-yellow_enemy_scene = ExtResource("3_l3cfh")
+"blue_enemy3鳥取_scene" = ExtResource("3_pg34l")
+yellow_enemy_scene = SubResource("PackedScene_37hlw")
+"yellow_enemy3鳥取_scene" = ExtResource("5_p8abn")
 red_enemy_scene = ExtResource("4_6q06x")
+"red_enemy3鳥取_scene" = ExtResource("7_s17dp")
 tottori_boss_scene = ExtResource("5_blune")
+level_up_scene = ExtResource("6_ou6is")
 
 [node name="Background" type="Sprite2D" parent="." unique_id=378510785]
 z_index = -2
@@ -192,6 +255,7 @@ text = "騎馬"
 stream = ExtResource("6_yyfjg")
 
 [node name="BGM" type="AudioStreamPlayer2D" parent="." unique_id=1748290086]
+process_mode = 3
 stream = ExtResource("6_ow5a4")
 volume_db = -5.0
 autoplay = true
@@ -203,12 +267,18 @@ visible = false
 [node name="StageUI" parent="." unique_id=357268121 instance=ExtResource("12_blune")]
 visible = false
 
+[connection signal="focus_entered" from="AttributeSelectUI/Panel/VBoxContainer/KatanaButton" to="AttributeSelectUI/Panel" method="_on_katana_button_focus_entered"]
+[connection signal="focus_exited" from="AttributeSelectUI/Panel/VBoxContainer/KatanaButton" to="AttributeSelectUI/Panel" method="_on_katana_button_focus_exited"]
 [connection signal="mouse_entered" from="AttributeSelectUI/Panel/VBoxContainer/KatanaButton" to="AttributeSelectUI/Panel" method="_on_katana_button_mouse_entered"]
 [connection signal="mouse_exited" from="AttributeSelectUI/Panel/VBoxContainer/KatanaButton" to="AttributeSelectUI/Panel" method="_on_katana_button_mouse_exited"]
 [connection signal="pressed" from="AttributeSelectUI/Panel/VBoxContainer/KatanaButton" to="." method="_on_katana_button_pressed"]
+[connection signal="focus_entered" from="AttributeSelectUI/Panel/VBoxContainer/BowButton" to="AttributeSelectUI/Panel" method="_on_bow_button_focus_entered"]
+[connection signal="focus_exited" from="AttributeSelectUI/Panel/VBoxContainer/BowButton" to="AttributeSelectUI/Panel" method="_on_bow_button_focus_exited"]
 [connection signal="mouse_entered" from="AttributeSelectUI/Panel/VBoxContainer/BowButton" to="AttributeSelectUI/Panel" method="_on_bow_button_mouse_entered"]
 [connection signal="mouse_exited" from="AttributeSelectUI/Panel/VBoxContainer/BowButton" to="AttributeSelectUI/Panel" method="_on_bow_button_mouse_exited"]
 [connection signal="pressed" from="AttributeSelectUI/Panel/VBoxContainer/BowButton" to="." method="_on_bow_button_pressed"]
+[connection signal="focus_entered" from="AttributeSelectUI/Panel/VBoxContainer/HorseButton" to="AttributeSelectUI/Panel" method="_on_horse_button_focus_entered"]
+[connection signal="focus_exited" from="AttributeSelectUI/Panel/VBoxContainer/HorseButton" to="AttributeSelectUI/Panel" method="_on_horse_button_focus_exited"]
 [connection signal="mouse_entered" from="AttributeSelectUI/Panel/VBoxContainer/HorseButton" to="AttributeSelectUI/Panel" method="_on_horse_button_mouse_entered"]
 [connection signal="mouse_exited" from="AttributeSelectUI/Panel/VBoxContainer/HorseButton" to="AttributeSelectUI/Panel" method="_on_horse_button_mouse_exited"]
 [connection signal="pressed" from="AttributeSelectUI/Panel/VBoxContainer/HorseButton" to="." method="_on_horse_button_pressed"]

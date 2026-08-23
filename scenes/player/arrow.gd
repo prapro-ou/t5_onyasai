@@ -17,11 +17,18 @@ var direction: Vector2 = Vector2.RIGHT
 # Playerから受け取る属性
 var player_zokusei
 
+# ここから追加
+# Playerから受け取る攻撃力ボーナス
+var attack_bonus: int = 0
+# ここまで
+
+
 # ==================================================
 # 初期化
 # ==================================================
 
 func _ready() -> void:
+
 	# 敵などに接触したときの処理
 	body_entered.connect(_on_body_entered)
 
@@ -34,6 +41,7 @@ func _ready() -> void:
 # ==================================================
 
 func _physics_process(delta: float) -> void:
+
 	# 指定された方向へ矢を移動する
 	global_position += direction * speed * delta
 
@@ -43,6 +51,7 @@ func _physics_process(delta: float) -> void:
 # ==================================================
 
 func _on_body_entered(body: Node2D) -> void:
+
 	# 接触した相手が敵か確認する
 	if not body.is_in_group("enemy"):
 		return
@@ -51,11 +60,20 @@ func _on_body_entered(body: Node2D) -> void:
 	if not body.has_method("take_damage"):
 		return
 
-	# 基本ダメージ
-	var actual_damage := damage
+
+	# ==================================================
+	# ダメージ計算
+	# ==================================================
+
+	# ここから変更
+	# 基本ダメージ + 攻撃力強化
+	var actual_damage := damage + attack_bonus
+	# ここまで
+
 
 	# Player属性とEnemy属性が同じなら2倍
 	if player_zokusei == body.enemy_zokusei:
+
 		actual_damage *= 2
 
 		print(
@@ -68,6 +86,7 @@ func _on_body_entered(body: Node2D) -> void:
 		)
 
 	else:
+
 		print(
 			"属性不一致 ",
 			player_zokusei,
@@ -77,14 +96,21 @@ func _on_body_entered(body: Node2D) -> void:
 			actual_damage
 		)
 
+
 	# 敵へダメージ
-	body.take_damage(actual_damage, global_position)
+	body.take_damage(
+		actual_damage,
+		global_position
+	)
+
 
 	# 攻撃音
 	$AttackSound.play()
 
+
 	# 音が終わってから矢を削除
 	await $AttackSound.finished
+
 
 	# 命中した矢を削除
 	if is_inside_tree():
@@ -96,5 +122,6 @@ func _on_body_entered(body: Node2D) -> void:
 # ==================================================
 
 func _on_screen_exited() -> void:
+
 	# 見えなくなった矢を削除する
 	queue_free()

@@ -1,0 +1,80 @@
+[gd_scene format=3 uid="uid://c4pghhf7uh3vt"]
+
+[ext_resource type="Script" uid="uid://dfsn3p26lo5o4" path="res://scenes/mori-mi/game_clear_s.gd" id="1_4k0q0"]
+[ext_resource type="Texture2D" uid="uid://drn2m1sm61mke" path="res://gazou/mori-mi_gazou/title_clear.png" id="2_5mrdy"]
+[ext_resource type="AudioStream" uid="uid://fbeug5se5b65" path="res://assets/sounds/和太鼓でドン.mp3" id="3_85bx3"]
+[ext_resource type="AudioStream" uid="uid://bwawvjqo8r74n" path="res://assets/sounds/和太鼓でカカッ.mp3" id="4_mpupe"]
+[ext_resource type="FontFile" uid="uid://6plamo55lv41" path="res://assets/font/玉ねぎ楷書「激」無料版v7/玉ねぎ楷書激無料版v7改.ttf" id="5_85bx3"]
+[ext_resource type="AudioStream" uid="uid://cau0jltk31d5k" path="res://assets/sounds/忍びの作戦_MARUYA328__1_.mp3" id="6_mpupe"]
+
+[node name="GameClear_s" type="Control" unique_id=339269337]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4k0q0")
+
+[node name="Label" type="Label" parent="." unique_id=68757268]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -52.0
+offset_top = -24.5
+offset_right = 52.0
+offset_bottom = 24.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "GAME CLAER!
+"
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=77698290]
+layout_mode = 0
+offset_right = 1376.0
+offset_bottom = 768.0
+scale = Vector2(0.8575346, 0.8472738)
+texture = ExtResource("2_5mrdy")
+
+[node name="RetrySE" type="AudioStreamPlayer" parent="." unique_id=1367011371]
+stream = ExtResource("3_85bx3")
+
+[node name="TitleSE" type="AudioStreamPlayer" parent="." unique_id=1802587466]
+stream = ExtResource("4_mpupe")
+
+[node name="VBoxContainer" type="HBoxContainer" parent="." unique_id=483222746]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -296.0
+offset_top = 244.0
+offset_right = 72.0
+offset_bottom = 277.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.7111725, 1.4790019)
+theme_override_constants/separation = 40
+
+[node name="RetryButton" type="Button" parent="VBoxContainer" unique_id=65077010]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_85bx3")
+theme_override_font_sizes/font_size = 24
+text = "リトライ"
+
+[node name="TitleButton" type="Button" parent="VBoxContainer" unique_id=877906199]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_85bx3")
+theme_override_font_sizes/font_size = 24
+text = "ステージセレクトへ"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="VBoxContainer" unique_id=1676317374]
+stream = ExtResource("6_mpupe")
+volume_db = -10.0
+autoplay = true
+parameters/looping = true

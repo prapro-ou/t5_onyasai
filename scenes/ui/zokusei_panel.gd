@@ -10,34 +10,52 @@ func _ready() -> void:
 
 
 # =========================
-# マウスが乗ったとき
+# フォーカス / マウスが乗ったとき
 # =========================
 
 func _on_katana_button_mouse_entered() -> void:
+	show_only_card(katana_card)
+
+func _on_katana_button_focus_entered() -> void:
 	show_only_card(katana_card)
 
 
 func _on_horse_button_mouse_entered() -> void:
 	show_only_card(horse_card)
 
+func _on_horse_button_focus_entered() -> void:
+	show_only_card(horse_card)
+
 
 func _on_bow_button_mouse_entered() -> void:
 	show_only_card(bow_card)
 
+func _on_bow_button_focus_entered() -> void:
+	show_only_card(bow_card)
+
 
 # =========================
-# マウスが離れたとき
+# フォーカス外れ / マウスが離れたとき
 # =========================
 
 func _on_katana_button_mouse_exited() -> void:
+	show_all_cards()
+
+func _on_katana_button_focus_exited() -> void:
 	show_all_cards()
 
 
 func _on_horse_button_mouse_exited() -> void:
 	show_all_cards()
 
+func _on_horse_button_focus_exited() -> void:
+	show_all_cards()
+
 
 func _on_bow_button_mouse_exited() -> void:
+	show_all_cards()
+
+func _on_bow_button_focus_exited() -> void:
 	show_all_cards()
 
 

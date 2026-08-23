@@ -1,24 +1,24 @@
 [gd_scene format=3 uid="uid://bc7rmxncu02ax"]
 
 [ext_resource type="PackedScene" uid="uid://c0688q7f2ni3u" path="res://scenes/enemy/blue_enemy.tscn" id="1_bh33l"]
-[ext_resource type="Texture2D" uid="uid://belum0vpvlbl" path="res://アニメ/gazou/character/enemy/島根赤.png" id="2_bh33l"]
+[ext_resource type="Texture2D" uid="uid://dp107awpqh4wr" path="res://アニメ/gazou/character/enemy/Gemini_Generated_Image_276tqa276tqa276t.png" id="2_bh33l"]
 [ext_resource type="PackedScene" uid="uid://bsqcd07k2ehps" path="res://scenes/ui/hp_bar.tscn" id="3_jthvd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ksovc"]
 atlas = ExtResource("2_bh33l")
-region = Rect2(0, 0, 256, 254)
+region = Rect2(2064, 0, 1032, 1024)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jthvd"]
 atlas = ExtResource("2_bh33l")
-region = Rect2(256, 0, 256, 254)
+region = Rect2(3096, 0, 1032, 1024)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rdel6"]
 atlas = ExtResource("2_bh33l")
-region = Rect2(512, 0, 256, 254)
+region = Rect2(2064, 0, 1032, 1024)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qu5gf"]
 atlas = ExtResource("2_bh33l")
-region = Rect2(768, 0, 256, 254)
+region = Rect2(3096, 0, 1032, 1024)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_rdait"]
 animations = [{
@@ -45,11 +45,13 @@ radius = 44.999996
 height = 89.99999
 
 [node name="RedEnemy" unique_id=1885842798 instance=ExtResource("1_bh33l")]
+max_hp = 4
+move_speed = 260.0
 enemy_zokusei = "red"
 
 [node name="AnimatedSprite2D" parent="." index="0" unique_id=1040475396]
-position = Vector2(4.9999695, -5)
-scale = Vector2(0.5898437, 0.5322079)
+position = Vector2(11.589832, -6.3773985)
+scale = Vector2(0.18137565, 0.1555129)
 sprite_frames = SubResource("SpriteFrames_rdait")
 frame_progress = 0.72205037
 

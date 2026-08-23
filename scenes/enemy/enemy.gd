@@ -88,6 +88,22 @@ func apply_knockback(attacker_position: Vector2) -> void:
 	knockback_time = knockback_duration
 
 
+# 指定した方向・速さ・時間でノックバックさせる
+# 騎馬突進ではPlayerから敵が離れる方向を指定する
+func apply_directional_knockback(
+	direction: Vector2,
+	power: float,
+	duration: float
+) -> void:
+	var knockback_direction := direction.normalized()
+
+	if knockback_direction == Vector2.ZERO:
+		return
+
+	knockback_velocity = knockback_direction * power
+	knockback_time = duration
+
+
 func flash_damage() -> void:
 	sprite.modulate = Color.RED
 

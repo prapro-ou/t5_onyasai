@@ -1,24 +1,20 @@
 [gd_scene format=3 uid="uid://byr344730md1c"]
 
 [ext_resource type="PackedScene" uid="uid://c0688q7f2ni3u" path="res://scenes/enemy/blue_enemy.tscn" id="1_gjbxi"]
-[ext_resource type="Texture2D" uid="uid://1l5qwr67flan" path="res://アニメ/gazou/character/enemy/鳥取赤.jpg" id="2_gjbxi"]
+[ext_resource type="Texture2D" uid="uid://dwth8jpdw84d8" path="res://アニメ/gazou/character/enemy/鳥取赤.png" id="2_gjbxi"]
 [ext_resource type="PackedScene" uid="uid://bsqcd07k2ehps" path="res://scenes/ui/hp_bar.tscn" id="3_83k11"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_isyci"]
 atlas = ExtResource("2_gjbxi")
-region = Rect2(0, 0, 1032, 1024)
+region = Rect2(0, 0, 1065, 1024)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_83k11"]
 atlas = ExtResource("2_gjbxi")
-region = Rect2(1032, 0, 1032, 1024)
+region = Rect2(1108, 0, 958, 1024)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_me415"]
 atlas = ExtResource("2_gjbxi")
 region = Rect2(2064, 0, 1032, 1024)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_dhyr0"]
-atlas = ExtResource("2_gjbxi")
-region = Rect2(3096, 0, 1032, 1024)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_rdait"]
 animations = [{
@@ -30,10 +26,13 @@ animations = [{
 "texture": SubResource("AtlasTexture_83k11")
 }, {
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_isyci")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_me415")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_dhyr0")
+"texture": SubResource("AtlasTexture_83k11")
 }],
 "loop": 1,
 "name": &"default",
@@ -45,13 +44,16 @@ radius = 44.999996
 height = 89.99999
 
 [node name="RedEnemy" unique_id=1885842798 instance=ExtResource("1_gjbxi")]
+max_hp = 3
+move_speed = 300.0
 enemy_zokusei = "red"
 
 [node name="AnimatedSprite2D" parent="." index="0" unique_id=1040475396]
-position = Vector2(-21, 6)
-scale = Vector2(1.5781249, 1.3163842)
+position = Vector2(5, -1.9999986)
+scale = Vector2(0.13621113, 0.1352525)
 sprite_frames = SubResource("SpriteFrames_rdait")
-frame_progress = 0.72205037
+frame = 1
+frame_progress = 0.5288082
 
 [node name="CollisionShape2D" parent="." index="1" unique_id=1067024021]
 position = Vector2(3.9999995, 0.99999994)

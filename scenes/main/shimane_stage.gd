@@ -7,15 +7,20 @@ extends Node2D
 
 # 青鬼
 @export var blue_enemy_scene: PackedScene
-
+@export var blue_enemy4島根_scene: PackedScene
 # 黄色鬼
 @export var yellow_enemy_scene: PackedScene
-
+@export var yellow_enemy4島根_scene: PackedScene
 # 赤鬼
 @export var red_enemy_scene: PackedScene
-
+@export var red_enemy4島根_scene: PackedScene
 # 島根ボス
 @export var shimane_boss_scene: PackedScene
+
+# ここから追加
+# レベルアップ画面
+@export var level_up_scene: PackedScene
+# ここまで
 
 
 # ==================================================
@@ -55,10 +60,10 @@ var current_wave: int = 1
 var blue_kill_count: int = 0
 
 # Wave2へ進むために必要な撃破数
-const BLUE_KILLS_TO_WAVE_2: int = 5
+const BLUE_KILLS_TO_WAVE_2: int = 15
 
 # Wave1の敵出現間隔
-const WAVE_1_SPAWN_TIME: float = 4.0
+const WAVE_1_SPAWN_TIME: float = 0.7
 
 
 # ==================================================
@@ -69,10 +74,10 @@ const WAVE_1_SPAWN_TIME: float = 4.0
 var wave_2_kill_count: int = 0
 
 # Wave3へ進むために必要な撃破数
-const KILLS_TO_WAVE_3: int = 5
+const KILLS_TO_WAVE_3: int = 16
 
 # Wave2の敵出現間隔
-const WAVE_2_SPAWN_TIME: float = 4.0
+const WAVE_2_SPAWN_TIME: float = 0.3
 
 
 # ==================================================
@@ -83,11 +88,39 @@ const WAVE_2_SPAWN_TIME: float = 4.0
 var wave_3_kill_count: int = 0
 
 # 島根ボス出現に必要な撃破数
-const KILLS_TO_SHIMANE_BOSS: int = 5
+const KILLS_TO_SHIMANE_BOSS: int = 8
 
 # Wave3の敵出現間隔
-const WAVE_3_SPAWN_TIME: float = 3.5
+const WAVE_3_SPAWN_TIME: float = 0.8
 
+
+# ここから追加
+# ==================================================
+# レベルアップ
+# ==================================================
+
+# レベルアップ用の撃破数
+var level_up_kill_count: int = 0
+
+# レベルアップ画面を表示中か
+var is_level_up: bool = false
+
+# 次のレベルに必要な撃破数を計算
+# 次のレベルに必要な撃破数を計算
+func get_required_kills(target_level: int) -> int:
+	# 指定した必要撃破数リスト (Lv1→2: 5体, Lv2→3: 7体, ...)
+	var kill_table: Array[int] = [5, 7, 8, 10, 15, 5, 12, 14, 5, 8, 14, 8, 10, 10, 10]
+	
+	var index := target_level - 1
+	
+	# リストの範囲内であればその数値を返す
+	if index >= 0 and index < kill_table.size():
+		return kill_table[index]
+	
+	# リストの範囲を超えた高レベル時は最後の値(10)を返す
+	return kill_table[-1]
+	
+# ここまで
 
 # ==================================================
 # 島根ボス
@@ -143,6 +176,24 @@ func _ready() -> void:
 	# ------------------------------------------
 
 	attribute_select_ui.show()
+
+	# Panel -> VBoxContainer -> 各ボタン の順で指定
+	var katana_btn = attribute_select_ui.get_node("Panel/VBoxContainer/KatanaButton")
+	var bow_btn = attribute_select_ui.get_node("Panel/VBoxContainer/BowButton")
+	var horse_btn = attribute_select_ui.get_node("Panel/VBoxContainer/HorseButton")
+
+	# 上下キー移動のループ（循環）を設定
+	katana_btn.focus_neighbor_top = horse_btn.get_path()
+	katana_btn.focus_neighbor_bottom = bow_btn.get_path()
+
+	bow_btn.focus_neighbor_top = katana_btn.get_path()
+	bow_btn.focus_neighbor_bottom = horse_btn.get_path()
+
+	horse_btn.focus_neighbor_top = bow_btn.get_path()
+	horse_btn.focus_neighbor_bottom = katana_btn.get_path()
+
+	# 最初に刀ボタンを選択状態にする
+	katana_btn.grab_focus()
 
 
 	# ------------------------------------------
@@ -256,6 +307,11 @@ func spawn_enemy() -> void:
 	if shimane_boss_spawned:
 		return
 
+	# ここから追加
+	# レベルアップ中は生成しない
+	if is_level_up:
+		return
+	# ここまで
 
 	# ------------------------------------------
 	# 今回生成する敵シーン
@@ -270,60 +326,52 @@ func spawn_enemy() -> void:
 
 	match current_wave:
 
-
 		# ==========================================
-		# Wave1
+		# Wave1 (青鬼: 40%, 島根青鬼: 60%)
 		# ==========================================
-
 		1:
+			var random_value := randf()
 
-			# 青鬼のみ
-			scene_to_spawn = blue_enemy_scene
+			# 青鬼 40%
+			if random_value < 0.4:
+				scene_to_spawn = blue_enemy_scene
+			# 島根青鬼 60%
+			else:
+				scene_to_spawn = blue_enemy4島根_scene
 
 
 		# ==========================================
-		# Wave2
+		# Wave2 (青鬼: 15%, 黄色鬼: 35%, 島根黄色鬼: 50%)
 		# ==========================================
-
 		2:
-
 			var random_value := randf()
 
-			# 青鬼 70%
-			if random_value < 0.7:
-
+			# 青鬼 15%
+			if random_value < 0.15:
 				scene_to_spawn = blue_enemy_scene
-
-			# 黄色鬼 30%
-			else:
-
+			# 黄色鬼 35% (0.15 〜 0.50)
+			elif random_value < 0.5:
 				scene_to_spawn = yellow_enemy_scene
+			# 島根黄色鬼 50% (0.50 〜 1.0)
+			else:
+				scene_to_spawn = yellow_enemy4島根_scene
 
 
 		# ==========================================
-		# Wave3
+		# Wave3 (赤鬼: 30%, 黄色鬼: 10%, 島根赤鬼: 60%)
 		# ==========================================
-
 		3:
-
 			var random_value := randf()
 
-			# 青鬼 50%
-			if random_value < 0.5:
-
-				scene_to_spawn = blue_enemy_scene
-
-			# 黄色鬼 30%
-			elif random_value < 0.8:
-
-				scene_to_spawn = yellow_enemy_scene
-
-			# 赤鬼 20%
-			else:
-
+			# 赤鬼 30%
+			if random_value < 0.3:
 				scene_to_spawn = red_enemy_scene
-
-
+			# 黄色鬼 10% (0.30 〜 0.40)
+			elif random_value < 0.4:
+				scene_to_spawn = yellow_enemy_scene
+			# 島根赤鬼 60% (0.40 〜 1.0)
+			else:
+				scene_to_spawn = red_enemy4島根_scene
 		# ==========================================
 		# その他
 		# ==========================================
@@ -419,6 +467,28 @@ func _on_enemy_died() -> void:
 		return
 
 
+	# ここから追加
+	# ------------------------------------------
+	# レベルアップ判定
+	# ------------------------------------------
+
+	level_up_kill_count += 1
+
+	var required_kills: int = get_required_kills(GameManager.level)
+
+	print(
+	"レベルアップ用撃破数：",
+	level_up_kill_count,
+	"/",
+	required_kills
+)
+
+	if level_up_kill_count >= required_kills and not is_level_up:
+
+		level_up_kill_count -= required_kills
+
+		open_level_up()
+	# ここまで
 	match current_wave:
 
 
@@ -442,7 +512,6 @@ func _on_enemy_died() -> void:
 			if blue_kill_count >= BLUE_KILLS_TO_WAVE_2:
 
 				start_wave_2()
-
 
 		# ==========================================
 		# Wave2
@@ -489,6 +558,198 @@ func _on_enemy_died() -> void:
 				# Physics処理が終わってからボスを生成する
 				call_deferred("spawn_tottori_boss")
 
+
+# ここから追加
+# ==================================================
+# レベルアップ画面
+# ==================================================
+
+func open_level_up() -> void:
+
+	# すでにレベルアップ中なら何もしない
+	if is_level_up:
+		return
+
+	# LevelUpシーンが設定されているか確認
+	if level_up_scene == null:
+
+		push_warning(
+			"LevelUpシーンが設定されていません。"
+		)
+
+		return
+
+
+	# ------------------------------------------
+	# レベルアップ状態
+	# ------------------------------------------
+
+	is_level_up = true
+
+
+	# ------------------------------------------
+	# LevelUp画面を生成
+	# ------------------------------------------
+
+	var level_up = level_up_scene.instantiate()
+
+
+	# ------------------------------------------
+	# Pause中でもLevelUp画面だけ動かす
+	# ------------------------------------------
+
+	level_up.process_mode = Node.PROCESS_MODE_WHEN_PAUSED
+
+
+	# ------------------------------------------
+	# Mainに追加
+	# ------------------------------------------
+
+	add_child(level_up)
+
+
+	# ------------------------------------------
+	# 現在のレベルを表示
+	# ------------------------------------------
+
+	if level_up.has_method("set_level"):
+
+		level_up.set_level(
+			GameManager.level + 1
+		)
+
+
+	# ------------------------------------------
+	# 強化選択シグナルを接続
+	# ------------------------------------------
+
+	if level_up.has_signal("upgrade_selected"):
+
+		level_up.upgrade_selected.connect(
+			_on_upgrade_selected
+		)
+
+
+	# ------------------------------------------
+	# ゲーム世界全体を完全停止
+	# ------------------------------------------
+
+	get_tree().paused = true
+
+
+# ==================================================
+# 強化を選択したとき
+# ==================================================
+
+func _on_upgrade_selected(
+	upgrade_type: String
+) -> void:
+
+	print(
+		"強化選択：",
+		upgrade_type
+	)
+	
+	# ------------------------------------------
+	# 強化を選択したタイミングでレベルアップ
+	# ------------------------------------------
+
+	GameManager.level_up()
+
+
+	# ------------------------------------------
+	# Playerへ強化を反映
+	# ------------------------------------------
+
+	apply_player_upgrades()
+
+
+	# ------------------------------------------
+	# レベルアップ状態を解除
+	# ------------------------------------------
+
+	is_level_up = false
+
+
+	# ------------------------------------------
+	# ゲーム世界を再開
+	# ------------------------------------------
+
+	get_tree().paused = false
+	$AttributeSelectUI/ClickSound.play()
+
+
+# ==================================================
+# Playerへ強化を反映
+# ==================================================
+
+func apply_player_upgrades() -> void:
+
+	# ------------------------------------------
+	# HP
+	# ------------------------------------------
+
+	player.max_hp = (
+		10
+		+ GameManager.hp_bonus
+	)
+
+	# 最大HPまで回復
+	player.current_hp = player.max_hp
+
+	# HPバー更新
+	player.hp_bar.set_hp(
+		player.current_hp,
+		player.max_hp
+	)
+
+
+	# ------------------------------------------
+	# 移動速度
+	# ------------------------------------------
+
+	player.katana_move_speed = (
+		200.0
+		+ GameManager.speed_bonus
+	)
+
+	player.bow_move_speed = (
+		140.0
+		+ GameManager.speed_bonus
+	)
+
+	player.horse_move_speed = (
+		300.0
+		+ GameManager.speed_bonus
+	)
+
+
+	# ------------------------------------------
+	# 確認用
+	# ------------------------------------------
+
+	print("==============================")
+	print("Player強化反映")
+	print("最大HP：", player.max_hp)
+	print(
+		"攻撃力Bonus：",
+		GameManager.attack_bonus
+	)
+	print(
+		"刀速度：",
+		player.katana_move_speed
+	)
+	print(
+		"弓速度：",
+		player.bow_move_speed
+	)
+	print(
+		"騎馬速度：",
+		player.horse_move_speed
+	)
+	print("==============================")
+
+# ここまで
 
 # ==================================================
 # Wave2開始
@@ -692,7 +953,7 @@ func _on_shimane_boss_died() -> void:
 	# ステージクリア
 	# ------------------------------------------
 
-	stage_clear()
+	call_deferred("stage_clear")
 
 
 # ==================================================
@@ -702,11 +963,12 @@ func _on_shimane_boss_died() -> void:
 func stage_clear() -> void:
 
 	print("ステージクリア！")
+	await get_tree().create_timer(2).timeout
 
 
 	# クリアシーンへ移動
 	get_tree().change_scene_to_file(
-		"res://scenes/clear.tscn"
+		"res://scenes/mori-mi/game_clear_s.tscn"
 	)
 
 
