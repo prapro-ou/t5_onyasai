@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://g0ku3qdwfish"]
+
+[ext_resource type="PackedScene" uid="uid://otqxendqxkxk" path="res://scenes/ui/tottori_stage_ui.tscn" id="1_yvhe3"]
+[ext_resource type="Texture2D" uid="uid://c4u20ibfk2uy3" path="res://assets/UI/山口_エンブレム.png" id="2_4jmgx"]
+
+[node name="YamagutiiStageUI" unique_id=357268121 instance=ExtResource("1_yvhe3")]
+
+[node name="TextureRect" parent="." index="3" unique_id=1092716110]
+offset_left = 3.9999998
+offset_top = 512.0
+offset_right = 2538.9998
+offset_bottom = 1327.0
+scale = Vector2(0.18, 0.18)
+offset_transform_scale = Vector2(0, 0)
+texture = ExtResource("2_4jmgx")

@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://cldv3jneab40k"]
+
+[ext_resource type="PackedScene" uid="uid://c0688q7f2ni3u" path="res://scenes/enemy/blue_enemy.tscn" id="1_u7656"]
+[ext_resource type="Texture2D" uid="uid://dr6w328qmo6vk" path="res://アニメ/gazou/character/enemy/enemy_kioni_move_kai.png" id="2_ml7yu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_euhvm"]
+atlas = ExtResource("2_ml7yu")
+region = Rect2(0, 0, 271, 724)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nigsx"]
+atlas = ExtResource("2_ml7yu")
+region = Rect2(813, 0, 271, 724)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fqby5"]
+atlas = ExtResource("2_ml7yu")
+region = Rect2(1084, 0, 271, 724)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a1jsx"]
+atlas = ExtResource("2_ml7yu")
+region = Rect2(1626, 0, 271, 724)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1f4pj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_euhvm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nigsx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fqby5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a1jsx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nigsx")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="YellowEnemy" unique_id=1885842798 instance=ExtResource("1_u7656")]
+enemy_zokusei = "yellow"
+
+[node name="AnimatedSprite2D" parent="." index="0" unique_id=1040475396]
+sprite_frames = SubResource("SpriteFrames_1f4pj")
+frame_progress = 0.5518492

@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://lvym7umcda6v"]
+
+[ext_resource type="Script" uid="uid://biiwov7sqhbgg" path="res://scenes/enemy/enemy.gd" id="1_ecga7"]
+[ext_resource type="Texture2D" uid="uid://b13fwi2w838hv" path="res://アニメ/gazou/character/enemy/広島青.png" id="2_ecga7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qgh7d"]
+atlas = ExtResource("2_ecga7")
+region = Rect2(0, 0, 1112, 960)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p64a5"]
+atlas = ExtResource("2_ecga7")
+region = Rect2(1112, 0, 1112, 960)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rb28m"]
+atlas = ExtResource("2_ecga7")
+region = Rect2(0, 960, 1112, 960)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wki5j"]
+atlas = ExtResource("2_ecga7")
+region = Rect2(1112, 960, 1112, 960)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gl8jq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qgh7d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p64a5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rb28m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wki5j")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w3xm4"]
+radius = 73.33485
+
+[node name="BlueEnemy" type="CharacterBody2D" unique_id=1885842798 groups=["enemy"]]
+collision_layer = 2
+script = ExtResource("1_ecga7")
+max_hp = 15
+move_speed = 270.0
+knockback_power = 150.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1040475396]
+position = Vector2(8.999999, -12)
+scale = Vector2(0.18794964, 0.16770832)
+sprite_frames = SubResource("SpriteFrames_gl8jq")
+frame_progress = 0.0004836958
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1067024021]
+position = Vector2(7, 2)
+shape = SubResource("CircleShape2D_w3xm4")

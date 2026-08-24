@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://c612k1pgl66wr"]
+
+[ext_resource type="PackedScene" uid="uid://c0688q7f2ni3u" path="res://scenes/enemy/blue_enemy.tscn" id="1_sw7fy"]
+[ext_resource type="Texture2D" uid="uid://dkopisryn4a5y" path="res://アニメ/gazou/character/enemy/山口黄.png" id="2_sw7fy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_his0q"]
+atlas = ExtResource("2_sw7fy")
+region = Rect2(0, 0, 1048, 1008)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rd84k"]
+atlas = ExtResource("2_sw7fy")
+region = Rect2(1048, 0, 1048, 1008)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0cqht"]
+atlas = ExtResource("2_sw7fy")
+region = Rect2(0, 1008, 1048, 1008)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_b0sd0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_his0q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rd84k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0cqht")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="YellowEnemy" unique_id=1885842798 instance=ExtResource("1_sw7fy")]
+max_hp = 1
+move_speed = 300.0
+enemy_zokusei = "yellow"
+
+[node name="AnimatedSprite2D" parent="." index="0" unique_id=1040475396]
+position = Vector2(10, -19)
+scale = Vector2(0.18938045, 0.17107317)
+sprite_frames = SubResource("SpriteFrames_b0sd0")
+frame_progress = 0.0

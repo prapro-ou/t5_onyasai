@@ -1,0 +1,132 @@
+[gd_scene format=3 uid="uid://b2r03eqiov17w"]
+
+[ext_resource type="Script" uid="uid://cxud1lahsjqxm" path="res://scenes/enemy/boss/tottori_boss.gd" id="2_ax71f"]
+[ext_resource type="Texture2D" uid="uid://dfqu8oel36cc8" path="res://assets/enemy/boss/boss_tottori_move1.png" id="3_namle"]
+[ext_resource type="PackedScene" uid="uid://bsqcd07k2ehps" path="res://scenes/ui/hp_bar.tscn" id="3_xe4gu"]
+[ext_resource type="AudioStream" uid="uid://b48cxj8gty15t" path="res://assets/sounds/風が吹く2.mp3" id="4_es08p"]
+[ext_resource type="Texture2D" uid="uid://j8sy77dda7uh" path="res://assets/enemy/boss/boss_tottori_move2.png" id="4_ljrjn"]
+[ext_resource type="Texture2D" uid="uid://cvkas65r42dxp" path="res://assets/enemy/boss/boss_tottori_move3.png" id="5_1l0bn"]
+[ext_resource type="Texture2D" uid="uid://dwpuf76gbefhw" path="res://assets/enemy/boss/boss_tottori_move4.png" id="6_regrn"]
+[ext_resource type="Texture2D" uid="uid://b8yhunfwsebeb" path="res://assets/enemy/boss/boss_tottori_move5.png" id="7_ar11i"]
+[ext_resource type="Texture2D" uid="uid://bmpa2udjscrva" path="res://assets/enemy/boss/boss_tottori_move6.png" id="8_wp0jx"]
+[ext_resource type="Texture2D" uid="uid://dlpy0nxgte37i" path="res://assets/enemy/boss/boss_tottori_move7.png" id="9_rdh4g"]
+[ext_resource type="Texture2D" uid="uid://b650wkmyb8fpa" path="res://assets/enemy/boss/boss_tottori_move8.png" id="10_nwyk7"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hh6tj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_namle")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_namle")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ljrjn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_1l0bn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_regrn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_ar11i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_wp0jx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_rdh4g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_nwyk7")
+}],
+"loop": 1,
+"name": &"move",
+"speed": 6.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wq2id"]
+radius = 80.74272
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ax71f"]
+load_path = "res://.godot/imported/砂粒.png-ff77ebf3da534c893f491a3b3bb44801.ctex"
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_83885"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(-500, 324, 0)
+emission_shape_scale = Vector3(10, 324, 0)
+direction = Vector3(14, 0, 0)
+spread = 15.0
+initial_velocity_min = 300.0
+initial_velocity_max = 500.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_max = 0.7
+scale_over_velocity_min = 0.099999994
+scale_over_velocity_max = 0.5
+
+[node name="TotttoriBoss" type="CharacterBody2D" unique_id=1885842798 groups=["boss", "enemy"]]
+collision_layer = 2
+script = ExtResource("2_ax71f")
+max_hp = 27
+move_speed = 250.0
+enemy_zokusei = "yellow"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1040475396]
+position = Vector2(-6.3754425, 1.9602933)
+scale = Vector2(0.75473154, 0.48687583)
+sprite_frames = SubResource("SpriteFrames_hh6tj")
+animation = &"move"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1067024021]
+position = Vector2(0, 1.9999999)
+scale = Vector2(1.4, 1.4)
+shape = SubResource("CircleShape2D_wq2id")
+
+[node name="HPBar" parent="." unique_id=2087799846 instance=ExtResource("3_xe4gu")]
+offset_left = -39.0
+offset_top = -127.0
+offset_right = 41.0
+offset_bottom = -117.0
+
+[node name="SandstormEffect" type="CanvasLayer" parent="." unique_id=1402408019]
+process_mode = 3
+visible = false
+
+[node name="SandOverlay" type="ColorRect" parent="SandstormEffect" unique_id=1394527563]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = -3.0
+offset_right = -1.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.95, 0.73878336, 0.39900002, 0.039215688)
+
+[node name="SandParticles" type="GPUParticles2D" parent="SandstormEffect" unique_id=503071527]
+emitting = false
+amount = 5
+texture = SubResource("CompressedTexture2D_ax71f")
+lifetime = 10.0
+process_material = SubResource("ParticleProcessMaterial_83885")
+
+[node name="SandstormTimer" type="Timer" parent="." unique_id=630941485]
+wait_time = 10.0
+autostart = true
+
+[node name="DurationTimer" type="Timer" parent="." unique_id=547312288]
+wait_time = 10.0
+one_shot = true
+
+[node name="SandstormSound" type="AudioStreamPlayer2D" parent="." unique_id=1326316395]
+visible = false
+stream = ExtResource("4_es08p")

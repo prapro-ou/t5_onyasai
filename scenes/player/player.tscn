@@ -1,0 +1,311 @@
+[gd_scene format=3 uid="uid://b813i5f5ocwhh"]
+
+[ext_resource type="Script" uid="uid://c0jvs8pkkko3y" path="res://scenes/player/player.gd" id="1_dovo2"]
+[ext_resource type="AudioStream" uid="uid://bu574sj1nvdn8" path="res://assets/sounds/バタンと倒れる.mp3" id="3_5gtgg"]
+[ext_resource type="AudioStream" uid="uid://bpyvnf3wnqs2p" path="res://assets/sounds/小キック.mp3" id="4_h17s1"]
+[ext_resource type="AudioStream" uid="uid://cmcerunwndili" path="res://assets/sounds/剣で斬る.mp3" id="5_je7p5"]
+[ext_resource type="PackedScene" uid="uid://bsqcd07k2ehps" path="res://scenes/ui/hp_bar.tscn" id="5_p47bc"]
+[ext_resource type="Texture2D" uid="uid://w5p8mgrmkqtj" path="res://assets/player/katana_attack1.png" id="6_4hvnv"]
+[ext_resource type="AudioStream" uid="uid://r862ktjgk14q" path="res://assets/sounds/打撃2.mp3" id="6_h17s1"]
+[ext_resource type="Texture2D" uid="uid://de82iyvsi6q8" path="res://assets/player/katana_attack2.png" id="7_bbmj2"]
+[ext_resource type="Texture2D" uid="uid://cxhyglo37fgvd" path="res://assets/player/kiba_dash1.png" id="7_fm80t"]
+[ext_resource type="Texture2D" uid="uid://c1mxebafjx2ap" path="res://assets/player/kiba_dash3.png" id="7_gx1jg"]
+[ext_resource type="Texture2D" uid="uid://b8r2mmpr07yoa" path="res://assets/player/kiba_idle.png" id="7_h17s1"]
+[ext_resource type="Texture2D" uid="uid://bomry8e3myl8k" path="res://assets/player/kiba_run6.png" id="7_qek5x"]
+[ext_resource type="Texture2D" uid="uid://d1s0x8bxjnqbn" path="res://assets/player/kiba_dash2.png" id="8_gx1jg"]
+[ext_resource type="Texture2D" uid="uid://bj216e5v00ld1" path="res://assets/player/katana_attack3.png" id="8_kxw46"]
+[ext_resource type="Texture2D" uid="uid://d3ehbqvy7us6c" path="res://assets/player/katana_attack4.png" id="9_8qxvo"]
+[ext_resource type="Texture2D" uid="uid://dadhug7kk1ayu" path="res://assets/player/katana_idle.png" id="12_4hvnv"]
+[ext_resource type="Texture2D" uid="uid://l8nyvo1xxs65" path="res://assets/player/katana_run1.png" id="12_28m0y"]
+[ext_resource type="Texture2D" uid="uid://bv1owo45dtns4" path="res://assets/player/yumi_attack1.png" id="13_kvlxm"]
+[ext_resource type="Texture2D" uid="uid://d26exmf1rtk8" path="res://assets/player/katana_run2.png" id="13_uniwh"]
+[ext_resource type="Texture2D" uid="uid://des8vc7empivh" path="res://assets/player/katana_run3.png" id="14_iqsei"]
+[ext_resource type="Texture2D" uid="uid://pim6emusyy6v" path="res://assets/player/yumi_attack2.png" id="14_uf5tr"]
+[ext_resource type="Texture2D" uid="uid://ccmfwqcr1462y" path="res://assets/player/yumi_attack3.png" id="15_lgqa7"]
+[ext_resource type="Texture2D" uid="uid://bnv7uqx1y317a" path="res://assets/player/katana_run4.png" id="15_tffgl"]
+[ext_resource type="Texture2D" uid="uid://bvvnee0tbyh36" path="res://assets/player/yumi_attack4.png" id="16_8ydkj"]
+[ext_resource type="Texture2D" uid="uid://bsd5j331wluqv" path="res://assets/player/katana_run5.png" id="16_pk8ii"]
+[ext_resource type="Texture2D" uid="uid://3ser0dwxoyqx" path="res://assets/player/katana_run6.png" id="17_5mf0n"]
+[ext_resource type="Texture2D" uid="uid://clkxumagdjcgh" path="res://assets/player/yumi_run1.png" id="17_ioxgp"]
+[ext_resource type="Texture2D" uid="uid://c5yd60hrli7oa" path="res://assets/player/yumi_run2.png" id="18_cnsyf"]
+[ext_resource type="Texture2D" uid="uid://bullcoxqcwhne" path="res://assets/player/yumi_run3.png" id="19_007i1"]
+[ext_resource type="Texture2D" uid="uid://bmxeomntvpg6s" path="res://assets/player/yumi_run4.png" id="20_6cv16"]
+[ext_resource type="Texture2D" uid="uid://ckrsl7p0p0sus" path="res://assets/player/yumi_run5.png" id="21_j4nxn"]
+[ext_resource type="Texture2D" uid="uid://db7fsvrnir2pw" path="res://assets/player/yumi_run6.png" id="22_28m0y"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ugbui"]
+atlas = ExtResource("7_h17s1")
+region = Rect2(0, 0, 362, 724)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lgqa7"]
+atlas = ExtResource("7_qek5x")
+region = Rect2(350, 0, 350, 724)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3j4b4"]
+atlas = ExtResource("7_qek5x")
+region = Rect2(700, 0, 350, 724)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yj68g"]
+atlas = ExtResource("7_qek5x")
+region = Rect2(1050, 0, 350, 724)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ioxgp"]
+atlas = ExtResource("7_qek5x")
+region = Rect2(1400, 0, 350, 724)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cnsyf"]
+atlas = ExtResource("7_qek5x")
+region = Rect2(1750, 0, 350, 724)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qek5x"]
+atlas = ExtResource("7_qek5x")
+region = Rect2(0, 0, 350, 724)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w3xm4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_4hvnv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_bbmj2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_kxw46")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_kxw46")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_8qxvo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_4hvnv")
+}],
+"loop": 0,
+"name": &"attack",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_4hvnv")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_gx1jg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_gx1jg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_fm80t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_fm80t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_gx1jg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_gx1jg")
+}],
+"loop": 1,
+"name": &"kiba_dash",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ugbui")
+}],
+"loop": 1,
+"name": &"kiba_idle",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lgqa7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3j4b4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yj68g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ioxgp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cnsyf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qek5x")
+}],
+"loop": 1,
+"name": &"kiba_run",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_28m0y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_uniwh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_iqsei")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_tffgl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_pk8ii")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_5mf0n")
+}],
+"loop": 1,
+"name": &"run",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_kvlxm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_uf5tr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_8ydkj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_lgqa7")
+}],
+"loop": 1,
+"name": &"yumi_attack",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_kvlxm")
+}],
+"loop": 1,
+"name": &"yumi_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("17_ioxgp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_cnsyf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_007i1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_6cv16")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_j4nxn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_28m0y")
+}],
+"loop": 1,
+"name": &"yumi_run",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w3xm4"]
+size = Vector2(28, 26)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6obyq"]
+size = Vector2(78, 105)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_83885"]
+size = Vector2(226, 241)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w3xm4"]
+radius = 26.0
+height = 106.0
+
+[node name="Node2D" type="Node2D" unique_id=1834547159]
+
+[node name="Player" type="CharacterBody2D" parent="." unique_id=1298724341 groups=["player"]]
+script = ExtResource("1_dovo2")
+
+[node name="GameOverSound" type="AudioStreamPlayer2D" parent="Player" unique_id=1928554710]
+stream = ExtResource("3_5gtgg")
+
+[node name="DamageSound" type="AudioStreamPlayer2D" parent="Player" unique_id=2006951218]
+stream = ExtResource("4_h17s1")
+
+[node name="AttackSound" type="AudioStreamPlayer2D" parent="Player" unique_id=188945901]
+stream = ExtResource("5_je7p5")
+
+[node name="HouseSound" type="AudioStreamPlayer2D" parent="Player" unique_id=492096791]
+stream = ExtResource("6_h17s1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player" unique_id=777190651]
+position = Vector2(16, 14)
+scale = Vector2(0.39954156, 0.3337995)
+sprite_frames = SubResource("SpriteFrames_w3xm4")
+animation = &"attack"
+frame = 5
+frame_progress = 1.0
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=693282929]
+position = Vector2(0, 19)
+shape = SubResource("RectangleShape2D_w3xm4")
+
+[node name="AttackTimer" type="Timer" parent="Player" unique_id=267979482]
+autostart = true
+
+[node name="DamageCooldown" type="Timer" parent="Player" unique_id=1938570984]
+one_shot = true
+
+[node name="WeaponHolder" type="Node2D" parent="Player" unique_id=1090960688]
+
+[node name="KatanaHitBox" type="Area2D" parent="Player/WeaponHolder" unique_id=974666379]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/WeaponHolder/KatanaHitBox" unique_id=384072828]
+position = Vector2(-38, 14)
+shape = SubResource("RectangleShape2D_6obyq")
+disabled = true
+
+[node name="HorseHitBox" type="Area2D" parent="Player" unique_id=73120233]
+scale = Vector2(0.5, 0.5)
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/HorseHitBox" unique_id=1150638383]
+position = Vector2(43, 35.5)
+shape = SubResource("RectangleShape2D_83885")
+
+[node name="HurtBox" type="Area2D" parent="Player" unique_id=513188960]
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/HurtBox" unique_id=2108339770]
+position = Vector2(22, 14)
+shape = SubResource("CapsuleShape2D_w3xm4")
+
+[node name="HPBar" parent="Player" unique_id=2087799846 instance=ExtResource("5_p47bc")]
+offset_left = -26.0
+offset_top = -71.0
+offset_right = 54.0
+offset_bottom = -59.75
+scale = Vector2(0.8, 0.8)
+
+[connection signal="animation_finished" from="Player/AnimatedSprite2D" to="Player" method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="timeout" from="Player/AttackTimer" to="Player" method="_on_attack_timer_timeout"]
+[connection signal="body_entered" from="Player/WeaponHolder/KatanaHitBox" to="Player" method="_on_katana_hit_box_body_entered"]
+[connection signal="body_entered" from="Player/HorseHitBox" to="Player" method="_on_horse_hit_box_body_entered"]
+[connection signal="body_entered" from="Player/HurtBox" to="Player" method="_on_hurt_box_body_entered"]

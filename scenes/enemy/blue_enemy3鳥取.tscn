@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://cp6sitqv5eref"]
+
+[ext_resource type="Script" uid="uid://biiwov7sqhbgg" path="res://scenes/enemy/enemy.gd" id="1_pntrs"]
+[ext_resource type="Texture2D" uid="uid://cvfmb8knagi2d" path="res://アニメ/gazou/character/enemy/鳥取青 (2).png" id="2_o544m"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qwntw"]
+atlas = ExtResource("2_o544m")
+region = Rect2(0, 0, 1032, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ymm38"]
+atlas = ExtResource("2_o544m")
+region = Rect2(2064, 0, 1032, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o544m"]
+atlas = ExtResource("2_o544m")
+region = Rect2(3129, 0, 999, 1024)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gl8jq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qwntw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ymm38")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o544m")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w3xm4"]
+radius = 73.33485
+
+[node name="BlueEnemy" type="CharacterBody2D" unique_id=1885842798 groups=["enemy"]]
+collision_layer = 2
+script = ExtResource("1_pntrs")
+move_speed = 250.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1040475396]
+position = Vector2(6.500001, -2.500002)
+scale = Vector2(0.15019378, 0.14746092)
+sprite_frames = SubResource("SpriteFrames_gl8jq")
+frame_progress = 0.28149974
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1067024021]
+position = Vector2(7, 0)
+shape = SubResource("CircleShape2D_w3xm4")

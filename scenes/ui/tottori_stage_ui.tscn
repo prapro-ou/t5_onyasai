@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://otqxendqxkxk"]
+
+[ext_resource type="FontFile" uid="uid://6plamo55lv41" path="res://assets/font/玉ねぎ楷書「激」無料版v7/玉ねぎ楷書激無料版v7改.ttf" id="1_nlgcy"]
+[ext_resource type="Texture2D" uid="uid://3slp7ylxckw1" path="res://assets/UI/Waveの板.png" id="2_6vb2y"]
+[ext_resource type="Texture2D" uid="uid://dgb0e8438e7d5" path="res://assets/UI/鳥取県.png" id="3_a4aam"]
+[ext_resource type="Script" uid="uid://0lcx7x5q0bf7" path="res://scenes/ui/attribute_ui.gd" id="4_oqwwj"]
+[ext_resource type="Texture2D" uid="uid://cuyyl5gqd2lsp" path="res://assets/UI/剣属性UI.png" id="5_og5ig"]
+[ext_resource type="Texture2D" uid="uid://d1xoou4htjcmf" path="res://assets/UI/弓属性UI.png" id="6_cfwne"]
+[ext_resource type="Texture2D" uid="uid://d18tgtydpiq7b" path="res://assets/UI/騎馬属性UI.png" id="7_okonj"]
+
+[node name="TottoriStageUI" type="CanvasLayer" unique_id=357268121]
+
+[node name="ZokuseiBoard" type="TextureRect" parent="." unique_id=1179669167]
+offset_left = 1340.0001
+offset_top = 595.00006
+offset_right = 5569.365
+offset_bottom = 2632.5947
+rotation = -3.7280233
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_6vb2y")
+
+[node name="WaveBoard" type="TextureRect" parent="." unique_id=539515989]
+offset_left = 664.9999
+offset_top = -6.9999695
+offset_right = 3119.9995
+offset_bottom = 717.0
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_6vb2y")
+
+[node name="Wave" type="Label" parent="WaveBoard" unique_id=1032519856]
+custom_minimum_size = Vector2(30, 20)
+layout_mode = 0
+offset_left = 450.00052
+offset_top = 269.99985
+offset_right = 853.7505
+offset_bottom = 386.6665
+scale = Vector2(4, 4)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_nlgcy")
+theme_override_font_sizes/font_size = 50
+text = "Wave 1"
+horizontal_alignment = 1
+
+[node name="AttributeUI" type="Control" parent="." unique_id=115182404]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 904.0
+offset_top = 438.0
+offset_right = 1149.0
+offset_bottom = 641.0
+script = ExtResource("4_oqwwj")
+red_texture = ExtResource("5_og5ig")
+yellow_texture = ExtResource("6_cfwne")
+blue_texture = ExtResource("7_okonj")
+
+[node name="TextureRect" type="TextureRect" parent="AttributeUI" unique_id=1892874573]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.127
+anchor_top = -0.093
+anchor_right = 0.127
+anchor_bottom = -0.093
+offset_left = 55.885
+offset_top = 50.878998
+offset_right = 369.21838
+offset_bottom = 347.54575
+scale = Vector2(0.3, 0.3)
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1092716110]
+offset_left = -7.0
+offset_top = 522.0
+offset_right = 1749.6666
+offset_bottom = 1463.0
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_a4aam")

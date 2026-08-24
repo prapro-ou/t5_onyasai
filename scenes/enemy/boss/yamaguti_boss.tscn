@@ -1,0 +1,91 @@
+[gd_scene format=3 uid="uid://bqqf7oka8p07x"]
+
+[ext_resource type="Script" uid="uid://bugj5wokomfn1" path="res://scenes/enemy/boss/yamaguti_boss.gd" id="2_x4t7d"]
+[ext_resource type="Texture2D" uid="uid://dde7py4mchjvi" path="res://assets/enemy/boss/red_boss_move1.png" id="3_2mxho"]
+[ext_resource type="PackedScene" uid="uid://ksd816m7vrnk" path="res://scenes/enemy/boss/poison_puddle.tscn" id="3_np6d7"]
+[ext_resource type="Texture2D" uid="uid://dsaugouh4rg84" path="res://assets/enemy/boss/red_boss_move2.png" id="4_6xuwv"]
+[ext_resource type="PackedScene" uid="uid://bsqcd07k2ehps" path="res://scenes/ui/hp_bar.tscn" id="4_08wt3"]
+[ext_resource type="Texture2D" uid="uid://crdjpbr4eqpjl" path="res://assets/enemy/boss/red_boss_move3.png" id="5_6mvq5"]
+[ext_resource type="AudioStream" uid="uid://ddjtkw0dalx6t" path="res://assets/sounds/水ぶくぶく2.mp3" id="5_movqf"]
+[ext_resource type="Texture2D" uid="uid://b07sjo5tug5aa" path="res://assets/enemy/boss/red_boss_move4.png" id="6_wkkap"]
+[ext_resource type="Texture2D" uid="uid://ds5uhftpayg1y" path="res://assets/enemy/boss/red_boss_move5.png" id="7_20uis"]
+[ext_resource type="Texture2D" uid="uid://cxg1yp7ww680" path="res://assets/enemy/boss/red_boss_move6.png" id="8_3sf24"]
+[ext_resource type="Texture2D" uid="uid://boi5fa2hswhod" path="res://assets/enemy/boss/red_boss_move7.png" id="9_tbwtf"]
+[ext_resource type="Texture2D" uid="uid://c08dpatfpckq7" path="res://assets/enemy/boss/red_boss_move8.png" id="10_th5yo"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x74xo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_2mxho")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_2mxho")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_6xuwv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_6mvq5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_wkkap")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_20uis")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_3sf24")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_tbwtf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_th5yo")
+}],
+"loop": 1,
+"name": &"move",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hh6tj"]
+radius = 73.57143
+height = 169.99998
+
+[node name="YamagutiBoss" type="CharacterBody2D" unique_id=1885842798 groups=["enemy"]]
+collision_layer = 2
+script = ExtResource("2_x4t7d")
+poison_puddle_scene = ExtResource("3_np6d7")
+max_hp = 130
+move_speed = 250.0
+enemy_zokusei = "red"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2045587159]
+position = Vector2(10.999998, 5)
+scale = Vector2(0.6052405, 0.42222902)
+sprite_frames = SubResource("SpriteFrames_x74xo")
+animation = &"move"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1067024021]
+position = Vector2(1.0000002, 0.99999994)
+scale = Vector2(1.4, 1.4)
+shape = SubResource("CapsuleShape2D_hh6tj")
+
+[node name="HPBar" parent="." unique_id=2087799846 instance=ExtResource("4_08wt3")]
+offset_left = -42.0
+offset_top = -111.0
+offset_right = 38.0
+offset_bottom = -101.0
+
+[node name="PoisonTimer" type="Timer" parent="." unique_id=164911256]
+wait_time = 3.0
+
+[node name="WarningTimer" type="Timer" parent="." unique_id=925622066]
+
+[node name="PoisonSound" type="AudioStreamPlayer2D" parent="." unique_id=105335525]
+stream = ExtResource("5_movqf")

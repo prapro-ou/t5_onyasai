@@ -1,0 +1,149 @@
+[gd_scene format=3 uid="uid://3melj357fnpy"]
+
+[ext_resource type="Script" uid="uid://bv7h8ixwr3wyf" path="res://scenes/enemy/boss/hiroshima_boss.gd" id="2_lnw6o"]
+[ext_resource type="PackedScene" uid="uid://lcrw4q5kgywx" path="res://scenes/enemy/boss/wave.tscn" id="3_eylq3"]
+[ext_resource type="Texture2D" uid="uid://bucuym2qwu3lu" path="res://gazou/紅葉.png" id="3_lnw6o"]
+[ext_resource type="Texture2D" uid="uid://dde7py4mchjvi" path="res://assets/enemy/boss/red_boss_move1.png" id="4_1et55"]
+[ext_resource type="PackedScene" uid="uid://ccndyyy5q8i6s" path="res://scenes/enemy/boss/okonomiyaki.tscn" id="4_r6tpl"]
+[ext_resource type="PackedScene" uid="uid://bsqcd07k2ehps" path="res://scenes/ui/hp_bar.tscn" id="5_bvgr3"]
+[ext_resource type="Texture2D" uid="uid://dsaugouh4rg84" path="res://assets/enemy/boss/red_boss_move2.png" id="5_luhbl"]
+[ext_resource type="AudioStream" uid="uid://b48cxj8gty15t" path="res://assets/sounds/風が吹く2.mp3" id="6_ca2nc"]
+[ext_resource type="Texture2D" uid="uid://crdjpbr4eqpjl" path="res://assets/enemy/boss/red_boss_move3.png" id="6_haody"]
+[ext_resource type="Texture2D" uid="uid://b07sjo5tug5aa" path="res://assets/enemy/boss/red_boss_move4.png" id="7_xhf2l"]
+[ext_resource type="AudioStream" uid="uid://sekgf7e3yemx" path="res://assets/sounds/海岸1.mp3" id="8_7hhkj"]
+[ext_resource type="Texture2D" uid="uid://ds5uhftpayg1y" path="res://assets/enemy/boss/red_boss_move5.png" id="8_y7mh3"]
+[ext_resource type="Texture2D" uid="uid://cxg1yp7ww680" path="res://assets/enemy/boss/red_boss_move6.png" id="9_5kvio"]
+[ext_resource type="AudioStream" uid="uid://ddjtkw0dalx6t" path="res://assets/sounds/水ぶくぶく2.mp3" id="9_bvgr3"]
+[ext_resource type="Texture2D" uid="uid://boi5fa2hswhod" path="res://assets/enemy/boss/red_boss_move7.png" id="10_j4yqg"]
+[ext_resource type="Texture2D" uid="uid://c08dpatfpckq7" path="res://assets/enemy/boss/red_boss_move8.png" id="11_ypfp5"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ulv5q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_1et55")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_1et55")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_luhbl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_haody")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_xhf2l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_y7mh3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_5kvio")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_j4yqg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_ypfp5")
+}],
+"loop": 1,
+"name": &"move",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nq6n3"]
+radius = 90.407234
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lnw6o"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(-500, 324, 0)
+emission_shape_scale = Vector3(10, 324, 0)
+direction = Vector3(14, 0, 0)
+spread = 15.0
+initial_velocity_min = 300.0
+initial_velocity_max = 500.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_max = 0.7
+scale_over_velocity_min = 0.099999994
+scale_over_velocity_max = 0.5
+
+[node name="HiroshimaBoss" type="CharacterBody2D" unique_id=1885842798 groups=["enemy"]]
+collision_layer = 2
+script = ExtResource("2_lnw6o")
+wave_scene = ExtResource("3_eylq3")
+okonomiyaki_scene = ExtResource("4_r6tpl")
+max_hp = 250
+move_speed = 250.0
+enemy_zokusei = "red"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1005929604]
+position = Vector2(21.691591, -6.5562496)
+scale = Vector2(0.8607877, 0.515038)
+sprite_frames = SubResource("SpriteFrames_ulv5q")
+animation = &"move"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1960137818]
+position = Vector2(2.9999998, 1.9999999)
+scale = Vector2(1.4, 1.4)
+shape = SubResource("CircleShape2D_nq6n3")
+
+[node name="HPBar" parent="." unique_id=2087799846 instance=ExtResource("5_bvgr3")]
+offset_left = -39.0
+offset_top = -152.0
+offset_right = 41.0
+offset_bottom = -142.0
+
+[node name="AttackTimer" type="Timer" parent="." unique_id=1322196349]
+wait_time = 5.0
+one_shot = true
+
+[node name="MomijiEffect" type="CanvasLayer" parent="." unique_id=1082943020]
+process_mode = 3
+
+[node name="MomijiOverlay" type="ColorRect" parent="MomijiEffect" unique_id=1435492683]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.95, 0.73878336, 0.39900002, 0.039215688)
+
+[node name="MomijiParticles" type="GPUParticles2D" parent="MomijiEffect" unique_id=1188795636]
+emitting = false
+amount = 5
+texture = ExtResource("3_lnw6o")
+lifetime = 10.0
+process_material = SubResource("ParticleProcessMaterial_lnw6o")
+
+[node name="MomijiTimer" type="Timer" parent="." unique_id=729953435]
+wait_time = 10.0
+autostart = true
+
+[node name="DurationTimer" type="Timer" parent="." unique_id=1616523828]
+wait_time = 10.0
+one_shot = true
+
+[node name="WaveTimer" type="Timer" parent="." unique_id=289863489]
+wait_time = 5.0
+autostart = true
+
+[node name="WarningLine" type="Line2D" parent="." unique_id=651872982]
+visible = false
+width = 50.0
+default_color = Color(1, 1, 1, 0.6666667)
+
+[node name="MomijiSound" type="AudioStreamPlayer2D" parent="." unique_id=1509821247]
+stream = ExtResource("6_ca2nc")
+
+[node name="WaveSound" type="AudioStreamPlayer2D" parent="." unique_id=1758577142]
+stream = ExtResource("8_7hhkj")
+
+[node name="PoisonSound" type="AudioStreamPlayer2D" parent="." unique_id=401623155]
+stream = ExtResource("9_bvgr3")

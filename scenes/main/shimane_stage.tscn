@@ -1,0 +1,229 @@
+[gd_scene format=3 uid="uid://dbo1w3sbpf3og"]
+
+[ext_resource type="Script" uid="uid://bcaap8xhts5m2" path="res://scenes/main/shimane_stage.gd" id="1_4005q"]
+[ext_resource type="PackedScene" uid="uid://c0688q7f2ni3u" path="res://scenes/enemy/blue_enemy.tscn" id="2_ghajl"]
+[ext_resource type="PackedScene" uid="uid://dimu2is4odnrk" path="res://scenes/enemy/blue_enemy4島根.tscn" id="3_r3bkj"]
+[ext_resource type="PackedScene" uid="uid://cldv3jneab40k" path="res://scenes/enemy/yellow_enemy.tscn" id="3_xncxr"]
+[ext_resource type="PackedScene" uid="uid://b0p5vtjtgdglb" path="res://scenes/enemy/red_enemy.tscn" id="4_5dum2"]
+[ext_resource type="PackedScene" uid="uid://dhemuh6ftsnk6" path="res://scenes/enemy/boss/shimane_boss.tscn" id="5_eftlv"]
+[ext_resource type="PackedScene" uid="uid://c7ygmb5qf4cg5" path="res://scenes/enemy/yellow_enemy4島根.tscn" id="5_nhjne"]
+[ext_resource type="PackedScene" uid="uid://dk4bbj5hcirmu" path="res://scenes/LevelUP/level_up.tscn" id="6_fou48"]
+[ext_resource type="Texture2D" uid="uid://bsyjd7t0grbn7" path="res://assets/gazou/stage/stage_simane_kai.png" id="6_omefe"]
+[ext_resource type="PackedScene" uid="uid://b813i5f5ocwhh" path="res://scenes/player/player.tscn" id="7_fou48"]
+[ext_resource type="PackedScene" uid="uid://bc7rmxncu02ax" path="res://scenes/enemy/red_enemy4島根.tscn" id="7_w48jk"]
+[ext_resource type="FontFile" uid="uid://6plamo55lv41" path="res://assets/font/玉ねぎ楷書「激」無料版v7/玉ねぎ楷書激無料版v7改.ttf" id="8_yckir"]
+[ext_resource type="AudioStream" uid="uid://fbeug5se5b65" path="res://assets/sounds/和太鼓でドン.mp3" id="9_04dv0"]
+[ext_resource type="Texture2D" uid="uid://ctoc22idjv74k" path="res://assets/UI/属性選択画面.png" id="9_omefe"]
+[ext_resource type="Script" uid="uid://be20j1qjg30jf" path="res://scenes/ui/zokusei_panel.gd" id="10_fou48"]
+[ext_resource type="AudioStream" uid="uid://mbnun2rtkfew" path="res://assets/sounds/結末の見えない戦い_其の六十二.mp3" id="10_r3bkj"]
+[ext_resource type="PackedScene" uid="uid://b7wdj8oaax4aq" path="res://scenes/GameOver/GameOver.tscn" id="11_nhjne"]
+[ext_resource type="Texture2D" uid="uid://s2shh264loja" path="res://assets/UI/剣説明.png" id="11_yckir"]
+[ext_resource type="PackedScene" uid="uid://c20qm2p6pqjw" path="res://scenes/ui/shimane_stage_ui.tscn" id="12_eftlv"]
+[ext_resource type="Texture2D" uid="uid://c1u82rx4f2cls" path="res://assets/UI/弓説明.png" id="13_04dv0"]
+[ext_resource type="Texture2D" uid="uid://drqh2pj6ub8wk" path="res://assets/UI/騎馬説明.png" id="14_r3bkj"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nhjne"]
+texture = ExtResource("9_omefe")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w48jk"]
+bg_color = Color(0.5176471, 0.41960785, 0.22745098, 1)
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wd453"]
+bg_color = Color(0.7400165, 0.6154684, 0.3752562, 1)
+border_color = Color(0.5176471, 0.41960785, 0.22745098, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_il51t"]
+bg_color = Color(0.5176471, 0.41960785, 0.22745098, 1)
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5pvcb"]
+bg_color = Color(0.7411765, 0.6156863, 0.3764706, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ti45m"]
+bg_color = Color(0.5176471, 0.41960785, 0.22745098, 1)
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jrpyj"]
+bg_color = Color(0.7411765, 0.6156863, 0.3764706, 1)
+
+[node name="ShimaneStage" type="Node2D" unique_id=587774680]
+script = ExtResource("1_4005q")
+blue_enemy_scene = ExtResource("2_ghajl")
+"blue_enemy4島根_scene" = ExtResource("3_r3bkj")
+yellow_enemy_scene = ExtResource("3_xncxr")
+"yellow_enemy4島根_scene" = ExtResource("5_nhjne")
+red_enemy_scene = ExtResource("4_5dum2")
+"red_enemy4島根_scene" = ExtResource("7_w48jk")
+shimane_boss_scene = ExtResource("5_eftlv")
+level_up_scene = ExtResource("6_fou48")
+
+[node name="Background" type="Sprite2D" parent="." unique_id=378510785]
+position = Vector2(584, 342)
+scale = Vector2(0.7998046, 0.70519537)
+texture = ExtResource("6_omefe")
+
+[node name="Player" parent="." unique_id=1834547159 instance=ExtResource("7_fou48")]
+position = Vector2(564, 326)
+
+[node name="SpawnTimer" type="Timer" parent="." unique_id=220923622]
+wait_time = 4.0
+autostart = true
+
+[node name="AttributeSelectUI" type="CanvasLayer" parent="." unique_id=298465828]
+
+[node name="ClickSound" type="AudioStreamPlayer" parent="AttributeSelectUI" unique_id=1414521542]
+stream = ExtResource("9_04dv0")
+
+[node name="Panel" type="Panel" parent="AttributeSelectUI" unique_id=817270746]
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_nhjne")
+script = ExtResource("10_fou48")
+
+[node name="KatanaCard" type="TextureRect" parent="AttributeSelectUI/Panel" unique_id=890185525]
+layout_mode = 0
+offset_left = 544.0
+offset_top = 220.0
+offset_right = 1568.0
+offset_bottom = 1895.0
+scale = Vector2(0.2, 0.2)
+mouse_filter = 2
+texture = ExtResource("11_yckir")
+
+[node name="Label" type="Label" parent="AttributeSelectUI/Panel/KatanaCard" unique_id=1404978784]
+layout_mode = 0
+offset_left = 255.00006
+offset_top = 799.99994
+offset_right = 840.00006
+offset_bottom = 1421.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("8_yckir")
+theme_override_font_sizes/font_size = 105
+text = "刀属性
+
+攻撃
+　進行方向
+属性相性
+　赤鬼◎"
+
+[node name="BowCard" type="TextureRect" parent="AttributeSelectUI/Panel" unique_id=1677804580]
+layout_mode = 0
+offset_left = 278.0
+offset_top = 167.0
+offset_right = 865.6667
+offset_bottom = 1703.0
+scale = Vector2(0.3, 0.3)
+mouse_filter = 2
+texture = ExtResource("13_04dv0")
+
+[node name="Label" type="Label" parent="AttributeSelectUI/Panel/BowCard" unique_id=1845134551]
+layout_mode = 0
+offset_left = 96.66663
+offset_top = 693.33325
+offset_right = 681.6666
+offset_bottom = 1314.3333
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("8_yckir")
+theme_override_font_sizes/font_size = 70
+text = "弓属性
+
+攻撃
+　反対方向
+属性相性
+　黄鬼◎"
+
+[node name="HorseCard" type="TextureRect" parent="AttributeSelectUI/Panel" unique_id=1946957990]
+layout_mode = 0
+offset_left = 836.0
+offset_top = 167.0
+offset_right = 1406.0
+offset_bottom = 1703.0
+scale = Vector2(0.3, 0.3)
+mouse_filter = 2
+texture = ExtResource("14_r3bkj")
+
+[node name="Label" type="Label" parent="AttributeSelectUI/Panel/HorseCard" unique_id=132931398]
+layout_mode = 0
+offset_left = 103.333405
+offset_top = 689.99994
+offset_right = 688.3334
+offset_bottom = 1311.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("8_yckir")
+theme_override_font_sizes/font_size = 70
+text = "騎馬属性
+
+攻撃
+　進行方向
+属性相性
+　青鬼◎"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="AttributeSelectUI/Panel" unique_id=1521880652]
+layout_mode = 0
+offset_left = 341.0
+offset_top = 87.0
+offset_right = 754.33325
+offset_bottom = 170.33334
+scale = Vector2(1.5, 1.5)
+
+[node name="Label" type="Label" parent="AttributeSelectUI/Panel/VBoxContainer" unique_id=24187904]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("8_yckir")
+text = "属性を選択してください"
+horizontal_alignment = 1
+
+[node name="KatanaButton" type="Button" parent="AttributeSelectUI/Panel/VBoxContainer" unique_id=1859254041]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("8_yckir")
+theme_override_styles/normal = SubResource("StyleBoxFlat_w48jk")
+theme_override_styles/hover = SubResource("StyleBoxFlat_wd453")
+text = "刀"
+
+[node name="BowButton" type="Button" parent="AttributeSelectUI/Panel/VBoxContainer" unique_id=1193672696]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("8_yckir")
+theme_override_styles/normal = SubResource("StyleBoxFlat_il51t")
+theme_override_styles/hover = SubResource("StyleBoxFlat_5pvcb")
+text = "弓"
+
+[node name="HorseButton" type="Button" parent="AttributeSelectUI/Panel/VBoxContainer" unique_id=1848484154]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("8_yckir")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ti45m")
+theme_override_styles/hover = SubResource("StyleBoxFlat_jrpyj")
+text = "騎馬"
+
+[node name="BGM" type="AudioStreamPlayer2D" parent="." unique_id=1748290086]
+process_mode = 3
+stream = ExtResource("10_r3bkj")
+volume_db = -5.0
+autoplay = true
+parameters/looping = true
+
+[node name="GameOver" parent="." unique_id=1161337136 instance=ExtResource("11_nhjne")]
+visible = false
+
+[node name="StageUI" parent="." unique_id=357268121 instance=ExtResource("12_eftlv")]
+process_mode = 3
+visible = false
+
+[connection signal="focus_entered" from="AttributeSelectUI/Panel/VBoxContainer/KatanaButton" to="AttributeSelectUI/Panel" method="_on_katana_button_focus_entered"]
+[connection signal="focus_exited" from="AttributeSelectUI/Panel/VBoxContainer/KatanaButton" to="AttributeSelectUI/Panel" method="_on_katana_button_focus_exited"]
+[connection signal="mouse_entered" from="AttributeSelectUI/Panel/VBoxContainer/KatanaButton" to="AttributeSelectUI/Panel" method="_on_katana_button_mouse_entered"]
+[connection signal="mouse_exited" from="AttributeSelectUI/Panel/VBoxContainer/KatanaButton" to="AttributeSelectUI/Panel" method="_on_katana_button_mouse_exited"]
+[connection signal="pressed" from="AttributeSelectUI/Panel/VBoxContainer/KatanaButton" to="." method="_on_katana_button_pressed"]
+[connection signal="focus_entered" from="AttributeSelectUI/Panel/VBoxContainer/BowButton" to="AttributeSelectUI/Panel" method="_on_bow_button_focus_entered"]
+[connection signal="focus_exited" from="AttributeSelectUI/Panel/VBoxContainer/BowButton" to="AttributeSelectUI/Panel" method="_on_bow_button_focus_exited"]
+[connection signal="mouse_entered" from="AttributeSelectUI/Panel/VBoxContainer/BowButton" to="AttributeSelectUI/Panel" method="_on_bow_button_mouse_entered"]
+[connection signal="mouse_exited" from="AttributeSelectUI/Panel/VBoxContainer/BowButton" to="AttributeSelectUI/Panel" method="_on_bow_button_mouse_exited"]
+[connection signal="pressed" from="AttributeSelectUI/Panel/VBoxContainer/BowButton" to="." method="_on_bow_button_pressed"]
+[connection signal="focus_entered" from="AttributeSelectUI/Panel/VBoxContainer/HorseButton" to="AttributeSelectUI/Panel" method="_on_horse_button_focus_entered"]
+[connection signal="focus_exited" from="AttributeSelectUI/Panel/VBoxContainer/HorseButton" to="AttributeSelectUI/Panel" method="_on_horse_button_focus_exited"]
+[connection signal="mouse_entered" from="AttributeSelectUI/Panel/VBoxContainer/HorseButton" to="AttributeSelectUI/Panel" method="_on_horse_button_mouse_entered"]
+[connection signal="mouse_exited" from="AttributeSelectUI/Panel/VBoxContainer/HorseButton" to="AttributeSelectUI/Panel" method="_on_horse_button_mouse_exited"]
+[connection signal="pressed" from="AttributeSelectUI/Panel/VBoxContainer/HorseButton" to="." method="_on_horse_button_pressed"]
